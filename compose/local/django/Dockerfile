@@ -14,12 +14,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential \
   # psycopg2 dependencies
   libpq-dev 
-  
-  # GDAL
-RUN apt-get update && apt-get install -y \
-    binutils \
-    libproj-dev \
-    gdal-bin
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements .
@@ -47,6 +41,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   libpq-dev \
   # Translations dependencies
   gettext \
+  # GDAL
+  binutils \
+  libproj-dev \
+  gdal-bin \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
