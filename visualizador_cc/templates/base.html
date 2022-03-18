@@ -35,34 +35,31 @@
   </head>
 
   <body>
-
-    <div class="mb-1">
-      <div class="row" >
-        <div class="col">
+<div>
+    <nav class="mb-1">
+      <div class="row text-center">
+        <div class="col-3 my-auto">
           <a class="navbar-brand text-left" href="{% url 'home' %}">
-            <img class="w-50" src="{% static 'images/logoEst.png' %}" alt="logo">
+            <img class="w-75 img-fluid logo" src="{% static 'images/logoEst.png' %}" alt="logo">
           </a>
         </div>
-        <div class="col">
+        <div class="col-6"></div>
+        <div class="col-3 my-auto">
           <a class="navbar-brand text-right" href="{% url 'home' %}">
-            <img class="w-50" src="{% static 'images/min-educacion-logo.png' %}" alt="logo-ministerio">
+            <img class="w-75 img-fluid logo" src="{% static 'images/min-educacion-logo.png' %}" alt="logo-ministerio">
           </a>
         </div>
       </div>
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         
         <div class="container-fluid">
           <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'home' %}">visualizador_cc</a>
-
+          
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">Mapa</a>
-              </li>
               {% if request.user.is_authenticated %}
                 <li class="nav-item">
                   {# URL provided by django-allauth/account/urls.py #}
@@ -84,12 +81,16 @@
                   <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
                 </li>
               {% endif %}
+              {% if request.user.is_authenticated %}
+                <li class="nav-item>
+                  <a class="nav-link" href="">Admin</a>
+              {% endif %}
             </ul>
           </div>
         </div>
       </nav>
 
-    </div>
+    </nav>
 
     <div class="container">
 
@@ -107,7 +108,7 @@
       {% endblock content %}
 
     </div> <!-- /container -->
-
+</div>
     {% block modal %}{% endblock modal %}
 
     {% block inline_javascript %}

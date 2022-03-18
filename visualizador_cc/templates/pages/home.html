@@ -1,1 +1,61 @@
 {% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="mt-4 mb-4 position-absolute top-50 start-50 translate-middle">
+    <div id="tarjetas" class="row ">
+      <div class="wrapper">
+        <div class="columnas">
+                  <div class="columna" ontouchstart="this.classList.toggle('hover');">
+                      <div class="contenedor">
+                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/mapa-chaco2.jpg' %})">
+                              <div class="inner">
+                                  <h3>Mapa</h3>
+                    <span class="texto-lectura"></span>
+                              </div>
+                          </div>
+                          <div class="back">
+                              <div class="inner">
+                                <a  href=""><p class="texto-lectura link">Mapa interactivo de las distintas ofertas educativas</p></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="columna" ontouchstart="this.classList.toggle('hover');">
+                      <div class="contenedor">
+                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/estadistica.png' %})" >
+                              <div class="inner">
+                                  <h3>Indicadores Educativos</h3>
+                    <span></span>
+                              </div>
+                          </div>
+                          <div class="back">
+                              <div class="inner">
+                                  <a href="#"><p class="link texto-lectura">Lorem</p></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>        			<div class="columna" ontouchstart="this.classList.toggle('hover');">
+                      <div class="contenedor">
+                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/mapa-chaco.jpeg' %})">
+                              <div class="inner">
+                                  <h3>En desarrollo</h3>
+                    <span></span>
+                              </div>
+                          </div>
+                          <div class="back">
+                              <div class="inner">
+                                  <a href="#"><p class="link texto-lectura">mply dummy text of the printing and typesetting industry. Lorem Ipsum</p></a>
+                              </div>
+                          </div>
+                      </div>
+
+              </div>
+       </div>
+
+    </div>
+  </section>
+
+
+
+{% endblock %}
