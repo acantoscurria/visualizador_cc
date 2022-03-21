@@ -42,13 +42,7 @@
         If you have not created an account yet, then please
         <a href="{{ signup_url }}">sign up</a> first.
       {% endblocktranslate %}
-    </p>
-  {% endif %}
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
+    </p>endblockm|crispy }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
