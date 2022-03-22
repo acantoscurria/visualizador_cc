@@ -19,6 +19,7 @@
 }
 
 
+
 .menu1 {
   text-align: right;
 }
@@ -280,3 +281,7 @@ html,body{
   }
 }
 
+.login_text {
+  color: #596a72;
+  
+}
