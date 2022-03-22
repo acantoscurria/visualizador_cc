@@ -81,6 +81,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "visualizador_cc.users",
     "visualizador_cc.dashboard",
+    "visualizador_cc.noticias",
     "fontawesomefree"
     # Your stuff: custom apps go here
 ]
