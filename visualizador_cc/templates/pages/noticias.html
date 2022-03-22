@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-6">
+        {% for a in noticias %}
+            <a href="{% url 'noticias:detalle' a.pk %}">
+                <div class="card bg-secondary shadow border-5">
+                    <h3 class="text-center">{{a.titulo}}</h3>
+                    <p>{{a.descripcion}}</p>
+                    <img class="" src="{{a.imagen_referencial.url}}"/>
+
+
+        {% endfor %}
+    </div>
+</div>

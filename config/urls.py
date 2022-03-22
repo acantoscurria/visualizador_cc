@@ -20,6 +20,7 @@ urlpatterns = [
     path(
         "dashboard/", include("visualizador_cc.dashboard.urls", namespace="dashboard")
     ),
+    path('noticias/', include('visualizador_cc.noticias.urls')),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
