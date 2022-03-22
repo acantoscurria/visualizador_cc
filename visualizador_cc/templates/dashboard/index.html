@@ -1,7 +1,114 @@
 {% extends "base_admin.html" %}
 
+
+
+
 {% block content %}
 
-<h1>hola index dashboard {{ result }}</h1>
+<style>
+
+    .border-card-primary {
+        border-left: 4px solid #0d6efd;
+    }
+    .border-card-success {
+        border-left: 4px solid #1cc88a;
+    }
+    .border-card-info {
+        border-left: 4px solid #36b9cc;
+    }
+    .border-card-warning {
+        border-left: 4px solid #f6c23e;
+    }
+
+</style>
+
+<div class="row pt-2">
+
+    <div class="col-3">
+
+        <div class="card border-card-primary  h-100 py-2">
+            <div class="card-body">
+
+                <div class="row g-0 align-items-center">
+
+                    <div class="col">
+                        <div class="fw-light text-primary text-uppercase mb-1">
+                            Docente en actividad
+                        </div>
+                        <div class="h5 mb-0">99999</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa-solid fa-user-tie fa-2x text-muted"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-3">
+
+        <div class="card border-card-success  h-100 py-2">
+            <div class="card-body">
+
+                <div class="row g-0 align-items-center">
+                    <div class="col">
+                        <div class="fw-light text-success text-uppercase mb-1">
+                            Horas catedras
+                        </div>
+                        <div class="h5 mb-0">99999</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa-solid fa-user-tie fa-2x text-muted"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-3">
+
+        <div class="card border-card-info  h-100 py-2">
+            <div class="card-body">
+                <div class="row g-0 align-items-center">
+                    <div class="col">
+                        <div class="fw-light text-info text-uppercase mb-1">
+                            Secciones independientes
+                        </div>
+                        <div class="h5 mb-0">99999</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa-solid fa-user-tie fa-2x text-muted"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-3">
+
+        <div class="card border-card-warning  h-100 py-2">
+            <div class="card-body">
+                <div class="row g-0 align-items-center">
+                    <div class="col mr-2">
+                        <div class="fw-light text-warning text-uppercase mb-1">
+                            Secciones multiples
+                        </div>
+                        <div class="h5 mb-0">99999</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa-solid fa-user-tie fa-2x text-muted"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
 
 {% endblock %}

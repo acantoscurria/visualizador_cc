@@ -43,9 +43,9 @@ html,body{
   width: 300px;
 }
 
-.row{
+/* .row{
   width: 100vw;
-}
+} */
 
 .text-custom {
   color: #97c93e !important;
@@ -283,5 +283,5 @@ html,body{
 
 .login_text {
   color: #596a72;
-  
+
 }
