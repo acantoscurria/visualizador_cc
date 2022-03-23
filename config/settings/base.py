@@ -64,6 +64,7 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
+    "django.contrib.gis",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
@@ -76,13 +77,15 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
+    "fontawesomefree",
+    "leaflet",
 ]
 
 LOCAL_APPS = [
     "visualizador_cc.users",
     "visualizador_cc.dashboard",
     "visualizador_cc.noticias",
-    "fontawesomefree"
+    "visualizador_cc.mapa",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -326,6 +329,12 @@ SPECTACULAR_SETTINGS = {
         {"url": "http://127.0.0.1:8000", "description": "Local Development server"},
         {"url": "https://sigechaco.com.ar", "description": "Production server"},
     ],
+}
+
+# Constante general de inicio centro mapa, lo usa django-leaflet
+LEAFLET_CONFIG = {
+    "DEFAULT_CENTER": (-26.270826, -60.604297),
+    "DEFAULT_ZOOM": 6,
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
