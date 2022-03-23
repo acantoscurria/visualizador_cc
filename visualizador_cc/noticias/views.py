@@ -12,7 +12,7 @@ def mostrarNoticias(request):
     
     ctx = {}
     ctx['noticias'] = n
-    return render(request, 'visualizador_cc/templates/pages/noticias.html', ctx)
+    return render(request, 'pages/noticias/index.html', ctx)
 
 def noticiaCompleta(request, pk):
     noticia = Noticia.objects.get(pk = pk)
@@ -21,13 +21,13 @@ def noticiaCompleta(request, pk):
     ctx['complete_new'] = noticia
     
 
-    return render(request, 'visualizador_cc/templates/pages/detalle_noticias.html', ctx)
+    return render(request, 'pages/noticias/detalle.html', ctx)
 
 class Postear(LoginRequiredMixin, CreateView):
     model = 'Noticia'
-    template_name = 'visualizador_cc/templates/pages/postear.html'
+    template_name = 'pages/postear.html'
     form_class = forms_noticias
-    success_url = reverse_lazy('noticias')
+    success_url = reverse_lazy('noticias:index')
 
     def form_valid(self, form):
         form.instance.autor = self.request.user

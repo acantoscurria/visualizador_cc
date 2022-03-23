@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="row my-5">
+        {% for a in noticias %}
+            <div class="col-3">
+                <div class="card shadow w-100 h-100">
+                    <img src="{{ a.imagen_referencial.url }}" class="card-img-top w-100" alt="">
+                    <div class="card-footer" style="">
+                        <div>
+                            <h5 class="card-title">{{ a.titulo }}</h5>
+                        </div>
+                        <div>
+                            <p class="card-text">
+                                {{ a.descripcion }}
+                                <br>
+                                <small class="text-muted">{{ a.fecha_publicacion }}</small>
+                            </p>
+                        </div>
+                        <div >
+
+                            <a href="{% url 'noticias:detalle' a.pk %}" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

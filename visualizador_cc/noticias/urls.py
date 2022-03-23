@@ -4,8 +4,8 @@ from . import views
 app_name = 'noticias'
 
 urlpatterns = [
+    path("", views.mostrarNoticias, name="index"),
     path("postear/", views.Postear.as_view(), name="postear"),
-    path("noticias/", views.mostrarNoticias, name="noticias"),
-    path("detalle/", views.noticiaCompleta, name="detalle"),
+    path("detalle/<int:pk>", views.noticiaCompleta, name="detalle"),
     
 ]
