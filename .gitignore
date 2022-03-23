@@ -276,3 +276,5 @@ visualizador_cc/media/
 .ipython/
 .env
 .envs/*
+*/migrations/*.py
+!*/migrations/__init__.py
