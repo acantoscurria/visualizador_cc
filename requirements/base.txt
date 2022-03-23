@@ -25,5 +25,7 @@ django-cors-headers==3.11.0 # https://github.com/adamchainz/django-cors-headers
 drf-spectacular==0.21.2  # https://github.com/tfranzel/drf-spectacular
 
 
-# custom
+# icons
 fontawesomefree==6.1.0
+#Librería que usa el mapa en settings
+django-leaflet #https://pypi.org/project/django-leaflet/

@@ -1,0 +1,254 @@
+{% extends "templates/base.html" %}
+{% load leaflet_tags %}
+{% load static %}
+
+{% block estilos %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<!-- clustering de marcadores -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<!-- herramienta de medicion -->
+<script src="{% static 'mapagis/js/leaflet-measure.js' %}"></script>
+<link rel="stylesheet" href="{% static 'mapagis/css/leaflet-measure.css' %}">
+</link>
+<link rel="stylesheet" href="{% static 'mapagis/css/fontawesome-all.min.css' %}">
+<!-- busqueda de marcadores -->
+<link rel="stylesheet" href="{% static 'mapagis/js/leaflet-search.js' %}">
+<link rel="stylesheet" href="{% static 'mapagis/css/leaflet-search.css' %}">
+<!-- Herramienta de dibujo en mapa -->
+<link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
+<script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
+<!-- Nueva herramienta de medicion en mapa -->
+<link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
+<script src="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js"></script>
+<!-- herramienta de búsqueda -->
+<link rel="stylesheet" href="{% static 'mapagis/css/leaflet-search.css' %}">
+<script  src="{% static 'mapagis/js/leaflet-search.js' %}"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+    html,
+    body,
+    #mimapa {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    .col-3.d-flex.justify-content-center{
+        z-index: 5000 !important;
+    }
+    #filtros{
+        z-index: -1000 !important;
+    }
+
+</style>
+{% endblock estilos %}
+
+
+{% block content %}
+<section id="filtros" class="mt-5 mb-3 offset-1 row">
+<!--   <div class="col-3">
+    <label for="sel_ambito">Filtro por Ámbito</label>
+    <select class="form-control" onchange="filtrar()" id="sel_ambito" multiple>
+      <option value="Urbano">Urbano</option>
+      <option value="Rural Disperso">Rural Disperso</option>
+      <option value="Rural Aglomerado">Rural Aglomerado</option>
+      <option value="Rural">Rural</option>
+    </select>
+  </div> -->
+  
+  <div class="col-3 d-flex justify-content-center mt-100">
+    <div class="w-100"> 
+        <select id="choices-multiple-remove-button" onchange="filtrar($(this).val())" placeholder="Seleccione filtro para ámbito"  multiple >
+            <option value="Urbano">Urbano</option>
+            <option value="Rural Disperso">Rural Disperso</option>
+            <option value="Rural Aglomerado">Rural Aglomerado</option>
+            <option value="Rural">Rural</option>
+        </select> 
+    </div>
+  </div>
+
+
+    <div class="col-3 d-flex justify-content-center mt-100">
+        <div class="w-100"> 
+            <select id="choices-multiple-remove-button" onchange="filtrar($(this).val())" placeholder="Seleccione un departamento" multiple>
+            {% for dpt in dptos %}
+                <option value="{{dpt}}">{{dpt}}</option>
+            {% endfor %}
+            </select> 
+        </div>
+    </div> 
+
+    <div class="col-3 d-flex justify-content-center mt-100">
+        <div class="w-100"> 
+            <select id="choices-multiple-remove-button" placeholder="Seleccione una localidad" multiple>
+            {% for l in loc %}
+                <option value="{{l}}">{{l}}</option>
+            {% endfor %}
+            </select> 
+        </div>
+    </div>
+        
+</section>
+
+<div id="mimapa"></div>
+<script>
+
+    //capa base
+    var capa_base = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYm90aHJvcHMiLCJhIjoiY2tuZzN6M2R1MDAwdTJvczBuMGswdWV0cSJ9.eYUIhcQzUXfUQdkvYsjX0g', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    });
+    // mapa
+    var mymap = L.map('mimapa', {
+        center: [-26.3102254, -61.0360629],
+        zoom: 7,
+        zoomControl:true, 
+        maxZoom:17, 
+        minZoom:1,
+        layers:[capa_base]
+    });
+
+    //Agrega las etiquetas
+    function etiquetasFeatures(feature, layer) {
+        if (feature.properties && feature.properties.nom_est) {
+            layer.bindPopup(
+                '<div class="text-center my-auto mb-2"><Strong >' + feature.properties.nom_est + '</Strong></div>' +
+                '<table class="table table-sm">' +
+                '<tbody>' +
+                '<tr>' +
+                '<th class= "table-dark"scope="col-2">Localidad</th>' +
+                '<td scope="row">' + feature.properties.localidad + '</td>' +
+                ' </tr>' +
+                '<tr>' +
+                '<th class= "table-dark"scope="col">Departamento</th>' +
+                '<td scope="row">' + feature.properties.departamento + '</td>' +
+                ' </tr>' +
+                '<tr>' +
+                '<th class= "table-dark"scope="col">Ámbito</th>' +
+                '<td scope="row">' + feature.properties.ambito + '</td>' +
+                ' </tr>' +
+                '<tr>' +
+                '<th class= "table-dark"scope="col">Región Educativa</th>' +
+                '<td scope="row">' + feature.properties.region + '</td>' +
+                ' </tr>' +
+                '<th class= "table-dark"scope="col">Sector</th>' +
+                '<td scope="row">' + feature.properties.sector + '</td>' +
+                ' </tr>' +
+                '</tbody>' +
+                '</table>'
+            );
+        }
+    }
+    //agrego los marcadores desde el json y llamo a la funcion de arriba para setear etiquetas
+    let establecimientos = {{ establecimientos| safe}}
+    var capa_unica = L.geoJSON(establecimientos, {
+        attribution: '',
+        interactive: true,
+        onEachFeature: etiquetasFeatures,
+        layerName: 'capa_unica'
+    });
+
+    // cluster de marcadores
+    var cluster_capa_unica = L.markerClusterGroup();
+    cluster_capa_unica.addLayer(capa_unica);
+    mymap.addLayer(cluster_capa_unica)
+
+    var baseMaps = {
+        "Capa base": capa_base,
+
+    };
+
+    var overlayMaps = {
+        "Establecimientos Educativos": cluster_capa_unica,
+    };
+
+    L.control.layers(baseMaps, overlayMaps).addTo(mymap);
+
+
+    mymap.addControl(new L.Control.Search({
+        layer: cluster_capa_unica,
+        initial: false,
+        hideMarkerOnCollapse: true,
+        propertyName: 'nom_est',
+        zoom: 18,
+        textPlaceholder: "Buscar por nombre de Establecimiento",
+        textErr: "No se encontró lo que buscabas"
+    }));
+    document.getElementsByClassName('search-button')[0].className +=
+        ' fa fa-binoculars';
+
+    function filtrar(seleccion){
+            console.log(seleccion);
+            let establecimientos_filtrados = L.geoJSON(establecimientos, {
+            onEachFeature: etiquetasFeatures,
+			filter: function(feature, layer) {								
+                if(seleccion.length > 0){
+                    let filtro
+                    for (let i = 0; i < seleccion.length; i++) {
+                        if (feature.properties.ambito == seleccion[i]){
+                            filtro = feature.properties.ambito;
+                        }
+                  }
+                  return filtro;
+                } 	
+                else{
+                        return true;
+                    }
+                },	
+            });
+            cluster_capa_unica.clearLayers();
+		    cluster_capa_unica.addLayer(establecimientos_filtrados);
+    } 
+
+    /*var measureControl = new L.Control.Measure({
+              position: 'topleft',
+              primaryLengthUnit: 'meters',
+              secondaryLengthUnit: 'kilometers',
+              primaryAreaUnit: 'sqmeters',
+              secondaryAreaUnit: 'hectares'
+          });
+    mymap.pm.addControls({
+    position: 'topleft',
+    drawCircleMarker: false,
+    });*/
+    /*L.control.polylineMeasure(
+        {clearMeasurementsOnStop: false,
+        showClearControl: true,
+        tooltipTextAdd: 'Presiona la tecla CTRL para <b>Agregar un punto</b>',
+        tooltipTextFinish: 'Clic en <b>final de linea o tacla "ESC"</b><br>',
+        tooltipTextDelete: 'Presiona la tecla SHIFT y click para <b>Borrar un punto</b>',
+        tooltipTextMove: 'Click y arrastrr para <b>Mover el punto</b><br>',
+        tooltipTextResume: '<br>Presiona la tecla CTRL para <b>continuar con la línea</b>',
+        measureControlTitleOn: 'Herramienta de medición',
+        measureControlTitleOff: 'Herramienta de medición',
+        clearControlTitle: 'Borrar mediciones',
+        }).addTo(mymap);*/
+
+$(document).ready(function(){
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+    removeItemButton: true,
+    maxItemCount:5,
+    searchResultLimit:5,
+    renderChoiceLimit:5
+    });
+});
+
+</script>
+
+{% endblock content %}

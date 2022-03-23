@@ -11,7 +11,7 @@
 
 {% block sidebar %}
 
-<div id="menu" class="flex-shrink-0 p-3 text-white bg-dark">
+<div id="menu" class="flex-shrink-0 p-3 ps-1 text-white bg-dark">
   <a href="/" class="d-flex align-items-center pb-3 mb-3 link-light text-decoration-none border-bottom">
     <!-- <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg> -->
     <i class="fa-solid fa-house fa-2x me-2"></i>
@@ -19,10 +19,10 @@
   </a>
   <ul class="list-unstyled ps-0">
     <li class="mb-1">
-      <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#mapa-collapse" aria-expanded="true">
+      <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#mapa-collapse" aria-expanded="false">
         Mapa
       </button>
-      <div class="collapse show" id="mapa-collapse">
+      <div class="collapse" id="mapa-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a href="#" class="link-light rounded w-75">Editar mapa</a></li>
         </ul>
