@@ -340,6 +340,6 @@ LEAFLET_CONFIG = {
 }
 
 CKEDITOR_UPLOAD_PATH = "visualizador_cc/media/static/images/noticias"
-CKEDITOR_BASEPATH = "visualizador_cc/media/static/ckeditor/ckeditor/"
+
 # Your stuff...
 # ------------------------------------------------------------------------------
