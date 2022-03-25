@@ -79,6 +79,8 @@ THIRD_PARTY_APPS = [
     "drf_spectacular",
     "fontawesomefree",
     "leaflet",
+    "ckeditor",
+    "ckeditor_uploader",
 ]
 
 LOCAL_APPS = [
@@ -336,5 +338,8 @@ LEAFLET_CONFIG = {
     "DEFAULT_CENTER": (-26.270826, -60.604297),
     "DEFAULT_ZOOM": 6,
 }
+
+CKEDITOR_UPLOAD_PATH = "visualizador_cc/media/static/images/noticias"
+CKEDITOR_BASEPATH = "visualizador_cc/media/static/ckeditor/ckeditor/"
 # Your stuff...
 # ------------------------------------------------------------------------------

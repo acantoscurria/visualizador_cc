@@ -1,5 +1,5 @@
 from django.db import models
-
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class ModeloBase(models.Model):
     id: models.AutoField(primary_key= True)
@@ -23,14 +23,10 @@ class Noticia (ModeloBase):
     titulo = models.CharField('Titulo del Post', max_length=150, unique=True)
     descripcion = models.TextField('Descripcion')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    contenido = models.TextField()
+    contenido = RichTextUploadingField()
     imagen_referencial = models.ImageField('Imagen Referencial', upload_to = 'static/images', max_length=255)
     fecha_publicacion = models.DateField('Fecha de Publicacion', auto_now = False, auto_now_add=True, blank=True)
-    imagen1 = models.ImageField("Imagen 1", upload_to = 'static/images/noticias', null = True)
-    imagen2 = models.ImageField("Imagen 2", upload_to = 'static/images/noticias', null = True)
-    imagen3 = models.ImageField("Imagen 3", upload_to = 'static/images/noticias', null = True)
-    imagen4 = models.ImageField("Imagen 4", upload_to = 'static/images/noticias', null = True)
-    imagen5 = models.ImageField("Imagen 5", upload_to = 'static/images/noticias', null = True)
+    
 
     def __str__(self):
         return self.titulo
