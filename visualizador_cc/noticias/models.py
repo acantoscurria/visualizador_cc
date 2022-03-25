@@ -21,7 +21,7 @@ class Categoria(ModeloBase):
     
 class Noticia (ModeloBase):
     titulo = models.CharField('Titulo del Post', max_length=150, unique=True)
-    descripcion = models.TextField('Descripcion')
+    descripcion = models.TextField('Descripcion', max_length=300)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     contenido = RichTextUploadingField()
     imagen_referencial = models.ImageField('Imagen Referencial', upload_to = 'static/images', max_length=255)
