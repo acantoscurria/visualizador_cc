@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-10 my-5">
+        <h1 class="text-center">{{complete_new.titulo}}</h1>
+        <small>sobre {{complete_new.categoria}}</small>
+        <p class="">{{ complete_new.contenido|safe }}</p>
+        <div class="d-flex justify-content-center">
+            <img class="" src="{{complete_new.imagen_referencial.url}}" />
+        </div>
+        <br>
+        <small class="text-muted">{{complete_new.fecha_publicacion}}</small>
+    </div>
+</div>
+
+{% endblock content %}

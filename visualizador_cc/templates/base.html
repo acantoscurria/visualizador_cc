@@ -108,8 +108,14 @@
                                         <a class="nav-link" href="{% url 'dashboard:index' %}">Admin</a>
                                     </li>
                                     {% endif %}
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="">Noticias</a>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                          Noticias
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                          <li><a class="dropdown-item" href="{% url 'noticias:index' %}">Noticias</a></li>
+                                          <li><a class="dropdown-item" href="{% url 'noticias:postear' %}">Postear</a></li>
+                                        </ul>
                                     </li>
                             </ul>
                         </div>
