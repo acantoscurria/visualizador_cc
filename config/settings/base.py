@@ -40,7 +40,17 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES = {
+    "default": env.db("DATABASE_URL"),
+    "ra2016": env.db("DATABASE_URL"),
+    "ra2017": env.db("DATABASE_URL"),
+    "ra2018": env.db("DATABASE_URL"),
+    "ra2019": env.db("DATABASE_URL"),
+    "ra2020": env.db("DATABASE_URL"),
+    "ra2021": env.db("DATABASE_URL"),
+    "ra2022": env.db("DATABASE_URL"),
+}
+
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -86,6 +96,7 @@ LOCAL_APPS = [
     "visualizador_cc.dashboard",
     "visualizador_cc.noticias",
     "visualizador_cc.mapa",
+    "visualizador_cc.reports",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
