@@ -32,3 +32,4 @@ django-leaflet #https://pypi.org/project/django-leaflet/
 
 #Edicion de texto
 django-ckeditor
+

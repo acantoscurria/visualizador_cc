@@ -7,11 +7,13 @@
     <div class="col-8 my-3">
         <h1 class="text-center">Postear</h1>
         <form method="POST" enctype="multipart/form-data">
+            {% load crispy_forms_tags %}
             {%csrf_token%}
             {{form.errors}} 
             {{form.media}} 
-            {{form.as_p}}
-            <input type="submit" name="" value="Postear" />
+            {{ form|crispy }}
+            <br>
+            <input class="btn btn-primary" type="submit" value="Postear">
         </form>
     </div>
 </div>

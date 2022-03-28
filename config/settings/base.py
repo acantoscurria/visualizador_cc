@@ -81,6 +81,7 @@ THIRD_PARTY_APPS = [
     "leaflet",
     "ckeditor",
     "ckeditor_uploader",
+    
 ]
 
 LOCAL_APPS = [
@@ -340,6 +341,7 @@ LEAFLET_CONFIG = {
 }
 
 CKEDITOR_UPLOAD_PATH = "visualizador_cc/media/static/images/noticias"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
