@@ -29,3 +29,7 @@ drf-spectacular==0.21.2  # https://github.com/tfranzel/drf-spectacular
 fontawesomefree==6.1.0
 #Librería que usa el mapa en settings
 django-leaflet #https://pypi.org/project/django-leaflet/
+
+#Edicion de texto
+django-ckeditor
+

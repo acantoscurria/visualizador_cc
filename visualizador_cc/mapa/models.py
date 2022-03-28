@@ -6,18 +6,21 @@ from django.contrib.gis.db import models
 
 
 class PadronOferta(models.Model):
-    id_oferta = models.BigIntegerField(verbose_name="Oferta",primary_key=True,default=0,
-    help_text="Se debe obtener la información de Padron por ofertas")
-    oferta = models.CharField(verbose_name="Oferta del establecimiento",blank=False,null=False,
-    default='',max_length=250)
+    oferta = models.BigIntegerField(primary_key=True,null=False,default=0)
+    id_localizacion = models.BigIntegerField(null=False,default=0,
+    help_text="Se debe obtener el id_establecimiento de sistema padron")
+    nombre_oferta = models.CharField(verbose_name="Oferta del establecimiento",blank=False,
+    null=False,default='',max_length=250)
 
     def __str__(self):
-        return f'{self.oferta}'
+        return f'{self.oferta} - {self.nombre_oferta}'
 
 
 class Padron(models.Model):
-    id_localizacion = models.BigIntegerField(unique=True,null=False,default=0,primary_key=True,
-    help_text="Se debe obtener de sistema padron")
+    id_localizacion = models.BigIntegerField(unique=True,null=False,default=0,
+    primary_key=True,help_text="Se debe obtener el id_establecimiento de sistema padron")
+    oferta = models.ManyToManyField(PadronOferta,verbose_name="Ofertas que tiene el Establecimiento",
+    default=0)
     cueanexo = models.BigIntegerField(null=False,default=0)
     nom_est = models.CharField(null=True,blank=True,max_length=250)
     sector = models.CharField(null=True,blank=True,max_length=200)
@@ -25,7 +28,6 @@ class Padron(models.Model):
     region_loc = models.CharField(null=True,blank=True,max_length=100)
     localidad = models.CharField(null=True,blank=True,max_length=500)
     departamento = models.CharField(null=True,blank=True,max_length=500)
-    oferta = models.ManyToManyField(PadronOferta,verbose_name="Relación con Padron Ofertas",default=0)
 
     class Meta:
         managed = True
@@ -38,7 +40,8 @@ class Padron(models.Model):
 
 class TablaLocalizaciones(models.Model):
     padron_est = models.OneToOneField(Padron,on_delete=models.CASCADE,
-    primary_key=True,help_text="Se debe obtener de sistema padron",default=0)
+    primary_key=True,help_text="Se debe obtener el id_establecimiento de sistema padron",
+    default=0)
     geom = models.PointField(srid=5347, blank=True, null=True)
 
     class Meta:
@@ -47,5 +50,4 @@ class TablaLocalizaciones(models.Model):
         verbose_name_plural = 'Localizaciones'
 
     def __str__(self):
-        return f'{self.padron_est.cueanexo}'
-
+        return f'{self.padron_est.cueanexo} - {self.padron_est.nom_est}'
