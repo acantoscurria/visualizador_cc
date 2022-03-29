@@ -35,4 +35,3 @@ class Noticia (ModeloBase):
     
     class Meta ():
         ordering = ["fecha_publicacion"]
-
