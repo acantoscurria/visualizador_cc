@@ -2,10 +2,10 @@
 {% load static %}
 {% block content %}
 
-    <div class="row">
+    <div class="">
 
         <div class="offset-9 mt-4">
-            <button class="btn btn-dark" href="{% url "noticias:postear" %}" role="button">Publicar Noticia</button>
+            <a class="btn btn-dark" href="{% url "noticias:postear" %}">Publicar Noticia</a>
         </div>
 
         <table class="table table-dark table-hover w-75 mx-auto mt-4">
@@ -24,7 +24,7 @@
                     <td class="table-secondary text-center">{{ a.fecha_publicacion }}</td>
                     <td class="table-secondary text-center">{{ a.autor }}</td>
                     <td class="table-secondary text-center"><a href="{% url "noticias:editar" a.id %}"><i class="fa-regular fa-pen-to-square text-dark"></i></a></td>
-                    <td class="table-secondary text-center"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-trash-can text-dark"></i></a></td>
+                    <td class="table-secondary text-center"><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-trash-can text-dark"></i></a></td>
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -34,13 +34,16 @@
                                     <h5 class="modal-title" id="exampleModalLabel">Atención!</h5>
                                     <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <p>¿Desea eliminar la noticia: {{ a.titulo }} ?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button href="" onclick="eliminarNoticia('{{ a.id }}')" type="submit" class="btn btn-danger">Eliminar</button>
-                                </div>
+                                <form action={% url "noticias:eliminar" a.id %} method="get">
+                                    {%csrf_token%}
+                                    <div class="modal-body">
+                                        <p>¿Desea eliminar la noticia: {{ a.titulo }} ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -54,23 +57,4 @@
 
 {% endblock content %}
 
-{% block extrajs %}
 
-<script type="text/javascript">
-    function eliminarNoticia(aId) {
-        var request = $.ajax({
-            type: "POST",
-            url: "{% url 'eliminar_noticia' %}",
-            data: {
-                "csrfmiddlewaretoken": "{{ csrf_token }}",
-                "a_id": aId                   
-            },
-        });
-        request.done(function(response) {
-            alert("Noticia eliminada");
-            // Cierra el modal, oculta el identificador eliminado, etc.
-        });
-    }
-</script>
-
-{% endblock extrajs %}

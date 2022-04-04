@@ -56,7 +56,7 @@ def editarNoticia(request, pk):
 @login_required
 def eliminarNoticia(request, pk):
     noticia = Noticia.objects.get (pk = pk)
-    if request.method == "POST":
+    if request.method == "GET":
         noticia.delete()
         return redirect("noticias:abm")
     return render(request, "pages/noticias/eliminar.html", {"noticia":noticia})
