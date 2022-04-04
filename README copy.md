@@ -12,3 +12,5 @@ docker-compose -f local.yml run --rm django python manage.py migrate
 docker-compose -f local.yml run --rm django python manage.py startapp dashboard $PWD/dashboard
 
 docker-compose -f local.yml run --rm django mkdir $PWD/dashboard
+
+456258jose
