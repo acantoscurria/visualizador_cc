@@ -21,8 +21,10 @@ urlpatterns = [
     path(
         "dashboard/", include("visualizador_cc.dashboard.urls", namespace="dashboard")
     ),
-    path('noticias/', include('visualizador_cc.noticias.urls', namespace="noticias")),
+    path("reports/", include("visualizador_cc.reports.urls", namespace="reports")),
+    path("noticias/", include("visualizador_cc.noticias.urls", namespace="noticias")),
     # Your stuff: custom urls includes go here
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS

@@ -40,7 +40,17 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES = {
+    "default": env.db("DATABASE_URL"),
+    "ra2016": env.db("DATABASE_URL_RA2016"),
+    "ra2017": env.db("DATABASE_URL_RA2017"),
+    "ra2018": env.db("DATABASE_URL_RA2018"),
+    "ra2019": env.db("DATABASE_URL_RA2019"),
+    "ra2020": env.db("DATABASE_URL_RA2020"),
+    "ra2021": env.db("DATABASE_URL_RA2021"),
+    "ra2022": env.db("DATABASE_URL_RA2022"),
+}
+
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -79,6 +89,8 @@ THIRD_PARTY_APPS = [
     "drf_spectacular",
     "fontawesomefree",
     "leaflet",
+    "ckeditor",
+    "ckeditor_uploader",
 ]
 
 LOCAL_APPS = [
@@ -86,6 +98,7 @@ LOCAL_APPS = [
     "visualizador_cc.dashboard",
     "visualizador_cc.noticias",
     "visualizador_cc.mapa",
+    "visualizador_cc.reports",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -336,5 +349,9 @@ LEAFLET_CONFIG = {
     "DEFAULT_CENTER": (-26.270826, -60.604297),
     "DEFAULT_ZOOM": 6,
 }
+
+CKEDITOR_UPLOAD_PATH = "visualizador_cc/media/static/images/noticias"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 # Your stuff...
 # ------------------------------------------------------------------------------

@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block content %}
 
 <div class="row d-flex justify-content-center">
-    <div class="col-6 my-3">
+    <div class="col-8 my-3">
         <h1 class="text-center">Postear</h1>
         <form method="POST" enctype="multipart/form-data">
-        {%csrf_token%} {{form.errors}} {{form.as_p}}
-        <input type="submit" name="" value="Postear" />
+            {% load crispy_forms_tags %}
+            {%csrf_token%}
+            {{form.errors}} 
+            {{form.media}} 
+            {{ form|crispy }}
+            <br>
+            <input class="btn btn-primary" type="submit" value="Postear">
         </form>
     </div>
 </div>

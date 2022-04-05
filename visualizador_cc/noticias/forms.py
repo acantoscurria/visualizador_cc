@@ -5,3 +5,5 @@ class forms_noticias(forms.ModelForm):
     class Meta:
         model = Noticia
         fields = ['titulo', 'descripcion', 'categoria', 'contenido', 'imagen_referencial']
+        
+    
