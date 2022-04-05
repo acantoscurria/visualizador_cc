@@ -1,26 +1,13 @@
 # from django.db import models
 # from defer import defer
-from ast import Mod
 from django.contrib.gis.db import models
-# from sqlalchemy import null
-
-
-class PadronOferta(models.Model):
-    oferta = models.BigIntegerField(primary_key=True,null=False,default=0)
-    id_localizacion = models.BigIntegerField(null=False,default=0,
-    help_text="Se debe obtener el id_establecimiento de sistema padron")
-    nombre_oferta = models.CharField(verbose_name="Oferta del establecimiento",blank=False,
-    null=False,default='',max_length=250)
-
-    def __str__(self):
-        return f'{self.oferta} - {self.nombre_oferta}'
-
 
 class Padron(models.Model):
-    id_localizacion = models.BigIntegerField(unique=True,null=False,default=0,
-    primary_key=True,help_text="Se debe obtener el id_establecimiento de sistema padron")
-    oferta = models.ManyToManyField(PadronOferta,verbose_name="Ofertas que tiene el Establecimiento",
-    default=0)
+    """
+    Tabla que contendrá la mayor información sobre las localizaciones y se relaciona a uno 
+    con t_localizaciones. Se actualiza por cron directamente.
+    """
+    padron = models.BigIntegerField(default=0,primary_key=True)
     cueanexo = models.BigIntegerField(null=False,default=0)
     nom_est = models.CharField(null=True,blank=True,max_length=250)
     sector = models.CharField(null=True,blank=True,max_length=200)
@@ -32,16 +19,49 @@ class Padron(models.Model):
     class Meta:
         managed = True
         verbose_name_plural = 'Datos de Padron'
+        # unique_together = [['cueanexo','nom_est','ambito','sector']]
+    
     
     def __str__(self):
-        return f'{self.cueanexo} - {self.nom_est}'
+        ofertas = []
+        for of in self.oferta.values_list('nombre_oferta'):
+            for oferta in of:
+                ofertas.append(oferta)
+
+        return f'{self.cueanexo} - {self.nom_est} - Ofertas: {ofertas}'
+    
+    # def natural_key(self):
+    #     return (self.cueanexo, self.nom_est,self.ambito,self.sector)
 
 
+class PadronOferta(models.Model):
+    """
+    Tabla que se actualizará automáticamente con la información de ofertaseducativas que ya 
+    se encuentra en el sistema de padron. Se actualiza por cron directamente.
+    """
+
+    padron_id = models.ForeignKey(Padron,verbose_name="Localización",
+    help_text="Elegir el establecimiento al que pertenece esta oferta",
+    default=0,on_delete=models.CASCADE,related_name='oferta')
+
+    oferta = models.BigIntegerField(verbose_name="ID de la oferta",primary_key=True,
+    default=0,help_text="Este valor se debe obtener del sistema web Padron")
+
+    nombre_oferta = models.CharField(verbose_name="Oferta del establecimiento",blank=False,
+    null=False,default='',max_length=250)
+
+    def __str__(self):
+
+        return f'Oferta: {self.nombre_oferta} - Establecimiento: {self.padron_id.nom_est}'
 
 class TablaLocalizaciones(models.Model):
-    padron_est = models.OneToOneField(Padron,on_delete=models.CASCADE,
-    primary_key=True,help_text="Se debe obtener el id_establecimiento de sistema padron",
-    default=0)
+    """
+    Modelo para la tabla t_localizaciones que mantiene el equipo de mapas
+    """
+    establecimiento = models.OneToOneField(to=Padron,verbose_name="ID establecimiento", 
+    help_text="Se debe completar con id establecimiento de padron web",
+    primary_key=True,default=0,on_delete=models.CASCADE)
+
     geom = models.PointField(srid=5347, blank=True, null=True)
 
     class Meta:
@@ -50,4 +70,4 @@ class TablaLocalizaciones(models.Model):
         verbose_name_plural = 'Localizaciones'
 
     def __str__(self):
-        return f'{self.padron_est.cueanexo} - {self.padron_est.nom_est}'
+        return f'{self.establecimiento.cueanexo} - {self.establecimiento.nom_est}'

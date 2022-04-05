@@ -1,4 +1,3 @@
-{% extends "templates/base.html" %}
 {% load leaflet_tags %}
 {% load static %}
 
@@ -126,29 +125,14 @@
 
     //Agrega las etiquetas
     function etiquetasFeatures(feature, layer) {
-        if (feature.properties && feature.properties.nom_est) {
+        if (feature.properties) {
             layer.bindPopup(
                 '<div class="text-center my-auto mb-2"><Strong >' + feature.properties.nom_est + '</Strong></div>' +
                 '<table class="table table-sm">' +
                 '<tbody>' +
                 '<tr>' +
                 '<th class= "table-dark"scope="col-2">Localidad</th>' +
-                '<td scope="row">' + feature.properties.localidad + '</td>' +
-                ' </tr>' +
-                '<tr>' +
-                '<th class= "table-dark"scope="col">Departamento</th>' +
-                '<td scope="row">' + feature.properties.departamento + '</td>' +
-                ' </tr>' +
-                '<tr>' +
-                '<th class= "table-dark"scope="col">Ámbito</th>' +
-                '<td scope="row">' + feature.properties.ambito + '</td>' +
-                ' </tr>' +
-                '<tr>' +
-                '<th class= "table-dark"scope="col">Región Educativa</th>' +
-                '<td scope="row">' + feature.properties.region + '</td>' +
-                ' </tr>' +
-                '<th class= "table-dark"scope="col">Sector</th>' +
-                '<td scope="row">' + feature.properties.sector + '</td>' +
+                '<td scope="row">' + "algo por aca" + '</td>' +
                 ' </tr>' +
                 '</tbody>' +
                 '</table>'
