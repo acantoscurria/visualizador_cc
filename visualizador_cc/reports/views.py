@@ -1,7 +1,7 @@
 # from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
-
+from visualizador_cc.users.models import User
 # Create your views here.
 
 
@@ -16,5 +16,6 @@ class IndexView(View):
 
 class LocalizacionesView(View):
     def get(self, request):
-        context = {"title": "Localizaciones"}
+        resultado = User.objects.all()
+        context = {"title": "Localizaciones", "Usuarios": resultado}
         return render(request, "reports/localizaciones.html", context)
