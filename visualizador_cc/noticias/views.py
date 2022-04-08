@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView
 from .models import Noticia
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import forms_noticias
 
@@ -54,6 +54,7 @@ def editarNoticia(request, pk):
     return render(request, "pages/postear.html", {"form":form})
 
 @login_required
+@permission_required('noticias.delete_noticia', raise_exception=True)
 def eliminarNoticia(request, pk):
     noticia = Noticia.objects.get (pk = pk)
     if request.method == "GET":
