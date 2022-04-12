@@ -42,13 +42,13 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     "default": env.db("DATABASE_URL"),
-    "ra2016": env.db("POSTGRES_DB_RA2016"),
-    "ra2017": env.db("POSTGRES_DB_RA2017"),
-    "ra2018": env.db("POSTGRES_DB_RA2018"),
-    "ra2019": env.db("POSTGRES_DB_RA2019"),
-    "ra2020": env.db("POSTGRES_DB_RA2020"),
-    "ra2021": env.db("POSTGRES_DB_RA2021"),
-    "ra2022": env.db("POSTGRES_DB_RA2022"),
+    "ra2016": env.db("DATABASE_URL_RA2016"),
+    "ra2017": env.db("DATABASE_URL_RA2017"),
+    "ra2018": env.db("DATABASE_URL_RA2018"),
+    "ra2019": env.db("DATABASE_URL_RA2019"),
+    "ra2020": env.db("DATABASE_URL_RA2020"),
+    "ra2021": env.db("DATABASE_URL_RA2021"),
+    "ra2022": env.db("DATABASE_URL_RA2022"),
 }
 
 DATABASES["default"]["ATOMIC_REQUESTS"] = True

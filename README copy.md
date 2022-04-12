@@ -14,3 +14,8 @@ docker-compose -f local.yml run --rm django python manage.py startapp dashboard 
 docker-compose -f local.yml run --rm django mkdir $PWD/dashboard
 
 456258jose
+
+
+
+# para corregir error de "Import could not be resolved"
+https://code.visualstudio.com/docs/python/tutorial-django

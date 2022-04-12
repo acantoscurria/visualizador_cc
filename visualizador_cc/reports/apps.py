@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class ReportsConfig(AppConfig):
     name = "visualizador_cc.reports"
-    verbose_name = _("Tablero")
+    verbose_name = _("Reportes")
 
     def ready(self):
         try:
