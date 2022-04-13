@@ -37,17 +37,24 @@
                     crossorigin="anonymous"
                     referrerpolicy="no-referrer"></script>
             <!-- Your stuff: Third-party javascript libraries go here -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
             <!-- place project specific Javascript in this file -->
             <script defer src="{% static 'js/project.js' %}"></script>
         {% endblock javascript %}
     </head>
     <body>
+        <div class="loader"></div>
+        <script type="text/javascript">
+            $(window).load(function() {
+                $(".loader").fadeOut("slow");
+            });
+        </script>
         <div id="wrapper">
             <div id="header" class="container-fluid">
 
         {% comment %} encabezados logos {% endcomment %}
 
-                <div class="row d-flex justify-content-between">
+                <div class="row d-flex justify-content-between" style="">
                     <div class="col-auto my-auto">
                         <a class="navbar-brand text-left" href="{% url 'home' %}">
                             <img class="img-fluid logo" style="width:180px"
@@ -68,8 +75,8 @@
 
                 <div class="row">
                     <div class="col-12 p-0 ml-auto">
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                            <div class="offset-9">
+                        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #80C635;">
+                            <div class="offset-8">
                                 <button class="navbar-toggler navbar-toggler-right"
                                         type="button"
                                         data-bs-toggle="collapse"
@@ -116,6 +123,12 @@
                                                 <li><a class="dropdown-item" href="{% url 'noticias:index' %}">Noticias</a></li>
                                                 <li><a class="dropdown-item" href="{% url 'noticias:abm' %}">Administrar</a></li>
                                                 </ul>
+                                            </li>
+                                            <li class="nav-link">
+                                                <button class="switch" id="switch">
+                                                    <span><i class="fa-solid fa-sun"></i></span>
+                                                    <span><i class="fa-solid fa-moon"></i></span>
+                                                </button>
                                             </li>
                                     </ul>
                                 </div>

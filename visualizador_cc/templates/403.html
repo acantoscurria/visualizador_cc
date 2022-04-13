@@ -3,7 +3,11 @@
 {% block title %}Forbidden (403){% endblock %}
 
 {% block content %}
-<h1>Forbidden (403)</h1>
+<div class="container my-4">
+    <div class="row">
+        <h1 class="text-center" style="color: red"><i class="fa-solid fa-triangle-exclamation"></i></h1>
 
-<p>{% if exception %}{{ exception }}{% else %}You're not allowed to access this page.{% endif %}</p>
+        <h2 class="text-center">{% if exception %}{{ exception }}{% else %}No tienes los permisos para ingresar.{% endif %}</h2>
+    </div>
+</div>
 {% endblock content %}

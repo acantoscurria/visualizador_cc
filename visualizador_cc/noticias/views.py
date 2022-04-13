@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from .models import Noticia
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import forms_noticias
 
 def mostrarNoticias(request):
@@ -23,7 +23,8 @@ def noticiaCompleta(request, pk):
 
     return render(request, 'pages/noticias/detalle.html', ctx)
 
-class Postear(LoginRequiredMixin, CreateView):
+class Postear(PermissionRequiredMixin, CreateView):
+    permission_required = 'noticias.add_noticia'
     model = 'Noticia'
     template_name = 'pages/postear.html'
     form_class = forms_noticias
@@ -33,7 +34,8 @@ class Postear(LoginRequiredMixin, CreateView):
         form.instance.autor = self.request.user
         return super().form_valid(form)
 
-@login_required 
+@login_required
+@permission_required('noticias.view_noticia', raise_exception=True)
 def abmNoticias(request):
     n = Noticia.objects.all()
     
@@ -42,6 +44,7 @@ def abmNoticias(request):
     return render(request, 'pages/noticias/abm.html', ctx)
 
 @login_required
+@permission_required('noticias.change_noticia', raise_exception=True)
 def editarNoticia(request, pk):
     noticia = Noticia.objects.get (pk = pk)
     if request.method == "GET":
