@@ -1,7 +1,6 @@
-#from django.contrib.gis.db import models
+# from django.contrib.gis.db import models
 
 from django.db import models
-
 
 
 class RaLocalizacion(models.Model):
@@ -21,9 +20,8 @@ class RaLocalizacion(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'localizacion' 
-        verbose_name_plural = 'Localizaciones'
+        db_table = "localizacion"
+        verbose_name_plural = "Localizaciones"
 
     def __str__(self):
-        return f'{self.nombre}'
-
+        return f"{self.nombre}"

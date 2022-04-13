@@ -1,36 +1,139 @@
 $(document).ready(function(){
 
     $("#tabla-ra_localizaciones").DataTable({
-        "serverSide": true,
-        "processing": true,
-        "ajax": function(data, callback, settings) {
-            $.get('/reports/ra_localizaciones_list/', {
-                limite: data.length,
-                inicio: data.start,
-            }, function(res){
-                console.log(res);
-                callback({
-                    recordsTotal: res.length,
-                    recordsFiltered: res.length,
-                    data: res
+
+        // "ajax": {
+        //     "type" : "GET",
+        //     "url": "{% url 'ra_localizaciones_list' %}",
+        //     // "url": " /reports/ra_localizaciones_list/",
+
+        // },
+
+        "ajax": {
+
+            "url": " /reports/ra_localizaciones_list/",
+            "dataFilter": function( data ) {
+                if (data) {
+
+                    console.log("data", data);
+
+                    try {
+
+                        let json = $.parseJSON( data )
+                        return JSON.stringify( json.response )
+
+                    } catch(e) {
+
+                        console.error('error al obtener los datos de la tabla', e);
+                    }
+                }
+            },
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ra": "ra2021",
                 })
-            })
+            },
+
         },
-        "Columnas": [
-            {"data": "id_localizacion"},
-            {"data": "nombre"},
-            {"data": "cueanexo"},
-            {"data": "c_estado"},
-            {"data": "conflicto"},
-            {"data": "codigo_jurisdiccional"},
-            {"data": "sector"},
-            {"data": "responsable"},
-            {"data": "localidad"},
-            {"data": "ambito"},
-            {"data": "departamento"},
-            {"data": "telefono"},
-            {"data": "carga_baja"}
-        ]
+
+
+
+        "columns": [
+            {
+                "class": "left row-control",
+                "data": "id_localizacion",
+                "name": "id_localizacion",
+                "title": "Id Localizacion",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "nombre",
+                "name": "nombre",
+                "title": "Nombre",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "cueanexo",
+                "name": "cueanexo",
+                "title": "Cueanexo",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+
+            // {"data": "c_estado"},
+            // {"data": "conflicto"},
+            // {"data": "codigo_jurisdiccional"},
+            // {"data": "sector"},
+            // {"data": "responsable"},
+            // {"data": "localidad"},
+            // {"data": "ambito"},
+            // {"data": "departamento"},
+            // {"data": "telefono"},
+            // {"data": "carga_baja"}
+
+        ],
+        "processing":true,
+        "serverSide": true,
+        "autoWidth": true,
+        "orderCellsTop": false,
+        "rowId": 'id_localizacion',
+        "scrollY": true,
+        "scrollY": '370px',
+        "scrollX": true,
+        "scrollCollapse": true,
+        "paging": true,
+        "createdRow": function( row, data, index ) {
+
+        },
+        "infoCallback": function( settings, start, end, max, total, pre ) {
+
+            return pre
+        },
+        "initComplete": function(settings, json) {
+             console.log( 'DataTables has finished its initialisation.' );
+        },
+        "language": {
+            decimal: "",
+            emptyTable: "Sin resultados.",
+            info: "_START_ al _END_ de _TOTAL_",
+            infoEmpty: "0 al 0 de 0",
+            infoFiltered: "",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Mostrar _MENU_ filas",
+            loadingRecords: "Cargando...",
+            processing: "Cargando ...",
+            search: "Buscar:",
+            zeroRecords: "Sin resultados",
+            paginate: {
+                first: "Primero",
+                last: "Último",
+                next: "Siguiente",
+                previous: "Anterior"
+            },
+            aria: {
+                sortAscending: ": Activar para ordenar la columna ascendente",
+                sortDescending: ": Activar para ordenar la columna descendente"
+            }
+        },
+        "pagingType": "numbers",
+        "lengthMenu": [[100, 500, 1000, -1], [100, 500, 1000, "Todas"]],
+        "dom":
+            "<'row justify-content-between'<'col-auto'l><'col-auto'f><'col-auto mt-1'>>" +
+            "<'row'<'col-xl-12'tr>>" +
+            "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
     })
+
+
+
+
+
 
 })
