@@ -1,26 +1,25 @@
 $(document).ready(function(){
 
-    $("#tabla-ra_localizaciones").DataTable({
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-        // "ajax": {
-        //     "type" : "GET",
-        //     "url": "{% url 'ra_localizaciones_list' %}",
-        //     // "url": " /reports/ra_localizaciones_list/",
-
-        // },
-
+    let dt_ra_localizaciones = $("#tabla-ra_localizaciones").DataTable({
         "ajax": {
 
             "url": " /reports/ra_localizaciones_list/",
+            "type": "POST",
+            "headers": {'X-CSRFToken': csrftoken },
             "dataFilter": function( data ) {
                 if (data) {
-
-                    console.log("data", data);
 
                     try {
 
                         let json = $.parseJSON( data )
-                        return JSON.stringify( json.response )
+
+                        if(json.error_msg){
+                            alert(json.error_msg)
+                        }
+
+                        return data
 
                     } catch(e) {
 
@@ -30,14 +29,11 @@ $(document).ready(function(){
             },
             "data": function ( d ) {
                 return $.extend( {}, d, {
-                    "ra": "ra2021",
+                    "ra_selected": $("#relevamiento_input").val(),
                 })
             },
 
         },
-
-
-
         "columns": [
             {
                 "class": "left row-control",
@@ -59,6 +55,24 @@ $(document).ready(function(){
             },
             {
                 "class": "left row-control",
+                "data": "c_estado",
+                "name": "c_estado",
+                "title": "Estado",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "conflicto",
+                "name": "conflicto",
+                "title": "Conflicto",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
                 "data": "cueanexo",
                 "name": "cueanexo",
                 "title": "Cueanexo",
@@ -66,18 +80,78 @@ $(document).ready(function(){
                     return data ? data : ''
                 }
             },
-
-            // {"data": "c_estado"},
-            // {"data": "conflicto"},
-            // {"data": "codigo_jurisdiccional"},
-            // {"data": "sector"},
-            // {"data": "responsable"},
-            // {"data": "localidad"},
-            // {"data": "ambito"},
-            // {"data": "departamento"},
-            // {"data": "telefono"},
-            // {"data": "carga_baja"}
-
+            {
+                "class": "left row-control",
+                "data": "codigo_jurisdiccional",
+                "name": "codigo_jurisdiccional",
+                "title": "Codigo jurisdiccional",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "sector",
+                "name": "sector",
+                "title": "Sector",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "responsable",
+                "name": "responsable",
+                "title": "Responsable",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "localidad",
+                "name": "localidad",
+                "title": "Localidad",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "ambito",
+                "name": "ambito",
+                "title": "Ambito",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "departamento",
+                "name": "departamento",
+                "title": "Departamento",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "telefono",
+                "name": "telefono",
+                "title": "Telefono",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "carga_baja",
+                "name": "carga_baja",
+                "title": "Carga baja",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
         ],
         "processing":true,
         "serverSide": true,
@@ -89,6 +163,7 @@ $(document).ready(function(){
         "scrollX": true,
         "scrollCollapse": true,
         "paging": true,
+        "ordering": false,
         "createdRow": function( row, data, index ) {
 
         },
@@ -132,6 +207,9 @@ $(document).ready(function(){
     })
 
 
+    $("#relevamiento_input").change(function(){
+        dt_ra_localizaciones.draw()
+    })
 
 
 

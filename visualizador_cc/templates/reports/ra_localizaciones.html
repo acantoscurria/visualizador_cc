@@ -4,7 +4,19 @@
 {% load static %}
 
 
+
+
 {% block content %}
+
+<Style>
+
+    table.dataTable td {
+        font-size: 12px;
+    }
+
+</Style>
+
+{% csrf_token %}
 
 <div class="row">
     <div class="col-12 pt-3">

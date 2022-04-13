@@ -1,3 +1,5 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
@@ -15,48 +17,85 @@ class RaLocalizacionesIndexView(View):
 
 
 class RaLocalizacionesListView(ListView):
-    model = RaLocalizacion
+    def post(self, request, *args, **kwargs):
+        return JsonResponse(self._datatables(request), safe=False)
 
-    def get_queryset(self):
-        return (
-            self.model.objects.using("ra2021")
-            .all()
-            .values("id_localizacion", "nombre", "cueanexo")
-        )
+    def _datatables(self, request):
 
-    def get(self, request, *args, **kwargs):
+        datatables = request.POST
+        draw = int(datatables.get("draw"))
+        start = int(datatables.get("start"))
+        length = int(datatables.get("length"))
 
-        print("request.GET draw")
-        print(request.GET.get("draw"))
+        search = datatables.get("search[value]")
+        ra_selected = datatables.get("ra_selected")
 
-        # print('request.GET columns')
-        # print(request.GET.get('columns[]'))
+        if ra_selected == "-1":
 
-        print("request.GET order")
-        print(request.GET.get("order"))
+            return {
+                "draw": draw,
+                "recordsTotal": 0,
+                "recordsFiltered": 0,
+                "data": [],
+                "error_msg": "",
+            }
 
-        print("request.GET start")
-        print(request.GET.get("start"))
+        # if(TRUE):
 
-        print("request.GET length")
-        print(request.GET.get("length"))
+        #     return {
+        #         'draw': draw,
+        #         'recordsTotal': 0,
+        #         'recordsFiltered': 0,
+        #         'data': [],
+        #         'error_msg': "Un error"
+        #     }
 
-        print("request.GET search")
-        print(request.GET.get("search"))
+        records_total = RaLocalizacion.objects.using(ra_selected).all().count()
+        records_filtered = records_total
+        localizaciones = RaLocalizacion.objects.using(ra_selected).all()
 
-        print("request.GET ra")
-        print(request.GET.get("ra"))
+        if search:
+            localizaciones = RaLocalizacion.objects.using(ra_selected).filter(
+                Q(nombre__icontains=search) | Q(cueanexo__icontains=search)
+            )
+            records_total = localizaciones.count()
+            records_filtered = records_total
 
-        raLocalizaciones = self.get_queryset()
-        data = list(raLocalizaciones)
-        value = JsonResponse(
+        # paginator
+        paginator = Paginator(localizaciones, length)
+
+        page_number = start / length + 1
+
+        try:
+            object_list = paginator.page(page_number).object_list
+        except PageNotAnInteger:
+            object_list = paginator.page(1).object_list
+        except EmptyPage:
+            object_list = paginator.page(1).object_list
+
+        data = [
             {
-                "data": data,
-                "draw": request.GET.get("draw"),
-                "recordsTotal": 5,
-                "recordsFiltered": 5,
-            },
-            safe=False,
-        )
-        print(value)
-        return value
+                "id_localizacion": loc.id_localizacion,
+                "nombre": loc.nombre,
+                "cueanexo": loc.cueanexo,
+                "c_estado": loc.c_estado,
+                "conflicto": "TRUE" if loc.conflicto else "FALSE",
+                "codigo_jurisdiccional": loc.codigo_jurisdiccional,
+                "sector": loc.sector,
+                "responsable": loc.responsable,
+                "localidad": loc.localidad,
+                "ambito": loc.ambito,
+                "departamento": loc.departamento,
+                "telefono": loc.telefono,
+                "carga_baja": loc.carga_baja,
+            }
+            for loc in object_list
+        ]
+
+        return {
+            "draw": draw,
+            "recordsTotal": records_total,
+            "recordsFiltered": records_filtered,
+            "data": data,
+            "error_msg": "",
+        }

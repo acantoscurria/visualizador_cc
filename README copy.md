@@ -18,3 +18,4 @@ docker-compose -f local.yml run --rm django mkdir $PWD/dashboard
 sudo apt-get install python3-venv    # If needed
 python3 -m venv .venv
 source .venv/bin/activate
+https://code.visualstudio.com/docs/python/tutorial-django
