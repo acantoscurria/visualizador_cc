@@ -22,13 +22,13 @@ class RaLocalizacionesListView(ListView):
 
     def _datatables(self, request):
 
-        datatables = request.POST
-        draw = int(datatables.get("draw"))
-        start = int(datatables.get("start"))
-        length = int(datatables.get("length"))
+        dt = request.POST
+        draw = int(dt.get("draw"))
+        start = int(dt.get("start"))
+        length = int(dt.get("length"))
 
-        search = datatables.get("search[value]")
-        ra_selected = datatables.get("ra_selected")
+        search = dt.get("search[value]")
+        ra_selected = dt.get("ra_selected")
 
         if ra_selected == "-1":
 
@@ -50,16 +50,16 @@ class RaLocalizacionesListView(ListView):
         #         'error_msg': "Un error"
         #     }
 
-        records_total = RaLocalizacion.objects.using(ra_selected).all().count()
-        records_filtered = records_total
+        total = RaLocalizacion.objects.using(ra_selected).all().count()
+        filtered = total
         localizaciones = RaLocalizacion.objects.using(ra_selected).all()
 
         if search:
             localizaciones = RaLocalizacion.objects.using(ra_selected).filter(
                 Q(nombre__icontains=search) | Q(cueanexo__icontains=search)
             )
-            records_total = localizaciones.count()
-            records_filtered = records_total
+            total = localizaciones.count()
+            filtered = total
 
         # paginator
         paginator = Paginator(localizaciones, length)
@@ -94,8 +94,8 @@ class RaLocalizacionesListView(ListView):
 
         return {
             "draw": draw,
-            "recordsTotal": records_total,
-            "recordsFiltered": records_filtered,
+            "recordsTotal": total,
+            "recordsFiltered": filtered,
             "data": data,
             "error_msg": "",
         }

@@ -159,7 +159,7 @@ $(document).ready(function(){
         "orderCellsTop": false,
         "rowId": 'id_localizacion',
         "scrollY": true,
-        "scrollY": '370px',
+        "scrollY": '600px',
         "scrollX": true,
         "scrollCollapse": true,
         "paging": true,
