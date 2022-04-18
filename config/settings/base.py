@@ -99,6 +99,7 @@ LOCAL_APPS = [
     "visualizador_cc.noticias",
     "visualizador_cc.mapa",
     "visualizador_cc.reports",
+    "visualizador_cc.corrections"
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
