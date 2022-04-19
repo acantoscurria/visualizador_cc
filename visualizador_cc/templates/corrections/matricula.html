@@ -1,8 +1,37 @@
+
 {% extends "base_admin.html" %}
+
+{% load static %}
+
+
 
 
 {% block content %}
 
-<h1>Hola desde correciones/matricula index</h1>
+<Style>
+
+    table.dataTable td {
+        font-size: 12px;
+    }
+
+</Style>
+
+{% csrf_token %}
+
+<div class="row">
+    <div class="col-12 pt-3">
+
+        <table id="tabla-matric_comun_inicial" class="table table-bordered  table-striped " style="width:100%">
+        </table>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block inline_javascript %}
+
+<script defer src="{% static 'js/reports/matric_comun_inicial.js' %}"></script>
 
 {% endblock %}
