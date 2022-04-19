@@ -15,8 +15,7 @@ entryPoints:
     # https
     address: ":443"
 
-  flower:
-    address: ":5555"
+
 
 certificatesResolvers:
   letsencrypt:
@@ -41,14 +40,7 @@ http:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
-    flower-secure-router:
-      rule: "Host(`sigechaco.com.ar`)"
-      entryPoints:
-        - flower
-      service: flower
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
+   
 
   middlewares:
     csrf:
@@ -63,10 +55,7 @@ http:
         servers:
           - url: http://django:5000
 
-    flower:
-      loadBalancer:
-        servers:
-          - url: http://flower:5555
+  
 
 providers:
   # https://docs.traefik.io/master/providers/file/

@@ -14,6 +14,8 @@ docker-compose -f local.yml run --rm django python manage.py startapp dashboard 
 docker-compose -f local.yml run --rm django mkdir $PWD/dashboard
 
 
+
+
 # Linux
 sudo apt-get install python3-venv    # If needed
 python3 -m venv .venv
