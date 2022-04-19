@@ -5,13 +5,14 @@ from django.shortcuts import render
 from django.views import View
 from visualizador_cc.users.models import User
 from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 from visualizador_cc.reports.models import RaLocalizacion
 
 # Create your views here.
 
 
-class RaLocalizacionesIndexView(View):
+class RaLocalizacionesIndexView(View, LoginRequiredMixin):
     def get(self, request):
         context = {"title": "Localizaciones"}
         return render(request, "reports/ra_localizaciones.html", context)
@@ -57,7 +58,7 @@ class RaLocalizacionesListView(ListView):
 
         if search:
             localizaciones = RaLocalizacion.objects.using(ra_selected).filter(
-                Q(nombre__icontains=search) | Q(cueanexo__icontains=search)
+                Q(cueanexo__icontains=search)
             )
             total = localizaciones.count()
             filtered = total
@@ -76,19 +77,10 @@ class RaLocalizacionesListView(ListView):
 
         data = [
             {
-                "id_localizacion": loc.id_localizacion,
-                "nombre": loc.nombre,
                 "cueanexo": loc.cueanexo,
-                "c_estado": loc.c_estado,
-                "conflicto": "TRUE" if loc.conflicto else "FALSE",
-                "codigo_jurisdiccional": loc.codigo_jurisdiccional,
-                "sector": loc.sector,
-                "responsable": loc.responsable,
-                "localidad": loc.localidad,
-                "ambito": loc.ambito,
-                "departamento": loc.departamento,
-                "telefono": loc.telefono,
-                "carga_baja": loc.carga_baja,
+                "nom_est": loc.nom_est,
+                "nro_est": loc.nro_est,
+                "region": loc.region
             }
             for loc in object_list
         ]

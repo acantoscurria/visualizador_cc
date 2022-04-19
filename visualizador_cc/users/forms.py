@@ -3,7 +3,8 @@ from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django.contrib.auth import forms as admin_forms
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-
+from django import forms
+from .models import User
 User = get_user_model()
 
 
@@ -27,11 +28,15 @@ class UserAdminCreationForm(admin_forms.UserCreationForm):
 
 
 class UserSignupForm(SignupForm):
-    """
-    Form that will be rendered on a user sign up section/screen.
-    Default fields will be added automatically.
-    Check UserSocialSignupForm for accounts created from social.
-    """
+    supervisor = forms.BooleanField(help_text="Marque si es supervisor")
+    region = forms.ChoiceField(choices=User.regiones_edu)
+    
+    def save(self, request):
+        user = super(UserSignupForm, self).save(request)
+        user.supervisor = self.cleaned_data['supervisor']
+        user.region = self.cleaned_data['region']
+        user.save()
+        return user
 
 
 class UserSocialSignupForm(SocialSignupForm):
@@ -40,3 +45,4 @@ class UserSocialSignupForm(SocialSignupForm):
     Default fields will be added automatically.
     See UserSignupForm otherwise.
     """
+

@@ -35,42 +35,7 @@ $(document).ready(function(){
 
         },
         "columns": [
-            {
-                "class": "left row-control",
-                "data": "id_localizacion",
-                "name": "id_localizacion",
-                "title": "Id Localizacion",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "nombre",
-                "name": "nombre",
-                "title": "Nombre",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "c_estado",
-                "name": "c_estado",
-                "title": "Estado",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "conflicto",
-                "name": "conflicto",
-                "title": "Conflicto",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
+            
             {
                 "class": "left row-control",
                 "data": "cueanexo",
@@ -82,72 +47,28 @@ $(document).ready(function(){
             },
             {
                 "class": "left row-control",
-                "data": "codigo_jurisdiccional",
-                "name": "codigo_jurisdiccional",
-                "title": "Codigo jurisdiccional",
+                "data": "nom_est",
+                "name": "nom_est",
+                "title": "Nombre del establecimiento",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            
+            {
+                "class": "left row-control",
+                "data": "nro_est",
+                "name": "nro_est",
+                "title": "Numero de establecimiento",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
             },
             {
                 "class": "left row-control",
-                "data": "sector",
-                "name": "sector",
-                "title": "Sector",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "responsable",
-                "name": "responsable",
-                "title": "Responsable",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "localidad",
-                "name": "localidad",
-                "title": "Localidad",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "ambito",
-                "name": "ambito",
-                "title": "Ambito",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "departamento",
-                "name": "departamento",
-                "title": "Departamento",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "telefono",
-                "name": "telefono",
-                "title": "Telefono",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "carga_baja",
-                "name": "carga_baja",
-                "title": "Carga baja",
+                "data": "region",
+                "name": "region",
+                "title": "Region",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
