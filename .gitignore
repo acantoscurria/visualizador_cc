@@ -53,8 +53,7 @@ coverage.xml
 # Django stuff:
 staticfiles/
 
-# Sphinx documentation
-docs/_build/
+
 
 # PyBuilder
 target/
@@ -62,8 +61,6 @@ target/
 # pyenv
 .python-version
 
-# celery beat schedule file
-celerybeat-schedule
 
 # Environments
 .venv
@@ -73,8 +70,6 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
-/site
 
 # mypy
 .mypy_cache/

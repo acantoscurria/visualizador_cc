@@ -21,6 +21,10 @@ urlpatterns = [
         "dashboard/", include("visualizador_cc.dashboard.urls", namespace="dashboard")
     ),
     path("reports/", include("visualizador_cc.reports.urls", namespace="reports")),
+    path(
+        "corrections/",
+        include("visualizador_cc.corrections.urls", namespace="corrections"),
+    ),
     path("noticias/", include("visualizador_cc.noticias.urls", namespace="noticias")),
     # Your stuff: custom urls includes go here
     path("ckeditor/", include("ckeditor_uploader.urls")),
@@ -33,11 +37,7 @@ urlpatterns += [
     # DRF auth token
     path("auth-token/", obtain_auth_token),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
-    path(
-        "api/docs/",
-        SpectacularSwaggerView.as_view(url_name="api-schema"),
-        name="api-docs",
-    ),
+   
 ]
 
 if settings.DEBUG:

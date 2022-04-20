@@ -30,7 +30,7 @@
     </li>
     <li class="mb-1">
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
-        Reportes/Controles
+        Reportes
       </button>
       <div class="collapse" id="reports-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
@@ -47,6 +47,16 @@
           <li><a href="#" class="link-light rounded w-75">Egresados</a></li>
           <li><a href="#" class="link-light rounded w-75">Alum. s/sala 4</a></li>
           <li><a href="#" class="link-light rounded w-75">Alum. s/sala 5</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#corrections-collapse" aria-expanded="false">
+        Controles
+      </button>
+      <div class="collapse" id="corrections-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="{% url 'corrections:matricula_index' %}" class="link-light rounded w-75">Matrícula</a></li>
         </ul>
       </div>
     </li>
