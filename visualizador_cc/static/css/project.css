@@ -1,5 +1,6 @@
 /* These styles are generated from project.scss. */
 
+
 .alert-debug {
   color: black;
   background-color: white;
@@ -28,6 +29,23 @@ html,body{
   padding: 0 !important;
   margin: 0 !important;
   height: 100%;
+}
+
+body.dark{
+  background: #343a40;
+}
+
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark p, body.dark label {
+  color: #fff;
+}
+
+body.dark footer{
+  background: #343a40;
+  
+}
+
+body.dark #footer{
+  background: #343a40;
 }
 
 .logos{

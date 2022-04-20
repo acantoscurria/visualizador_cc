@@ -42,7 +42,7 @@
             <script defer src="{% static 'js/project.js' %}"></script>
         {% endblock javascript %}
     </head>
-    <body>
+    <body onload="cargarModo();">
         <div class="loader"></div>
         <script type="text/javascript">
             $(window).load(function() {
@@ -125,7 +125,7 @@
                                                 </ul>
                                             </li>
                                             <li class="nav-link">
-                                                <button class="switch" id="switch">
+                                                <button class="switch" id="switch" onclick="cambiarModo();">
                                                     <span><i class="fa-solid fa-sun"></i></span>
                                                     <span><i class="fa-solid fa-moon"></i></span>
                                                 </button>
@@ -195,5 +195,6 @@
                 </footer>
             </div>
         </div>
+        <script src="{% static 'js/project.js' %}"></script>
     </body>
 </html>
