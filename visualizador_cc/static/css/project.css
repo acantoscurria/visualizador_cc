@@ -35,13 +35,30 @@ body.dark{
   background: #343a40;
 }
 
-body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark p, body.dark label {
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark p, body.dark label, body.dark small{
   color: #fff;
+}
+
+body.dark .swadow{
+  box-shadow: 2px 2px 5px rgb(233, 230, 230);
 }
 
 body.dark footer{
   background: #343a40;
   
+}
+
+body.dark .navbar{
+  background-color: #0257ac;
+  
+}
+
+body.dark .navbar .nav-link {
+  color: rgb(221, 218, 218);
+}
+
+.navbar {
+  background-color: #80C635;
 }
 
 body.dark #footer{
@@ -343,7 +360,7 @@ body.dark #footer{
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background: url('static/images/progress.gif') 50% 50% no-repeat rgb(249,249,249);
+  background: url('static/images/progress.gif') 50% 50% no-repeat #daddd4;
   opacity: .8;
 }
 
@@ -359,8 +376,8 @@ body.dark #footer{
 .switch::after {
   content: "";
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   position: absolute;
   background: #f1f1f1;
   top: 0;

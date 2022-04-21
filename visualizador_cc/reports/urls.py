@@ -1,20 +1,20 @@
 from django.urls import path
 
 from visualizador_cc.reports.views import (
-    RaLocalizacionesIndexView,
-    RaLocalizacionesListView,
+    MatricComunInicialIndexView,
+    MatricComunInicialListView,
 )
 
 app_name = "reports"
 urlpatterns = [
     path(
-        "RaLocalizaciones",
-        RaLocalizacionesIndexView.as_view(),
-        name="ra_localizaciones_index",
+        "MatricComunInicial",
+        MatricComunInicialIndexView.as_view(),
+        name="ra_matricula_index",
     ),
     path(
-        "ra_localizaciones_list/",
-        RaLocalizacionesListView.as_view(),
-        name="ra_localizaciones_list",
+        "matric_comun_inicial_list/",
+        MatricComunInicialListView.as_view(),
+        name="ra_matricula_list",
     ),
 ]
