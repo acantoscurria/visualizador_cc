@@ -36,3 +36,20 @@ $red: #b94a48;
   color: $red;
 }
 
+.switch {
+  background: #343D5B;
+  border-radius: 1000px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  outline: none;
+  span.switch{
+    width: 30px;
+      height: 30px;
+      line-height: 30px;
+      display: block;
+      background: none;
+      color: #fff;
+  }
+}

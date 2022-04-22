@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 # Create your views here.
 
 # def index(request):
@@ -9,7 +9,7 @@ from django.views import View
 #     return render(request, 'pages/dashboard/index.html', context)
 
 
-class IndexView(View):
+class IndexView(LoginRequiredMixin, View):
     def get(self, request):
         # <view logic>
         # return HttpResponse('result')

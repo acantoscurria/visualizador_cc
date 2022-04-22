@@ -2,26 +2,51 @@
 
 from django.db import models
 
-
-class RaLocalizacion(models.Model):
-    id_localizacion = models.IntegerField(primary_key=True)
-    nombre = models.CharField(max_length=255)
-    cueanexo = models.CharField(unique=True, max_length=9, blank=True, null=True)
-    c_estado = models.IntegerField()
-    conflicto = models.BooleanField()
-    codigo_jurisdiccional = models.CharField(max_length=255, blank=True, null=True)
+class MatricComunInicial(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    sala = models.CharField(max_length=255, blank=True, null=True)
+    turno = models.CharField(max_length=255, blank=True, null=True)
+    nom_secc = models.CharField(max_length=255, blank=True, null=True)
+    tipo_secc = models.CharField(max_length=255, blank=True, null=True)
+    total = models.IntegerField(blank=True, null=True)
+    total_var = models.IntegerField(blank=True, null=True)
+    menos_1_año = models.IntegerField(blank=True, null=True)
+    un_año = models.IntegerField(blank=True, null=True)
+    dos_años = models.IntegerField(blank=True, null=True)
+    tres_años = models.IntegerField(blank=True, null=True)
+    cuatro_años = models.IntegerField(blank=True, null=True)
+    cinco_años = models.IntegerField(blank=True, null=True)
+    seis_años = models.IntegerField(blank=True, null=True)
+    total_disc = models.IntegerField(blank=True, null=True)
+    var_disc = models.IntegerField(blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
     sector = models.CharField(max_length=255, blank=True, null=True)
-    responsable = models.CharField(max_length=255, blank=True, null=True)
-    localidad = models.CharField(max_length=255, blank=True, null=True)
     ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
     departamento = models.CharField(max_length=255, blank=True, null=True)
-    telefono = models.CharField(max_length=255, blank=True, null=True)
-    carga_baja = models.BooleanField(blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        managed = False
-        db_table = "localizacion"
-        verbose_name_plural = "Localizaciones"
-
-    def __str__(self):
-        return f"{self.nombre}"
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'matric_comun_inicial'

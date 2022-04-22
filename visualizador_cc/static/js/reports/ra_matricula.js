@@ -2,10 +2,10 @@ $(document).ready(function(){
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    let dt_ra_localizaciones = $("#tabla-ra_localizaciones").DataTable({
+    let dt_matric_comun_inicial = $("#tabla-matric_comun_inicial").DataTable({
         "ajax": {
 
-            "url": " /reports/ra_localizaciones_list/",
+            "url": " /reports/matric_comun_inicial_list/",
             "type": "POST",
             "headers": {'X-CSRFToken': csrftoken },
             "dataFilter": function( data ) {
@@ -35,6 +35,15 @@ $(document).ready(function(){
 
         },
         "columns": [
+            {
+                "class": "left row-control",
+                "data": "id",
+                "name": "id",
+                "title": "ID",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
             
             {
                 "class": "left row-control",
@@ -47,9 +56,9 @@ $(document).ready(function(){
             },
             {
                 "class": "left row-control",
-                "data": "nom_est",
-                "name": "nom_est",
-                "title": "Nombre del establecimiento",
+                "data": "id_fila",
+                "name": "id_fila",
+                "title": "ID Fila",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
@@ -57,18 +66,18 @@ $(document).ready(function(){
             
             {
                 "class": "left row-control",
-                "data": "nro_est",
-                "name": "nro_est",
-                "title": "Numero de establecimiento",
+                "data": "escuela",
+                "name": "escuela",
+                "title": "Escuela",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
             },
             {
                 "class": "left row-control",
-                "data": "region",
-                "name": "region",
-                "title": "Region",
+                "data": "sala",
+                "name": "sala",
+                "title": "Sala",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
@@ -78,7 +87,7 @@ $(document).ready(function(){
         "serverSide": true,
         "autoWidth": true,
         "orderCellsTop": false,
-        "rowId": 'id_localizacion',
+        "rowId": 'id',
         "scrollY": true,
         "scrollY": '600px',
         "scrollX": true,
@@ -129,7 +138,7 @@ $(document).ready(function(){
 
 
     $("#relevamiento_input").change(function(){
-        dt_ra_localizaciones.draw()
+        dt_matric_comun_inicial.draw()
     })
 
 
