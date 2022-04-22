@@ -1,3 +1,4 @@
+
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
 from django.http import JsonResponse
@@ -6,57 +7,54 @@ from django.views import View
 from visualizador_cc.users.models import User
 from django.views.generic.list import ListView
 
-from visualizador_cc.corrections.models import MatricComunInicial
-
+from visualizador_cc.controls.models import (
+    ConMatricComunInicial,
+)
 # Create your views here.
 
 
-class MatriculaIndexView(View):
+class ControlsMatriculaIndexView(View):
     def get(self, request):
-        context = {"title": "Mátricula"}
-        return render(request, "corrections/matricula.html", context)
+        context = {"title": "Control de Mátriculas - RA 2022"}
+        return render(request, "controls/matricula.html", context)
 
 
-class MatricComunInicialListView(ListView):
-    def post(self, request, *args, **kwargs):
-        return JsonResponse(self._datatables(request), safe=False)
-
-    def _datatables(self, request):
+class ControlsMatriculaListView(ListView):
+    def post(self, request, *args, **kwargs): 
 
         dt = request.POST
         draw = int(dt.get("draw"))
         start = int(dt.get("start"))
         length = int(dt.get("length"))
 
+        print('start', start)
+        print('length', length)
+
         search = dt.get("search[value]")
-        ra_selected = dt.get("ra_selected")
+        matricula_selected = dt.get("matricula_selected")    
+        control_type_selected = dt.get("control_type_selected")     
 
-        if ra_selected == "-1":
+        print('matricula_selected', matricula_selected)
+        print('control_type_selected', control_type_selected)
 
-            return {
-                "draw": draw,
-                "recordsTotal": 0,
-                "recordsFiltered": 0,
-                "data": [],
-                "error_msg": "",
-            }
+        if(matricula_selected == "none" or control_type_selected == "none"):            
+            return JsonResponse({
+                        "draw": draw,
+                        "recordsTotal": 0,
+                        "recordsFiltered": [],
+                        "data": [],
+                        "error_msg": "",
+                    }, 
+                    safe=False)
 
-        # if(TRUE):
+        
 
-        #     return {
-        #         'draw': draw,
-        #         'recordsTotal': 0,
-        #         'recordsFiltered': 0,
-        #         'data': [],
-        #         'error_msg': "Un error"
-        #     }
-
-        total = MatricComunInicial.objects.using(ra_selected).all().count()
+        total = ConMatricComunInicial.objects.all().count()
         filtered = total
-        matriculasComunInicial = MatricComunInicial.objects.using(ra_selected).all()
+        matriculasComunInicial = ConMatricComunInicial.objects.all()
 
         if search:
-            matriculasComunInicial = MatricComunInicial.objects.using(ra_selected).filter(
+            matriculasComunInicial = ConMatricComunInicial.objects.filter(
                 Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
             )
             total = matriculasComunInicial.count()
@@ -76,6 +74,7 @@ class MatricComunInicialListView(ListView):
 
         data = [
             {
+                "id": loc.id,
                 "cueanexo": loc.cueanexo,
                 "id_fila": loc.id_fila,
                 "escuela": loc.escuela,
@@ -98,10 +97,13 @@ class MatricComunInicialListView(ListView):
             for loc in object_list
         ]
 
-        return {
+        return JsonResponse({
             "draw": draw,
             "recordsTotal": total,
             "recordsFiltered": filtered,
             "data": data,
             "error_msg": "",
-        }
+        }, 
+        safe=False)
+
+

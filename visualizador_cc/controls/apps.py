@@ -2,12 +2,12 @@ from django.apps import AppConfig
 from django.utils.translation import gettext_lazy as _
 
 
-class CorrectionsConfig(AppConfig):
-    name = "visualizador_cc.corrections"
+class ControlsConfig(AppConfig):
+    name = "visualizador_cc.controls"
     verbose_name = _("Correciones")
 
     def ready(self):
         try:
-            import visualizador_cc.corrections.signals  # noqa F401
+            import visualizador_cc.controls.signals  # noqa F401
         except ImportError:
             pass

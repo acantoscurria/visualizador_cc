@@ -1,0 +1,68 @@
+
+{% extends "base_admin.html" %}
+
+{% load static %}
+
+
+
+
+{% block content %}
+
+<Style>
+
+    table.dataTable td {
+        font-size: 12px;
+    }
+
+</Style>
+
+{% csrf_token %}
+
+<div class="row border-bottom p-2 d-flex bg-light">
+
+    <div class="col-3">
+      <form>
+        <div class="form-floating">
+          <select class="form-select" id="matricula_input" aria-label="Mátricula">
+            <option value="none" selected>Seleccione mátricula</option>
+            <option value="matricula_comun_inicial">Mátricula comun incial</option>
+            <option value="matricula_comun_secundaria">Mátricula comun secundaria</option>
+          </select>
+          <label for="matricula_input">Mátricula</label>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-3">
+        <form>
+          <div class="form-floating">
+            <select class="form-select" id="control_type_input" aria-label="Tipo de control">
+              <option value="none" selected>Seleccione control</option>
+              <option value="precocidad">Precocidad</option>
+              <option value="sobreedad">Sobreedad</option>
+            </select>
+            <label for="control_type_input">Tipo de control</label>
+          </div>
+        </form>
+      </div>
+  
+</div>
+
+
+<div class="row">
+    <div class="col-12 pt-3">
+
+        <table id="tabla-matricula" class="table table-bordered  table-striped " style="width:100%">
+        </table>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block inline_javascript %}
+
+<script defer src="{% static 'js/controls/matricula.js' %}"></script>
+
+{% endblock %}

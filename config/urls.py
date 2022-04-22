@@ -22,8 +22,8 @@ urlpatterns = [
     ),
     path("reports/", include("visualizador_cc.reports.urls", namespace="reports")),
     path(
-        "corrections/",
-        include("visualizador_cc.corrections.urls", namespace="corrections"),
+        "controls/",
+        include("visualizador_cc.controls.urls", namespace="controls"),
     ),
     path("noticias/", include("visualizador_cc.noticias.urls", namespace="noticias")),
     # Your stuff: custom urls includes go here

@@ -13,9 +13,11 @@ docker-compose -f local.yml run --rm django python manage.py startapp dashboard 
 
 docker-compose -f local.yml run --rm django mkdir $PWD/dashboard
 
-docker-compose -f local.yml run --rm django python manage.py inspectdb matric_comun_inicial --database ra2022 --include-views 
+docker-compose -f local.yml run --rm django python manage.py inspectdb matric_comun_inicial --include-views > model_temp.py
 
+docker-compose -f local.yml run --rm django python manage.py inspectdb matric_comun_inicial --database ra2022 --include-views > model_temp.py
 
+docker-compose -f local.yml run --rm django python manage.py shell_plus
 
 
 # Linux

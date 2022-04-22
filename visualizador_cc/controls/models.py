@@ -3,9 +3,12 @@
 
 from django.db import models
 
-
-class MatricComunInicial(models.Model):
-    cueanexo = models.CharField(max_length=9, blank=True, null=True)
+class ConMatricComunInicial(models.Model):
+  
+    id = models.BigIntegerField(primary_key=True)
+    tipo_ed = models.TextField(blank=True, null=True)
+    nivel = models.TextField(blank=True, null=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
     id_fila = models.IntegerField(blank=True, null=True)
     escuela = models.CharField(max_length=255, blank=True, null=True)
     sala = models.CharField(max_length=255, blank=True, null=True)
@@ -26,9 +29,10 @@ class MatricComunInicial(models.Model):
 
     class Meta:
         managed = False  # Created from a view. Don't remove.
-        db_table = 'matric_comun_inicial'
-        verbose_name_plural = "MatriculasComunInicial"
+        db_table = 'con_matric_comun_inicial'
+        verbose_name_plural = "ConMatriculasComunInicial"
 
 
     def __str__(self):
         return f"{self.escuela}"
+
