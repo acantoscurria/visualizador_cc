@@ -30,6 +30,10 @@ class ControlsMatriculaListView(ListView):
         print('start', start)
         print('length', length)
 
+        recordsTotal = 0
+        data = []
+        recordsFiltered = 0
+
         search = dt.get("search[value]")
         matricula_selected = dt.get("matricula_selected")    
         control_type_selected = dt.get("control_type_selected")     
@@ -40,37 +44,58 @@ class ControlsMatriculaListView(ListView):
         if(matricula_selected == "none" or control_type_selected == "none"):            
             return JsonResponse({
                         "draw": draw,
-                        "recordsTotal": 0,
-                        "recordsFiltered": [],
-                        "data": [],
+                        "recordsTotal": recordsTotal,
+                        "recordsFiltered": recordsFiltered,
+                        "data": data,
                         "error_msg": "",
                     }, 
-                    safe=False)
+                    safe=False)    
 
-        
+        recordsTotal = ConMatricComunInicial.objects.all().count()
 
-        total = ConMatricComunInicial.objects.all().count()
-        filtered = total
-        matriculasComunInicial = ConMatricComunInicial.objects.all()
+        recordsFiltered  = recordsTotal
 
-        if search:
-            matriculasComunInicial = ConMatricComunInicial.objects.filter(
+        if(length != -1): #hay paginacion
+            page_number = start / length + 1     
+
+        if search: # si hay valor de busqueda
+
+            if(length != -1): #hay paginacion
+
+                # obtengo todas las filas filtradas y paginado
+                object_list = ConMatricComunInicial.objects.filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                )[page_number:length]
+
+            else:
+
+                # obtengo todas las filas filtradas sin paginacion
+                object_list = ConMatricComunInicial.objects.filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                )
+
+            # obtengo la cantidad de filas filtrdas sin paginacion
+            recordsFiltered = ConMatricComunInicial.objects.filter(
                 Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-            )
-            total = matriculasComunInicial.count()
-            filtered = total
+            ).count()
 
-        # paginator
-        paginator = Paginator(matriculasComunInicial, length)
+        else: # no hay valor de busqueda
 
-        page_number = start / length + 1
+            if(length != -1): #hay paginacion
 
-        try:
-            object_list = paginator.page(page_number).object_list
-        except PageNotAnInteger:
-            object_list = paginator.page(1).object_list
-        except EmptyPage:
-            object_list = paginator.page(1).object_list
+                # obtengo todas las filas con paginacion
+                object_list = ConMatricComunInicial.objects.all()[page_number:length]
+
+            else:
+
+                # obtengo todas las filas sin paginacion
+                object_list = ConMatricComunInicial.objects.all()
+
+
+            # obtengo la cantidad de filas sin paginacion
+            recordsFiltered = ConMatricComunInicial.objects.filter(
+                Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+            ).count()
 
         data = [
             {
@@ -99,8 +124,8 @@ class ControlsMatriculaListView(ListView):
 
         return JsonResponse({
             "draw": draw,
-            "recordsTotal": total,
-            "recordsFiltered": filtered,
+            "recordsTotal": recordsTotal,
+            "recordsFiltered": recordsFiltered,
             "data": data,
             "error_msg": "",
         }, 

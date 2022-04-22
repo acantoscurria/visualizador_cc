@@ -1,10 +1,45 @@
 
- var columns = {
+    /*
+    columns = {
+        nombre_matricula_1: {
+            tipo_control_1: {
+                {
+                    "class": "left row-control",
+                    "data": "id",
+                    "name": "id",
+                    "title": "#",
+                    "render": function ( data, type, row ) {
+                        return data ? data : ''
+                    }
+                },
+                {
+                    "class": "left row-control",
+                    "data": "cueanexo",
+                    "name": "cueanexo",
+                    "title": "Cueanexo",
+                    "render": function ( data, type, row ) {
+                        return data ? data : ''
+                    }
+                },
+            }
+        }
+    }
+    */
+
+var eb = function(c){
+    let s = ""
+    for (let i = 0; i < c; i++) {
+        s+="&nbsp"             
+    }
+    return s
+}
+
+var columns = {
     none: {
-        none: []
+        none: [{}]
     },
     matricula_comun_inicial: {
-        none: [],
+        none: [{}],
         precocidad: [
             {
                 "class": "left row-control",
@@ -37,7 +72,7 @@
                 "class": "left row-control",
                 "data": "escuela",
                 "name": "escuela",
-                "title": "Escuela",
+                "title": eb(25)+"Escuela"+eb(25),
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
@@ -176,37 +211,15 @@
 
 $(document).ready(function(){
 
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value; 
 
-    /*
-    columns = {
-        nombre_matricula_1: {
-            tipo_control_1: {
-                {
-                    "class": "left row-control",
-                    "data": "id",
-                    "name": "id",
-                    "title": "#",
-                    "render": function ( data, type, row ) {
-                        return data ? data : ''
-                    }
-                },
-                {
-                    "class": "left row-control",
-                    "data": "cueanexo",
-                    "name": "cueanexo",
-                    "title": "Cueanexo",
-                    "render": function ( data, type, row ) {
-                        return data ? data : ''
-                    }
-                },
-            }
-        }
-    }
-    */
   
-
-    let dt_matricula = $("#tabla-matricula").DataTable({
+    var dt_matricula = $("#tabla-matricula")
+    .on( 'processing.dt', function ( e, settings, processing ) {
+        if (processing) {
+        } 
+    })
+    .DataTable({
         "ajax": {
             "url": " /controls/matricula_list/",
             "type": "POST",
@@ -218,7 +231,8 @@ $(document).ready(function(){
                         if(json.error_msg){
                             alert(json.error_msg)
                         }
-                        return data
+                  
+
                     } catch(e) {
                         console.error('error al obtener los datos de la tabla', e);
                     }
@@ -232,13 +246,15 @@ $(document).ready(function(){
             },
 
         },
-        //"columns": columns[$("#matricula_input").val()][$("#control_type_input").val()],
-        "columns": columns['matricula_comun_inicial']['precocidad'],
+        "columns": columns[$("#matricula_input").val()][$("#control_type_input").val()],
+        //"columns": columns['matricula_comun_inicial']['precocidad'],       
+        //"columns": [],
         "processing":true,
         "serverSide": true,
         "autoWidth": true,
         "orderCellsTop": false,
-        // "rowId": 'id_localizacion',
+        //"order": [[ 1, 'asc' ]],
+        //"rowId": 'id',
         "scrollY": true,
         "scrollY": '600px',
         "scrollX": true,
@@ -253,7 +269,9 @@ $(document).ready(function(){
             return pre
         },
         "initComplete": function(settings, json) {
-             console.log( 'DataTables has finished its initialisation.' );
+
+            console.log( 'DataTables has finished its initialisation.' );
+    
         },
         "language": {
             decimal: "",
@@ -280,17 +298,25 @@ $(document).ready(function(){
             }
         },
         "pagingType": "numbers",
-        "lengthMenu": [[100, 500, 1000, -1], [100, 500, 1000, "Todas"]],
+        "lengthMenu": [[10, 100, 500, 1000, -1], [10, 100, 500, 1000, "Todas"]],
         "dom":
             "<'row justify-content-between'<'col-auto'l><'col-auto'f><'col-auto mt-1'>>" +
             "<'row'<'col-xl-12'tr>>" +
             "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
-    })
+    }) 
 
 
     $("#matricula_input").change(function(){
 
         console.log('columns',columns[$("#matricula_input").val()][$("#control_type_input").val()])
+
+        if($(this).val() == "none" || $("#control_type_input").val() == "none"){
+            $("#alert-msg-none-selecion").show()
+            $("#tabla-matricula_wrapper").hide()
+        }else{
+            $("#tabla-matricula_wrapper").show()
+            $("#alert-msg-none-selecion").hide()
+        }
 
         dt_matricula.draw()
     })
@@ -298,6 +324,15 @@ $(document).ready(function(){
     $("#control_type_input").change(function(){
 
         console.log('columns',columns[$("#matricula_input").val()][$("#control_type_input").val()])
+
+        if($(this).val() == "none" || $("#control_type_input").val() == "none"){
+            $("#alert-msg-none-selecion").show()
+            $("#tabla-matricula_wrapper").hide()
+        }else{
+            $("#tabla-matricula_wrapper").show()
+            $("#alert-msg-none-selecion").hide()
+        }
+
 
         dt_matricula.draw()
     })
