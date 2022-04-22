@@ -212,137 +212,130 @@ var columns = {
 $(document).ready(function(){
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value; 
-  
-    var dt_matricula = $("#tabla-matricula")
-    .on( 'processing.dt', function ( e, settings, processing ) {
-        if (processing) {
-        } 
-    })
-    .DataTable({
-        "ajax": {
-            "url": " /controls/matricula_list/",
-            "type": "POST",
-            "headers": {'X-CSRFToken': csrftoken },
-            "dataFilter": function( data ) {
-                if (data) {
-                    try {
-                        let json = $.parseJSON( data )
-                        if(json.error_msg){
-                            alert(json.error_msg)
-                        }  
-                        return data                
 
-                    } catch(e) {
-                        console.error('error al obtener los datos de la tabla', e);
-                    }
-                }
-            },
-            "data": function ( d ) {
-                return $.extend( {}, d, {
-                    "matricula_selected": $("#matricula_input").val(),
-                    "control_type_selected": $("#control_type_input").val(),
-                })
-            },
+    var dt_matricula = null
 
-        },
-        "columns": columns[$("#matricula_input").val()][$("#control_type_input").val()],
-        //"columns": columns['matricula_comun_inicial']['precocidad'],       
-        //"columns": [],
-        "processing":true,
-        "serverSide": true,
-        "autoWidth": true,
-        "orderCellsTop": false,
-        //"order": [[ 1, 'asc' ]],
-        //"rowId": 'id',
-        "scrollY": true,
-        "scrollY": '600px',
-        "scrollX": true,
-        "scrollCollapse": true,
-        "paging": true,
-        "ordering": false,
-        "createdRow": function( row, data, index ) {
+    var reloadInstanceDatatable = function(){
 
-        },
-        "infoCallback": function( settings, start, end, max, total, pre ) {
+        if($("#matricula_input").val() == "none" || $("#control_type_input").val() == "none"){
 
-            return pre
-        },
-        "initComplete": function(settings, json) {
+            $(".alert-msg-none-selection").show()
+        }
+        else{
 
-            console.log( 'DataTables has finished its initialisation.' );
+            $(".alert-msg-none-selection").hide()
 
-            if($("#matricula_input").val() == "none" || $("#control_type_input").val() == "none"){
-                $("#alert-msg-none-selecion").show()
-                $("#tabla-matricula_wrapper").hide()
-            }else{
-                $("#tabla-matricula_wrapper").show()
-                $("#alert-msg-none-selecion").hide()
-            }
+            if(dt_matricula){
+                dt_matricula.destroy();
+            }    
+            
+            dt_matricula = $("#tabla-matricula")
+            .on( 'processing.dt', function ( e, settings, processing ) {
+                if (processing) {
+                } 
+            })
+            .DataTable({
+                "ajax": {
+                    "url": " /controls/matricula_list/",
+                    "type": "POST",
+                    "headers": {'X-CSRFToken': csrftoken },
+                    "dataFilter": function( data ) {
+                        if (data) {
+                            try {
+                                let json = $.parseJSON( data )
+                                if(json.error_msg){
+                                    alert(json.error_msg)
+                                }  
+                                return data                
     
-        },
-        "language": {
-            decimal: "",
-            emptyTable: "Sin resultados.",
-            info: "_START_ al _END_ de _TOTAL_",
-            infoEmpty: "0 al 0 de 0",
-            infoFiltered: "",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Mostrar _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Cargando ...",
-            search: "Buscar:",
-            zeroRecords: "Sin resultados",
-            paginate: {
-                first: "Primero",
-                last: "Último",
-                next: "Siguiente",
-                previous: "Anterior"
-            },
-            aria: {
-                sortAscending: ": Activar para ordenar la columna ascendente",
-                sortDescending: ": Activar para ordenar la columna descendente"
-            }
-        },
-        "pagingType": "numbers",
-        "lengthMenu": [[10, 100, 500, 1000, -1], [10, 100, 500, 1000, "Todas"]],
-        "dom":
-            "<'row justify-content-between'<'col-auto'l><'col-auto'f><'col-auto mt-1'>>" +
-            "<'row'<'col-xl-12'tr>>" +
-            "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
-    }) 
+                            } catch(e) {
+                                console.error('error al obtener los datos de la tabla', e);
+                            }
+                        }
+                    },
+                    "data": function ( d ) {
+                        return $.extend( {}, d, {
+                            "matricula_selected": $("#matricula_input").val(),
+                            "control_type_selected": $("#control_type_input").val(),
+                        })
+                    },
+    
+                },
+                "columns": columns[$("#matricula_input").val()][$("#control_type_input").val()],     
+                "processing":true,
+                "serverSide": true,
+                "autoWidth": true,
+                "orderCellsTop": false,
+                //"order": [[ 1, 'asc' ]],
+                //"rowId": 'id',
+                "scrollY": true,
+                "scrollY": '600px',
+                "scrollX": true,
+                "scrollCollapse": true,
+                "paging": true,
+                "ordering": false,
+                "createdRow": function( row, data, index ) {
+    
+                },
+                "infoCallback": function( settings, start, end, max, total, pre ) {
+    
+                    return pre
+                },
+                "initComplete": function(settings, json) {
+    
+                    console.log( 'DataTables has finished its initialisation.' );          
+            
+                },
+                "language": {
+                    decimal: "",
+                    emptyTable: "Sin resultados.",
+                    info: "_START_ al _END_ de _TOTAL_",
+                    infoEmpty: "0 al 0 de 0",
+                    infoFiltered: "",
+                    infoPostFix: "",
+                    thousands: ",",
+                    lengthMenu: "Mostrar _MENU_ filas",
+                    loadingRecords: "Cargando...",
+                    processing: "Cargando ...",
+                    search: "Buscar:",
+                    zeroRecords: "Sin resultados",
+                    paginate: {
+                        first: "Primero",
+                        last: "Último",
+                        next: "Siguiente",
+                        previous: "Anterior"
+                    },
+                    aria: {
+                        sortAscending: ": Activar para ordenar la columna ascendente",
+                        sortDescending: ": Activar para ordenar la columna descendente"
+                    }
+                },
+                "pagingType": "numbers",
+                "lengthMenu": [[10, 100, 500, 1000, -1], [10, 100, 500, 1000, "Todas"]],
+                "dom":
+                    "<'row justify-content-between'<'col-auto'l><'col-auto'f><'col-auto mt-1'>>" +
+                    "<'row'<'col-xl-12'tr>>" +
+                    "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
+            }) 
 
+        }
+
+
+       
+        
+    }
 
     $("#matricula_input").change(function(){
 
-        console.log('columns',columns[$("#matricula_input").val()][$("#control_type_input").val()])
-
-        if($(this).val() == "none" || $("#control_type_input").val() == "none"){
-            $("#alert-msg-none-selecion").show()
-            $("#tabla-matricula_wrapper").hide()
-        }else{
-            $("#tabla-matricula_wrapper").show()
-            $("#alert-msg-none-selecion").hide()
-        }
-
-        dt_matricula.draw()
+        reloadInstanceDatatable()
     })
 
     $("#control_type_input").change(function(){
 
-        console.log('columns',columns[$("#matricula_input").val()][$("#control_type_input").val()])
-
-        if($(this).val() == "none" || $("#matricula_input").val() == "none"){
-            $("#alert-msg-none-selecion").show()
-            $("#tabla-matricula_wrapper").hide()
-        }else{
-            $("#tabla-matricula_wrapper").show()
-            $("#alert-msg-none-selecion").hide()
-        }
-
-
-        dt_matricula.draw()
+        reloadInstanceDatatable()
     })
+
+    reloadInstanceDatatable()
 
 
 
