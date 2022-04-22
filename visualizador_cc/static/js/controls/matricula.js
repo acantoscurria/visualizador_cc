@@ -212,7 +212,6 @@ var columns = {
 $(document).ready(function(){
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value; 
-
   
     var dt_matricula = $("#tabla-matricula")
     .on( 'processing.dt', function ( e, settings, processing ) {
@@ -230,8 +229,8 @@ $(document).ready(function(){
                         let json = $.parseJSON( data )
                         if(json.error_msg){
                             alert(json.error_msg)
-                        }
-                  
+                        }  
+                        return data                
 
                     } catch(e) {
                         console.error('error al obtener los datos de la tabla', e);
@@ -271,6 +270,14 @@ $(document).ready(function(){
         "initComplete": function(settings, json) {
 
             console.log( 'DataTables has finished its initialisation.' );
+
+            if($("#matricula_input").val() == "none" || $("#control_type_input").val() == "none"){
+                $("#alert-msg-none-selecion").show()
+                $("#tabla-matricula_wrapper").hide()
+            }else{
+                $("#tabla-matricula_wrapper").show()
+                $("#alert-msg-none-selecion").hide()
+            }
     
         },
         "language": {
@@ -325,7 +332,7 @@ $(document).ready(function(){
 
         console.log('columns',columns[$("#matricula_input").val()][$("#control_type_input").val()])
 
-        if($(this).val() == "none" || $("#control_type_input").val() == "none"){
+        if($(this).val() == "none" || $("#matricula_input").val() == "none"){
             $("#alert-msg-none-selecion").show()
             $("#tabla-matricula_wrapper").hide()
         }else{
@@ -336,6 +343,8 @@ $(document).ready(function(){
 
         dt_matricula.draw()
     })
+
+
 
 
 
