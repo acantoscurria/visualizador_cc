@@ -8,12 +8,12 @@ from visualizador_cc.reports.views import (
 app_name = "reports"
 urlpatterns = [
     path(
-        "RepMatricComunInicial",
+        "ReportsMatricIndexView",
         ReportsMatricIndexView.as_view(),
         name="ra_matricula_index",
     ),
     path(
-        "matric_comun_inicial_list/",
+        "ra_matricula_list/",
         ReportsMatricListView.as_view(),
         name="ra_matricula_list",
     ),

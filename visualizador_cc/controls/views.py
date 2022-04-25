@@ -103,8 +103,6 @@ class ControlsMatriculaListView(ListView):
                     Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
                 ).count()
 
-           
-
         elif(matricula_selected == "matricula_comun_secundaria"):
 
             recordsTotal = ConMatricComunSecundaria.objects.all().count()
