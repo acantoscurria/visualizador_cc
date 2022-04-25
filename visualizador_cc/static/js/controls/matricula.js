@@ -223,7 +223,7 @@ var columns = {
             },
         ]
     },
-    matricula_comun_inicial: {
+    matricula_comun_secundaria: {
         none: [{}],
         precocidad: [
             {
@@ -528,9 +528,16 @@ $(document).ready(function(){
             $(".alert-msg-none-selection").hide()
 
             if(dt_matricula){
+
+                dt_matricula.clear();
                 dt_matricula.destroy();
+
+                $("#tabla-matricula tbody").empty();
+                $("#tabla-matricula thead").empty();
             }    
-            
+
+            console.log("columns", columns[$("#matricula_input").val()][$("#control_type_input").val()])     
+
             dt_matricula = $("#tabla-matricula")
             .on( 'processing.dt', function ( e, settings, processing ) {
                 if (processing) {
@@ -597,8 +604,8 @@ $(document).ready(function(){
                     infoPostFix: "",
                     thousands: ",",
                     lengthMenu: "Mostrar _MENU_ filas",
-                    loadingRecords: "Cargando...",
-                    processing: "Cargando ...",
+                    loadingRecords: $('#preloader').html(),
+                    processing: $('#preloader').html(),
                     search: "Buscar:",
                     zeroRecords: "Sin resultados",
                     paginate: {

@@ -36,6 +36,32 @@ class ConMatricComunInicial(models.Model):
     def __str__(self):
         return f"{self.escuela}"
 
+    def parse(self):
+        return {
+            "id": self.id,
+            "tipo_ed": self.tipo_ed,
+            "nivel": self.nivel,
+            "cueanexo": self.cueanexo,
+            "id_fila": self.id_fila,
+            "escuela": self.escuela,
+            "sala": self.sala,
+            "turno": self.turno,
+            "nom_secc": self.nom_secc,
+            "tipo_secc": self.tipo_secc,
+            "total": self.total,
+            "total_var": self.total_var,
+            "menos_1_año": self.menos_1_año,
+            "un_año": self.un_año,
+            "dos_años": self.dos_años,
+            "tres_años": self.tres_años,
+            "cuatro_años": self.cuatro_años,
+            "cinco_años": self.cinco_años,
+            "seis_años": self.seis_años,
+            "total_disc": self.total_disc,            
+        }
+
+        
+
 
 class ConMatricComunSecundaria(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -74,4 +100,14 @@ class ConMatricComunSecundaria(models.Model):
         managed = False  # Created from a view. Don't remove.
         db_table = 'con_matric_comun_secundaria'
         verbose_name_plural = "ConMatriculasComunSecundaria"
-
+   
+    def parse(self):
+        return {
+            "id": self.id,
+            "tipo_ed": self.tipo_ed,
+            "nivel": self.nivel,
+            "cueanexo": self.cueanexo,
+            "id_fila": self.id_fila,
+            "escuela": self.escuela,              
+        }
+          

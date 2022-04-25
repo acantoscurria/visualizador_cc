@@ -35,6 +35,7 @@ class ControlsMatriculaListView(ListView):
         recordsTotal = 0
         data = []
         recordsFiltered = 0
+        object_list = None
 
         search = dt.get("search[value]")
         matricula_selected = dt.get("matricula_selected")    
@@ -102,33 +103,7 @@ class ControlsMatriculaListView(ListView):
                     Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
                 ).count()
 
-            data = [
-                {
-                    "id": row.id,
-                    "tipo_ed": row.tipo_ed,
-                    "nivel": row.nivel,
-                    "cueanexo": row.cueanexo,
-                    "id_fila": row.id_fila,
-                    "escuela": row.escuela,
-                    "sala": row.sala,
-                    "turno": row.turno,
-                    "nom_secc": row.nom_secc,
-                    "tipo_secc": row.tipo_secc,
-                    "total": row.total,
-                    "total_var": row.total_var,
-                    "menos_1_año": row.menos_1_año,
-                    "un_año": row.un_año,
-                    "dos_años": row.dos_años,
-                    "tres_años": row.tres_años,
-                    "cuatro_años": row.cuatro_años,
-                    "cinco_años": row.cinco_años,
-                    "seis_años": row.seis_años,
-                    "total_disc": row.total_disc,
-                    
-                }
-                for row in object_list
-            ]
-
+           
 
         elif(matricula_selected == "matricula_comun_secundaria"):
 
@@ -178,45 +153,14 @@ class ControlsMatriculaListView(ListView):
                     Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
                 ).count()
 
-            data = [
-                {
-                    "id": row.id,
-                    "tipo_ed": row.tipo_ed,
-                    "nivel": row.nivel,
-                    "cueanexo": row.cueanexo,
-                    "id_fila": row.id_fila,
-                    "escuela": row.escuela,                   
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    "turno": row.turno,
-                    
-                    
-                }
-                for row in object_list
-            ]
+        data = []  
+        for row in object_list:
+            # print('parse', row.parse())
+            data.append(row.parse())
+        
        
+        # print('data', data)
+
         return JsonResponse({
             "draw": draw,
             "recordsTotal": recordsTotal,
