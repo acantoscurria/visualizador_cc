@@ -1,11 +1,11 @@
 
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
-from visualizador_cc.users.models import User
 from django.views.generic.list import ListView
+import pandas as pd
 
 from visualizador_cc.controls.models import (
     ConMatricComunInicial,
@@ -15,9 +15,12 @@ from visualizador_cc.controls.models import (
 
 
 class ControlsMatriculaIndexView(View):
-    def get(self, request):
-        context = {"title": "Control de Mátriculas - RA 2022"}
+    def get(self, request):       
+        context = {
+            "title": "Control de Mátriculas - RA 2022",           
+        }
         return render(request, "controls/matricula.html", context)
+    
 
 
 class ControlsMatriculaListView(ListView):
@@ -56,118 +59,63 @@ class ControlsMatriculaListView(ListView):
 
 
         if(matricula_selected == "matricula_comun_inicial"):
-
-            recordsTotal = ConMatricComunInicial.objects.all().count()
-
-            recordsFiltered  = recordsTotal
-
-            if(length != -1): #hay paginacion
-                page_number = start / length + 1     
-
-            if search: # si hay valor de busqueda
-
-                if(length != -1): #hay paginacion
-
-                    # obtengo todas las filas filtradas y paginado
-                    object_list = ConMatricComunInicial.objects.filter(
-                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                    )[page_number:length]
-
-                else:
-
-                    # obtengo todas las filas filtradas sin paginacion
-                    object_list = ConMatricComunInicial.objects.filter(
-                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                    )
-
-                # obtengo la cantidad de filas filtrdas sin paginacion
-                recordsFiltered = ConMatricComunInicial.objects.filter(
-                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                ).count()
-
-            else: # no hay valor de busqueda
-
-                if(length != -1): #hay paginacion
-
-                    # obtengo todas las filas con paginacion
-                    object_list = ConMatricComunInicial.objects.all()[page_number:length]
-
-                else:
-
-                    # obtengo todas las filas sin paginacion
-                    object_list = ConMatricComunInicial.objects.all()
-
-
-                # obtengo la cantidad de filas sin paginacion
-                recordsFiltered = ConMatricComunInicial.objects.filter(
-                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                ).count()
-
-           
-
-        elif(matricula_selected == "matricula_comun_secundaria"):
-
-            recordsTotal = ConMatricComunSecundaria.objects.all().count()
-
-            recordsFiltered  = recordsTotal
-
-            if(length != -1): #hay paginacion
-                page_number = start / length + 1     
-
-            if search: # si hay valor de busqueda
-
-                if(length != -1): #hay paginacion
-
-                    # obtengo todas las filas filtradas y paginado
-                    object_list = ConMatricComunSecundaria.objects.filter(
-                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                    )[page_number:length]
-
-                else:
-
-                    # obtengo todas las filas filtradas sin paginacion
-                    object_list = ConMatricComunSecundaria.objects.filter(
-                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                    )
-
-                # obtengo la cantidad de filas filtrdas sin paginacion
-                recordsFiltered = ConMatricComunSecundaria.objects.filter(
-                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                ).count()
-
-            else: # no hay valor de busqueda
-
-                if(length != -1): #hay paginacion
-
-                    # obtengo todas las filas con paginacion
-                    object_list = ConMatricComunSecundaria.objects.all()[page_number:length]
-
-                else:
-
-                    # obtengo todas las filas sin paginacion
-                    object_list = ConMatricComunSecundaria.objects.all()
-
-
-                # obtengo la cantidad de filas sin paginacion
-                recordsFiltered = ConMatricComunSecundaria.objects.filter(
-                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                ).count()
-
-        data = []  
-        for row in object_list:
-            # print('parse', row.parse())
-            data.append(row.parse())
         
-       
-        # print('data', data)
+            if(control_type_selected == "edades"):
 
-        return JsonResponse({
-            "draw": draw,
-            "recordsTotal": recordsTotal,
-            "recordsFiltered": recordsFiltered,
-            "data": data,
-            "error_msg": "",
-        }, 
-        safe=False)
+                items = ConMatricComunInicial.objects.all()[:10].values()
+                df = pd.DataFrame(items)    
+
+                def control_precocidad(row):
+                    if(row['sala'] == "Sala de 3 años"):
+                        if(row["menos_1_año"] > 0
+                            or row["un_año"] > 0
+                                or row["dos_años"] > 0                               
+                                   or row["cuatro_años"] > 0
+                                        or row["cinco_años"] > 0
+                                             or row["seis_años"] > 0):
+                                                return 1
+
+                    if(row['sala'] == "Sala de 4 años"):
+                        if(row["menos_1_año"] > 0
+                            or row["un_año"] > 0
+                                or row["dos_años"] > 0                               
+                                   or row["tres_años"] > 0
+                                        or row["cinco_años"] > 0
+                                             or row["seis_años"] > 0):
+                                                return 1
+
+                    if(row['sala'] == "Sala de 5 años"):
+                        if(row["menos_1_año"] > 0
+                            or row["un_año"] > 0
+                                or row["dos_años"] > 0                               
+                                   or row["tres_años"] > 0
+                                        or row["cuatro_años"] > 0):
+                                            #  or row["seis_años"] > 0):
+                                            return 1
 
 
+                    return 0
+            
+
+                # precodidad
+                df["error"] = df.apply(control_precocidad, axis=1)
+
+                # print('to_dict', df.to_dict('records'))
+
+                data = df.to_dict('records')
+
+                return JsonResponse({
+                    "draw": draw,
+                    "recordsTotal":  len(data),
+                    "recordsFiltered":  len(data),
+                    "data": data,
+                    "error_msg": "",
+                }, 
+                safe=False)
+                
+
+  
+
+
+
+      

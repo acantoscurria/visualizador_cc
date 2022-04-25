@@ -40,7 +40,7 @@ var columns = {
     },
     matricula_comun_inicial: {
         none: [{}],
-        precocidad: [
+        edades: [
             {
                 "class": "left row-control",
                 "data": "id",
@@ -100,6 +100,15 @@ var columns = {
                 "data": "sala",
                 "name": "sala",
                 "title": "Sala",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "error",
+                "name": "error",
+                "title": "Error",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
@@ -225,7 +234,7 @@ var columns = {
     },
     matricula_comun_secundaria: {
         none: [{}],
-        precocidad: [
+        edades: [
             {
                 "class": "left row-control",
                 "data": "id",
@@ -584,7 +593,9 @@ $(document).ready(function(){
                 "paging": true,
                 "ordering": false,
                 "createdRow": function( row, data, index ) {
-    
+                    if(data.error){
+                        $(row).addClass('bg-danger text-light')
+                    }
                 },
                 "infoCallback": function( settings, start, end, max, total, pre ) {
     
