@@ -2,7 +2,7 @@
 
 from django.db import models
 
-class MatricComunInicial(models.Model):
+class RepMatricComunInicial(models.Model):
     id = models.BigIntegerField(primary_key=True)
     cueanexo = models.CharField(max_length=255, blank=True, null=True)
     id_fila = models.IntegerField(blank=True, null=True)

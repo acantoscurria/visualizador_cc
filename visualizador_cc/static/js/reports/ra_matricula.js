@@ -30,6 +30,8 @@ $(document).ready(function(){
             "data": function ( d ) {
                 return $.extend( {}, d, {
                     "ra_selected": $("#relevamiento_input").val(),
+                    "matricula_selected": $("#matricula_input").val(),
+
                 })
             },
 

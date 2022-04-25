@@ -17,6 +17,38 @@
 
 {% csrf_token %}
 
+<div class="row border-bottom p-2 d-flex bg-light">
+
+    <div class="col-3">
+        <form>
+          <div class="form-floating">
+            <select class="form-select" id="relevamiento_input" aria-label="Relevamiento">
+              <option value="none" selected>Seleccione relevamiento</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+            </select>
+            <label for="relevamiento_input">Relevamiento</label>
+          </div>
+        </form>
+    </div>
+
+    <div class="col-3">
+      <form>
+        <div class="form-floating">
+          <select class="form-select" id="matricula_input" aria-label="Mátricula">
+            <option value="none" selected>Seleccione mátricula</option>
+            <option value="matricula_comun_inicial">Mátricula comun incial</option>
+            <option value="matricula_comun_secundaria">Mátricula comun secundaria</option>
+          </select>
+          <label for="matricula_input">Mátricula</label>
+        </div>
+      </form>
+    </div>
+
+    
+  
+</div>
+
 <div class="row">
     <div class="col-12 pt-3">
 
