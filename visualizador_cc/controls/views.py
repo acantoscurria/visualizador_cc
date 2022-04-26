@@ -7,8 +7,16 @@ from django.views import View
 from django.views.generic.list import ListView
 import pandas as pd
 
+from visualizador_cc.controls.functions.controles import (
+    MatriculaComunIncialControl,
+    MatriculaComunPrimariaControl,
+    MatriculaComunSecundariaControl
+)
+
+
 from visualizador_cc.controls.models import (
     ConMatricComunInicial,
+    ConMatricComunPrimaria,
     ConMatricComunSecundaria
 )
 # Create your views here.
@@ -27,20 +35,7 @@ class ControlsMatriculaListView(ListView):
 
     def post(self, request, *args, **kwargs): 
 
-        dt = request.POST
-        draw = int(dt.get("draw"))
-        start = int(dt.get("start"))
-        length = int(dt.get("length"))
-
-        print('start', start)
-        print('length', length)
-
-        recordsTotal = 0
-        data = []
-        recordsFiltered = 0
-        object_list = None
-
-        search = dt.get("search[value]")
+        dt = request.POST      
         matricula_selected = dt.get("matricula_selected")    
         control_type_selected = dt.get("control_type_selected")     
 
@@ -48,74 +43,78 @@ class ControlsMatriculaListView(ListView):
         print('control_type_selected', control_type_selected)
 
         if(matricula_selected == "none" or control_type_selected == "none"):            
-            return JsonResponse({
-                        "draw": draw,
-                        "recordsTotal": recordsTotal,
-                        "recordsFiltered": recordsFiltered,
-                        "data": data,
-                        "error_msg": "",
+            return JsonResponse({                      
+                        "data": [],              
                     }, 
                     safe=False)    
 
 
         if(matricula_selected == "matricula_comun_inicial"):
         
-            if(control_type_selected == "edades"):
+            if(control_type_selected == "precocidad"):
 
-                items = ConMatricComunInicial.objects.all()[:10].values()
-                df = pd.DataFrame(items)    
+                df = pd.DataFrame(ConMatricComunInicial.objects.all().values())   
+             
+                df["error"] = df.apply(MatriculaComunIncialControl.precocidad, axis=1)            
 
-                def control_precocidad(row):
-                    if(row['sala'] == "Sala de 3 años"):
-                        if(row["menos_1_año"] > 0
-                            or row["un_año"] > 0
-                                or row["dos_años"] > 0                               
-                                   or row["cuatro_años"] > 0
-                                        or row["cinco_años"] > 0
-                                             or row["seis_años"] > 0):
-                                                return 1
-
-                    if(row['sala'] == "Sala de 4 años"):
-                        if(row["menos_1_año"] > 0
-                            or row["un_año"] > 0
-                                or row["dos_años"] > 0                               
-                                   or row["tres_años"] > 0
-                                        or row["cinco_años"] > 0
-                                             or row["seis_años"] > 0):
-                                                return 1
-
-                    if(row['sala'] == "Sala de 5 años"):
-                        if(row["menos_1_año"] > 0
-                            or row["un_año"] > 0
-                                or row["dos_años"] > 0                               
-                                   or row["tres_años"] > 0
-                                        or row["cuatro_años"] > 0):
-                                            #  or row["seis_años"] > 0):
-                                            return 1
-
-
-                    return 0
-            
-
-                # precodidad
-                df["error"] = df.apply(control_precocidad, axis=1)
-
-                # print('to_dict', df.to_dict('records'))
-
-                data = df.to_dict('records')
-
-                return JsonResponse({
-                    "draw": draw,
-                    "recordsTotal":  len(data),
-                    "recordsFiltered":  len(data),
-                    "data": data,
-                    "error_msg": "",
+                return JsonResponse({                    
+                    "data": df.to_dict('records'),                   
                 }, 
                 safe=False)
                 
 
-  
+            if(control_type_selected == "sobreedad"):
+           
+                df = pd.DataFrame(ConMatricComunInicial.objects.all().values())    
+
+                df["error"] = df.apply(MatriculaComunIncialControl.sobreedad, axis=1)            
+            
+                return JsonResponse({                   
+                    "data": df[df["error"] > 0].to_dict('records'),                
+                }, 
+                safe=False)
+
+        if(matricula_selected == "matricula_comun_primaria"):
+        
+            if(control_type_selected == "precocidad"):
+
+                df = pd.DataFrame(ConMatricComunPrimaria.objects.all().values())   
+             
+                df["error"] = df.apply(MatriculaComunPrimariaControl.precocidad, axis=1)            
+
+                return JsonResponse({                    
+                    "data": df[df["error"] > 0].to_dict('records'),                   
+                }, 
+                safe=False)
+                
+
+            if(control_type_selected == "sobreedad"):
+           
+                df = pd.DataFrame(ConMatricComunPrimaria.objects.all().values())    
+
+                df["error"] = df.apply(MatriculaComunPrimariaControl.sobreedad, axis=1)            
+            
+                return JsonResponse({                    
+                    "data": df[df["error"] > 0].to_dict('records'),                   
+                }, 
+                safe=False)
+
+        if(matricula_selected == "matricula_comun_secundaria"):
+        
+            if(control_type_selected == "precocidad"):
+
+                df = pd.DataFrame(ConMatricComunSecundaria.objects.all().values())   
+             
+                df["error"] = df.apply(MatriculaComunSecundariaControl.precocidad, axis=1)            
+
+                return JsonResponse({                    
+                    "data": df[df["error"] > 0].to_dict('records'),                   
+                }, 
+                safe=False)           
 
 
-
+        return JsonResponse({               
+                "data": [],           
+            }, 
+            safe=False)  
       

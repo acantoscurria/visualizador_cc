@@ -239,7 +239,7 @@ or replace view public.con_matric_comun_secundaria as (
                 select
                     cueanexo,
                     id_fila,
-                    descripcion as año_est
+                    descripcion as anio_est
                 from
                     naty
                     join codigo_valor as cv on(id_codigo_valor = valor :: int)
@@ -251,7 +251,7 @@ or replace view public.con_matric_comun_secundaria as (
                     descripcion
                 order by
                     cueanexo
-            ) as año_est USING (cueanexo, id_fila)
+            ) as anio_est USING (cueanexo, id_fila)
             LEFT JOIN (
                 select
                     cueanexo,

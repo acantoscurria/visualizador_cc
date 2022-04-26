@@ -128,7 +128,7 @@ or replace view public.con_matric_comun_inicial as (
                 select
                     cueanexo,
                     id_fila,
-                    valor :: int as menos_1_año
+                    valor :: int as menos_1_anio
                 from
                     naty
                 where
@@ -139,12 +139,12 @@ or replace view public.con_matric_comun_inicial as (
                     valor
                 order by
                     cueanexo
-            ) as menos_1_año USING (cueanexo, id_fila)
+            ) as menos_1_anio USING (cueanexo, id_fila)
             LEFT JOIN (
                 select
                     cueanexo,
                     id_fila,
-                    valor :: int as un_año
+                    valor :: int as un_anio
                 from
                     naty
                 where
@@ -155,12 +155,12 @@ or replace view public.con_matric_comun_inicial as (
                     valor
                 order by
                     cueanexo
-            ) as un_año USING (cueanexo, id_fila)
+            ) as un_anio USING (cueanexo, id_fila)
             LEFT JOIN (
                 select
                     cueanexo,
                     id_fila,
-                    valor :: int as dos_años
+                    valor :: int as dos_anios
                 from
                     naty
                 where
@@ -171,12 +171,12 @@ or replace view public.con_matric_comun_inicial as (
                     valor
                 order by
                     cueanexo
-            ) as dos_años USING (cueanexo, id_fila)
+            ) as dos_anios USING (cueanexo, id_fila)
             LEFT JOIN (
                 select
                     cueanexo,
                     id_fila,
-                    valor :: int as tres_años
+                    valor :: int as tres_anios
                 from
                     naty
                 where
@@ -187,12 +187,12 @@ or replace view public.con_matric_comun_inicial as (
                     valor
                 order by
                     cueanexo
-            ) as tres_años USING (cueanexo, id_fila)
+            ) as tres_anios USING (cueanexo, id_fila)
             LEFT JOIN (
                 select
                     cueanexo,
                     id_fila,
-                    valor :: int as cuatro_años
+                    valor :: int as cuatro_anios
                 from
                     naty
                 where
@@ -203,12 +203,12 @@ or replace view public.con_matric_comun_inicial as (
                     valor
                 order by
                     cueanexo
-            ) as cuatro_años USING (cueanexo, id_fila)
+            ) as cuatro_anios USING (cueanexo, id_fila)
             LEFT JOIN (
                 select
                     cueanexo,
                     id_fila,
-                    valor :: int as cinco_años
+                    valor :: int as cinco_anios
                 from
                     naty
                 where
@@ -219,12 +219,12 @@ or replace view public.con_matric_comun_inicial as (
                     valor
                 order by
                     cueanexo
-            ) as cinco_años USING (cueanexo, id_fila)
+            ) as cinco_anios USING (cueanexo, id_fila)
             LEFT JOIN (
                 select
                     cueanexo,
                     id_fila,
-                    valor :: int as seis_años
+                    valor :: int as seis_anios
                 from
                     naty
                 where
@@ -235,7 +235,7 @@ or replace view public.con_matric_comun_inicial as (
                     valor
                 order by
                     cueanexo
-            ) as seis_años USING (cueanexo, id_fila)
+            ) as seis_anios USING (cueanexo, id_fila)
             LEFT JOIN (
                 select
                     cueanexo,
