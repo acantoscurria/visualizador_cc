@@ -19,11 +19,9 @@
 
     <div class="col-3">
       <form>
-        <div class="form-floating">
-          <select class="form-select" id="matricula_input" aria-label="Mátricula">
-            <option value="none" selected>Seleccione mátricula</option>
-            <option value="matricula_comun_inicial">Mátricula comun incial</option>
-            <option value="matricula_comun_secundaria">Mátricula comun secundaria</option>
+        <div class="form-floating">          
+          <select class="form-select matricula_input" id="matricula_input" aria-label="Mátricula">
+            <option value="none" selected></option>
           </select>
           <label for="matricula_input">Mátricula</label>
         </div>
@@ -33,10 +31,8 @@
     <div class="col-3">
         <form>
           <div class="form-floating">
-            <select class="form-select" id="control_type_input" aria-label="Tipo de control">
-              <option value="none" selected>Seleccione control</option>
-              <option value="precocidad">Precocidad</option>
-              <option value="sobreedad">Sobreedad</option>
+            <select class="form-select control_type_input" id="control_type_input" aria-label="Tipo de control">
+              <option value="none" selected></option>
             </select>
             <label for="control_type_input">Tipo de control</label>
           </div>
@@ -66,7 +62,6 @@
         <div class="alert alert-primary alert-msg-none-selection"  role="alert">
           Seleccione mátricula y tipo de control
         </div>
-        
 
         <table id="tabla-matricula" class="table table-bordered  table-striped" style="width: 100%;">
         </table>
@@ -79,6 +74,21 @@
 
 {% block inline_javascript %}
 
+<script>
+
+  var eb = function(c){
+      let s = ""
+      for (let i = 0; i < c; i++) {
+          s+="&nbsp"             
+      }
+      return s
+  }
+
+</script>
+
+<script defer src="{% static 'js/controls/columns/matricula_comun_inicial.js' %}"></script>
+<script defer src="{% static 'js/controls/columns/matricula_comun_primaria.js' %}"></script>
+<script defer src="{% static 'js/controls/columns/matricula_comun_secundaria.js' %}"></script>
 <script defer src="{% static 'js/controls/matricula.js' %}"></script>
 
 {% endblock %}
