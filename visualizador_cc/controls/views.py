@@ -53,16 +53,16 @@ class ControlsMatriculaListView(ListView):
                         "error_msg": "",
                     }, 
                     safe=False)    
-
+            
+            
+        if(length != -1): #hay paginacion
+            page_number = start / length + 1  
 
         if(matricula_selected == "matricula_comun_inicial"):
 
             recordsTotal = ConMatricComunInicial.objects.all().count()
 
-            recordsFiltered  = recordsTotal
-
-            if(length != -1): #hay paginacion
-                page_number = start / length + 1     
+            recordsFiltered  = recordsTotal   
 
             if search: # si hay valor de busqueda
 
@@ -107,10 +107,7 @@ class ControlsMatriculaListView(ListView):
 
             recordsTotal = ConMatricComunSecundaria.objects.all().count()
 
-            recordsFiltered  = recordsTotal
-
-            if(length != -1): #hay paginacion
-                page_number = start / length + 1     
+            recordsFiltered  = recordsTotal     
 
             if search: # si hay valor de busqueda
 
