@@ -7,7 +7,7 @@ from visualizador_cc.users.models import User
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
-from visualizador_cc.reports.models import RepMatricComunInicial
+from visualizador_cc.reports.models import RepMatricComunInicial, RepMatricComunSecundaria
 
 # Create your views here.
 
@@ -42,58 +42,103 @@ class ReportsMatricListView(ListView):
         if(matricula_selected == "none" or ra_selected == "none"):            
             return JsonResponse({
                         "draw": draw,
-                        "recordsTotal": recordsTotal,
-                        "recordsFiltered": recordsFiltered,
-                        "data": data,
+                        "recordsTotal": 0,
+                        "recordsFiltered": 0,
+                        "data": [],
                         "error_msg": "",
                     }, 
                     safe=False)    
-
-        recordsTotal = RepMatricComunInicial.objects.using(ra_selected).all().count()
-
-        recordsFiltered  = recordsTotal
-
+            
+            
         if(length != -1): #hay paginacion
-            page_number = start / length + 1     
+            page_number = start / length + 1    
+            
+            
+        if(matricula_selected == 'matricula_comun_inicial'):   
 
-        if search: # si hay valor de busqueda
+            recordsTotal = RepMatricComunInicial.objects.using(ra_selected).all().count()
 
-            if(length != -1): #hay paginacion
+            if search: # si hay valor de busqueda
 
-                # obtengo todas las filas filtradas y paginado
-                object_list = RepMatricComunInicial.objects.using(ra_selected).filter(
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas filtradas y paginado
+                    object_list = RepMatricComunInicial.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )[page_number:length]
+
+                else:
+
+                    # obtengo todas las filas filtradas sin paginacion
+                    object_list = RepMatricComunInicial.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )
+
+                # obtengo la cantidad de filas filtrdas sin paginacion
+                recordsFiltered = RepMatricComunInicial.objects.using(ra_selected).filter(
                     Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                )[page_number:length]
+                ).count()
 
-            else:
+            else: # no hay valor de busqueda
 
-                # obtengo todas las filas filtradas sin paginacion
-                object_list = RepMatricComunInicial.objects.using(ra_selected).filter(
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas con paginacion
+                    object_list = RepMatricComunInicial.objects.using(ra_selected).all()[page_number:length]
+
+                else:
+
+                    # obtengo todas las filas sin paginacion
+                    object_list = RepMatricComunInicial.objects.using(ra_selected).all()
+
+
+                # obtengo la cantidad de filas sin paginacion
+                recordsFiltered = RepMatricComunInicial.objects.using(ra_selected).filter(
                     Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                )
+                ).count()
 
-            # obtengo la cantidad de filas filtrdas sin paginacion
-            recordsFiltered = RepMatricComunInicial.objects.using(ra_selected).filter(
-                Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-            ).count()
+        if(matricula_selected == 'matricula_comun_secundaria'):   
 
-        else: # no hay valor de busqueda
+            recordsTotal = RepMatricComunSecundaria.objects.using(ra_selected).all().count()
 
-            if(length != -1): #hay paginacion
+            if search: # si hay valor de busqueda
 
-                # obtengo todas las filas con paginacion
-                object_list = RepMatricComunInicial.objects.using(ra_selected).all()[page_number:length]
+                if(length != -1): #hay paginacion
 
-            else:
+                    # obtengo todas las filas filtradas y paginado
+                    object_list = RepMatricComunSecundaria.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )[page_number:length]
 
-                # obtengo todas las filas sin paginacion
-                object_list = RepMatricComunInicial.objects.using(ra_selected).all()
+                else:
+
+                    # obtengo todas las filas filtradas sin paginacion
+                    object_list = RepMatricComunSecundaria.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )
+
+                # obtengo la cantidad de filas filtrdas sin paginacion
+                recordsFiltered = RepMatricComunSecundaria.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+
+            else: # no hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas con paginacion
+                    object_list = RepMatricComunSecundaria.objects.using(ra_selected).all()[page_number:length]
+
+                else:
+
+                    # obtengo todas las filas sin paginacion
+                    object_list = RepMatricComunSecundaria.objects.using(ra_selected).all()
 
 
-            # obtengo la cantidad de filas sin paginacion
-            recordsFiltered = RepMatricComunInicial.objects.using(ra_selected).filter(
-                Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-            ).count()
+                # obtengo la cantidad de filas sin paginacion
+                recordsFiltered = RepMatricComunSecundaria.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
 
         
         data = []  

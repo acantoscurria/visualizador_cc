@@ -47,11 +47,7 @@ class ControlsMatriculaListView(ListView):
                         "data": [],              
                     }, 
                     safe=False)    
-            
-            
-        if(length != -1): #hay paginacion
-            page_number = start / length + 1  
-
+       
         if(matricula_selected == "matricula_comun_inicial"):
         
             if(control_type_selected == "precocidad"):

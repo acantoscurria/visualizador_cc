@@ -99,7 +99,7 @@ class RepMatricComunInicial(models.Model):
             "email_loc": self.email_loc,            
         }
           
-class MatricComunSecundaria(models.Model):
+class RepMatricComunSecundaria(models.Model):
     id = models.BigIntegerField(primary_key=True)
     cueanexo = models.CharField(max_length=255, blank=True, null=True)
     id_fila = models.IntegerField(blank=True, null=True)
@@ -159,3 +159,62 @@ class MatricComunSecundaria(models.Model):
     class Meta:
         managed = False  # Created from a view. Don't remove.
         db_table = 'matric_comun_secundaria'
+
+    def parse(self):
+        return {
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'turno': self.turno,
+            'nombre_secc': self.nombre_secc,
+            'tipo_secc': self.tipo_secc,
+            'total': self.total,
+            'total_var': self.total_var,
+            'nivel': self.nivel,
+            'grado_año': self.grado_año,
+            'edad_5': self.edad_5,
+            'edad_6': self.edad_6,
+            'edad_7': self.edad_7,
+            'edad_8': self.edad_8,
+            'dad_9': self.edad_9,
+            'edad_10': self.edad_10,
+            'edad_11': self.edad_11,
+            'edad_12': self.edad_12,
+            'edad_13': self.edad_13,
+            'edad_14': self.edad_14,
+            'edad_15': self.edad_15,
+            'edad_16': self.edad_16,
+            'edad_17': self.edad_17,
+            'edad_18_y_mas': self.edad_18_y_mas,
+            'total_rep': self.total_rep,
+            'var_rep': self.var_rep,
+            'tot_alum_promoasis': self.tot_alum_promoasis,
+            'var_alum_promoasis': self.var_alum_promoasis,
+            'tot_discapacidad': self.tot_discapacidad,
+            'var_discapacidad': self.var_discapacidad,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
