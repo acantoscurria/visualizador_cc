@@ -4,14 +4,14 @@ or replace view public.con_matric_comun_secundaria as (
         select
             *
         from
-            consulta_cuadro(158, 'ra_carga2021')
+            consulta_cuadro(158, 'ra_carga2022')
     ),
     codigo_valor as (
         select
             *
         from
             dblink (
-                'dbname=ra_carga2021 user=admin password=redfie11 host=relevamientoanual.com.ar port=5432' :: text,
+                'dbname=ra_carga2022 user=admin password=redfie11 host=relevamientoanual.com.ar port=5432' :: text,
                 'select id_codigo_valor, descripcion
 										  from codigo_valor' :: text
             ) as codigo_valor (id_codigo_valor int, descripcion varchar)

@@ -1,6 +1,5 @@
 
 
-from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
@@ -38,9 +37,11 @@ class ControlsMatriculaListView(ListView):
         dt = request.POST      
         matricula_selected = dt.get("matricula_selected")    
         control_type_selected = dt.get("control_type_selected")     
+        show_all = dt.get("show_all")
 
         print('matricula_selected', matricula_selected)
         print('control_type_selected', control_type_selected)
+        print('show_all', show_all)
 
         if(matricula_selected == "none" or control_type_selected == "none"):            
             return JsonResponse({                      
@@ -48,73 +49,54 @@ class ControlsMatriculaListView(ListView):
                     }, 
                     safe=False)    
 
-
         if(matricula_selected == "matricula_comun_inicial"):
+
+            df = pd.DataFrame(ConMatricComunInicial.objects.all().values()) 
         
-            if(control_type_selected == "precocidad"):
-
-                df = pd.DataFrame(ConMatricComunInicial.objects.all().values())   
+            if(control_type_selected == "precocidad"): 
              
-                df["error"] = df.apply(MatriculaComunIncialControl.precocidad, axis=1)            
-
-                return JsonResponse({                    
-                    "data": df.to_dict('records'),                   
-                }, 
-                safe=False)
-                
-
+                df["control"] = df.apply(MatriculaComunIncialControl.precocidad, axis=1)  
+             
             if(control_type_selected == "sobreedad"):
-           
-                df = pd.DataFrame(ConMatricComunInicial.objects.all().values())    
 
-                df["error"] = df.apply(MatriculaComunIncialControl.sobreedad, axis=1)            
+                df["control"] = df.apply(MatriculaComunIncialControl.sobreedad, axis=1)            
             
-                return JsonResponse({                   
-                    "data": df[df["error"] > 0].to_dict('records'),                
-                }, 
-                safe=False)
-
         if(matricula_selected == "matricula_comun_primaria"):
+
+            df = pd.DataFrame(ConMatricComunPrimaria.objects.all().values()) 
         
             if(control_type_selected == "precocidad"):
-
-                df = pd.DataFrame(ConMatricComunPrimaria.objects.all().values())   
              
-                df["error"] = df.apply(MatriculaComunPrimariaControl.precocidad, axis=1)            
+                df["control"] = df.apply(MatriculaComunPrimariaControl.precocidad, axis=1)    
 
-                return JsonResponse({                    
-                    "data": df[df["error"] > 0].to_dict('records'),                   
-                }, 
-                safe=False)
-                
+            if(control_type_selected == "sobreedad"):           
 
-            if(control_type_selected == "sobreedad"):
-           
-                df = pd.DataFrame(ConMatricComunPrimaria.objects.all().values())    
+                df["control"] = df.apply(MatriculaComunPrimariaControl.sobreedad, axis=1)                
 
-                df["error"] = df.apply(MatriculaComunPrimariaControl.sobreedad, axis=1)            
-            
-                return JsonResponse({                    
-                    "data": df[df["error"] > 0].to_dict('records'),                   
-                }, 
-                safe=False)
+            if(control_type_selected == "repitencia"):           
+
+                df["control"] = df.apply(MatriculaComunPrimariaControl.repitencia, axis=1)                
+
 
         if(matricula_selected == "matricula_comun_secundaria"):
+
+            df = pd.DataFrame(ConMatricComunSecundaria.objects.all().values()) 
         
-            if(control_type_selected == "precocidad"):
-
-                df = pd.DataFrame(ConMatricComunSecundaria.objects.all().values())   
+            if(control_type_selected == "precocidad"):                  
              
-                df["error"] = df.apply(MatriculaComunSecundariaControl.precocidad, axis=1)            
+                df["control"] = df.apply(MatriculaComunSecundariaControl.precocidad, axis=1)  
+                
+            if(control_type_selected == "sobreedad"):
 
-                return JsonResponse({                    
-                    "data": df[df["error"] > 0].to_dict('records'),                   
-                }, 
-                safe=False)           
+                df["control"] = df.apply(MatriculaComunSecundariaControl.sobreedad, axis=1)  
 
 
-        return JsonResponse({               
-                "data": [],           
-            }, 
-            safe=False)  
-      
+        if show_all == 'false':            
+            data = df[df["control"] > 0].to_dict('records') 
+        else:
+            data = df.to_dict('records')          
+    
+        return JsonResponse({                    
+            "data": data                
+        }, 
+        safe=False)

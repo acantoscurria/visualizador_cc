@@ -30,7 +30,8 @@ var optionsMatriculas = {
         control_types: {
             none: 'Seleccione control',
             precocidad: 'Precocidad',
-            sobreedad: 'Sobreedad'           
+            sobreedad: 'Sobreedad',
+            repitencia: 'Repitencia'           
         }
     },
     matricula_comun_secundaria: {
@@ -38,6 +39,7 @@ var optionsMatriculas = {
         control_types: {
             none: 'Seleccione control',
             precocidad: 'Precocidad',
+            sobreedad: 'Sobreedad'  
            
         }
     }     
@@ -81,19 +83,17 @@ function setOpcionsMatricula() {
 }
 
 
-
+var dt_matricula = null
 
 $(document).ready(function(){
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value; 
     
-    var dt_matricula = null
+    
 
     var reloadInstanceDatatable = function(){
 
         console.log('reloadInstanceDatatable dt_matricula', dt_matricula);
-        console.log('metricula', $("#matricula_input").val());
-        console.log('control', $("#control_type_input").val());
 
         if(dt_matricula){
 
@@ -111,27 +111,21 @@ $(document).ready(function(){
 
             console.log('4');
 
-            $("#tabla-matricula thead").empty();
-
-            console.log('5');
-
+            $("#tabla-matricula thead").empty();   
+            
             dt_matricula = null
         } 
 
         if($("#matricula_input").val() == "none" || $("#control_type_input").val() == "none"){
 
             $(".alert-msg-none-selection").show()
-
-            console.log('lert-msg-none-selection show');
         }
         else{
 
+            console.log('5');
+
             $(".alert-msg-none-selection").hide()
-
-            console.log('lert-msg-none-selection hide'); 
-
-            console.log('create DataTable columns', columns[$("#matricula_input").val()] );
-
+            
             dt_matricula = $("#tabla-matricula")
             .on( 'processing.dt', function ( e, settings, processing ) {
                 if (processing) {
@@ -149,6 +143,7 @@ $(document).ready(function(){
                         return $.extend( {}, d, {
                             "matricula_selected": $("#matricula_input").val(),
                             "control_type_selected": $("#control_type_input").val(),
+                            "show_all": $("#show_all_switch").is(':checked')
                         })
                     },
     
@@ -167,9 +162,12 @@ $(document).ready(function(){
                 "paging": true,
                 "ordering": true,
                 "createdRow": function( row, data, index ) {
-                    // if(data.error){
-                    //     $(row).addClass('bg-danger text-light')
-                    // }
+                    if(data.control == 1){
+                        $(row).addClass('row-error')
+                    }
+                    else if(data.control == 2){
+                        $(row).addClass('row-warning')
+                    }
                 },
                 "infoCallback": function( settings, start, end, max, total, pre ) {
     
@@ -206,18 +204,44 @@ $(document).ready(function(){
                 },
                 "pagingType": "numbers",
                 "lengthMenu": [[10, 100, 500, 1000, -1], [10, 100, 500, 1000, "Todas"]],
-                "dom":
-                    "<'row justify-content-between'<'col-auto'l><'col-auto'f><'col-auto mt-1'>>" +
-                    "<'row'<'col-xl-12'tr>>" +
-                    "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
+                // "dom":
+                //     "<'row justify-content-between'<'col-auto'l><'col-auto'f><'col-auto mt-1'>>" +
+                //     "<'row'<'col-xl-12'tr>>" +
+                //     "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
+
+                // "dom":
+                //     "<'row justify-content-between'<'col-auto'l><'col-auto'f><'col-auto tools mt-1'>>" +                
+                //     "<'row'<'col-xl-12'tr>>" +
+                //     "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
+
+                "dom": 'frtip',
+                "buttons": [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
             }) 
 
+            console.log('6');
+
+
+            //$('#tabla-matricula_wrapper .tools').append($('#container-btns-tools').contents());
         }
-
-
-       
-        
     }
+
+
+
+    $('#btn-update').click(function() {
+
+        if (dt_matricula) {
+            dt_matricula.ajax.reload()
+        }
+    });
+
+    $("#show_all_switch").change(function(){   
+        
+        if (dt_matricula) {
+            dt_matricula.ajax.reload()
+        }
+    })
 
     $("#matricula_input").change(function(){
 
