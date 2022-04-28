@@ -1,6 +1,6 @@
 create view rep_matric_comun_secundaria as (
-
-with naty as (SELECT loc.cueanexo, loc.escuela, --loc.oferta, 
+with naty as (
+SELECT loc.cueanexo, loc.escuela, --loc.oferta, 
        loc.id_definicion_cuadro, cuadro.id_fila, cuadro.fila, 
        cuadro.id_columna, cuadro.columna, cuadro.valor 
 FROM (-----------------------------------Cuadro, por cuadernillo, por localizacion, por Oferta----------------------------------
@@ -12,7 +12,7 @@ FROM (-----------------------------------Cuadro, por cuadernillo, por localizaci
                               LEFT JOIN datos_cuadro as datcuadro using (id_datos_capitulo)
        WHERE (defcap.id_definicion_cuadernillo=datcuader.id_definicion_cuadernillo) AND 
              --(
-             (datcuadro.id_definicion_cuadro='626') --and cueanexo='220007900' --OR (datcuadro.id_definicion_cuadro='593'))
+             (datcuadro.id_definicion_cuadro='158') --and cueanexo='220007900' --OR (datcuadro.id_definicion_cuadro='593'))
        order by l.cueanexo asc, datcuadro.id_datos_cuadro asc ) AS loc LEFT JOIN (
        -------------------------------------Valor de celdas, por CUADRO----------------------------------------------------------
        SELECT defcel.id_definicion_cuadro, datcel.id_datos_cuadro, 
@@ -23,122 +23,185 @@ FROM (-----------------------------------Cuadro, por cuadernillo, por localizaci
                                          left join definicion_fila as deffil using (id_definicion_fila)
        WHERE (datcel.id_definicion_celda=defcel.id_definicion_celda) AND 
              --(
-             (defcel.id_definicion_cuadro='626') --OR (defcel.id_definicion_cuadro='593'))
+             (defcel.id_definicion_cuadro='158') --OR (defcel.id_definicion_cuadro='593'))
        ORDER BY id_datos_cuadro asc, defcel.id_definicion_fila asc) AS cuadro USING (id_datos_cuadro)
 ORDER BY loc.cueanexo asc,id_fila,id_columna
 )
 select row_number() over () as id, * from (
-(select cueanexo,escuela,id_fila, descripcion as turno from naty 
-join codigo_valor as b on (id_codigo_valor::text = valor)
-where id_columna = 2 group by cueanexo,escuela,id_fila,descripcion order by cueanexo) as turno
-LEFT JOIN 
-(select cueanexo,id_fila, valor as nombre_secc from naty 
-where id_columna = 3 group by cueanexo,escuela,id_fila,valor order by cueanexo) as nombre_secc
+(select cueanexo,id_fila,descripcion  as turno
+from naty join codigo_valor as cv on (id_codigo_valor = valor::int)
+where id_columna = 2
+group by cueanexo,id_fila,descripcion
+order by cueanexo ) as turno
+LEFT JOIN
+(select cueanexo,id_fila,valor::int  as total
+from naty 
+where id_columna = 5
+group by cueanexo,id_fila,valor
+order by cueanexo ) as total
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, descripcion as tipo_secc from naty 
-join codigo_valor as c on (id_codigo_valor::text = valor)
-where id_columna = 4 group by cueanexo,escuela,id_fila,descripcion order by cueanexo) as tipo_secc
+(select cueanexo,id_fila,valor::int  as total_var
+from naty 
+where id_columna = 7
+group by cueanexo,id_fila,valor
+order by cueanexo ) as varones
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as total from naty 
-where id_columna = 5 group by cueanexo,escuela,id_fila,valor order by cueanexo) as total
+(select cueanexo,id_fila,descripcion  as nivel
+from naty join codigo_valor as cv on (valor::int = id_codigo_valor)
+where id_columna = 55
+group by cueanexo,id_fila,descripcion
+order by cueanexo ) as nivel
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as total_var from naty 
-where id_columna = 7 group by cueanexo,escuela,id_fila,valor order by cueanexo) as total_var
+(select cueanexo,id_fila,valor::int as edad_12
+from naty 
+where id_columna = 98
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_12
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, descripcion as nivel from naty 
-join codigo_valor as c on (id_codigo_valor::text = valor)
-where id_columna = 55 group by cueanexo,escuela,id_fila,descripcion order by cueanexo) as nivel
+(select cueanexo,id_fila,valor::int  as edad_13
+from naty 
+where id_columna = 99
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_13
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, descripcion as grado_año from naty 
-join codigo_valor as c on (id_codigo_valor::text = valor)
-where id_columna = 89 group by cueanexo,escuela,id_fila,descripcion order by cueanexo) as grado_año
+(select cueanexo,id_fila,valor::int  as edad_14
+from naty 
+where id_columna = 100
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_14
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_5 from naty 
-where id_columna = 91 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_5
+(select cueanexo,id_fila,valor::int  as edad_15
+from naty 
+where id_columna = 101
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_15
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_6 from naty 
-where id_columna = 92 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_6
+(select cueanexo,id_fila,valor::int  as edad_16
+from naty 
+where id_columna = 102
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_16
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_7 from naty 
-where id_columna = 93 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_7
+(select cueanexo,id_fila,valor::int  as edad_17
+from naty 
+where id_columna = 103
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_17
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_8 from naty 
-where id_columna = 94 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_8
+(select cueanexo,id_fila,valor::int  as total_rep
+from naty 
+where id_columna = 127
+group by cueanexo,id_fila,valor
+order by cueanexo ) as total_rep
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_9 from naty 
-where id_columna = 95 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_9
+(select cueanexo,id_fila,valor::int  as var_rep
+from naty 
+where id_columna = 128
+group by cueanexo,id_fila,valor
+order by cueanexo ) as var_rep
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_10 from naty 
-where id_columna = 96 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_10
+(select cueanexo,id_fila,valor::int  as nro_orden_pe
+from naty 
+where id_columna = 165
+group by cueanexo,id_fila,valor
+order by cueanexo ) as nro_orden_pe
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_11 from naty 
-where id_columna = 97 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_11
+(select cueanexo,id_fila,descripcion  as anio_est
+from naty join codigo_valor as cv on(id_codigo_valor = valor::int)
+where id_columna = 166
+group by cueanexo,id_fila,descripcion
+order by cueanexo ) as anio_est
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_12 from naty 
-where id_columna = 98 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_12
+(select cueanexo,id_fila,valor  as nom_div
+from naty 
+where id_columna = 173
+group by cueanexo,id_fila,valor
+order by cueanexo ) as nom_div
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_13 from naty 
-where id_columna = 99 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_13
+(select cueanexo,id_fila,descripcion  as tipo_div
+from naty join codigo_valor as cv on (valor::int = id_codigo_valor)
+where id_columna = 174
+group by cueanexo,id_fila,descripcion
+order by cueanexo ) as tipo_div
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_14 from naty 
-where id_columna = 100 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_14
+(select cueanexo,id_fila,descripcion  as orientacion
+from naty join codigo_valor as cv on (valor::int = id_codigo_valor)
+where id_columna = 175
+group by cueanexo,id_fila,descripcion
+order by cueanexo ) as orientacion
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_15 from naty 
-where id_columna = 101 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_15
+(select cueanexo,id_fila,valor::int  as edad_11_y_menos
+from naty 
+where id_columna = 177
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_11_y_menos
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_16 from naty 
-where id_columna = 102 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_16
+(select cueanexo,id_fila,valor::int  as edad_18
+from naty 
+where id_columna = 178
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_18
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_17 from naty 
-where id_columna = 103 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_17
+(select cueanexo,id_fila,valor::int  as edad_19
+from naty 
+where id_columna = 179
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_19
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as edad_18_y_mas from naty 
-where id_columna = 104 group by cueanexo,escuela,id_fila,valor order by cueanexo) as edad_18_y_mas
+(select cueanexo,id_fila,valor::int  as edad_25_y_mas
+from naty 
+where id_columna = 181
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_25_y_mas
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as total_rep from naty 
-where id_columna = 127 group by cueanexo,escuela,id_fila,valor order by cueanexo) as total_rep
+(select cueanexo,id_fila,valor::int  as edad_20_24
+from naty 
+where id_columna = 301
+group by cueanexo,id_fila,valor
+order by cueanexo ) as edad_20_24
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as var_rep from naty 
-where id_columna = 128 group by cueanexo,escuela,id_fila,valor order by cueanexo) as var_rep
+(select cueanexo,id_fila,valor  as denom_pe
+from naty 
+where id_columna = 551
+group by cueanexo,id_fila,valor
+order by cueanexo ) as denom_pe
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as tot_alum_promoasis from naty 
-where id_columna = 708 group by cueanexo,escuela,id_fila,valor order by cueanexo) as tot_alum_promoasis
+(select cueanexo,id_fila,valor::int  as total_disc
+from naty 
+where id_columna = 870
+group by cueanexo,id_fila,valor
+order by cueanexo ) as total_disc
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila, valor::int as var_alum_promoasis from naty 
-where id_columna = 709 group by cueanexo,escuela,id_fila,valor order by cueanexo) as var_alum_promoasis
+(select cueanexo,id_fila,valor::int  as var_disc
+from naty 
+where id_columna = 871
+group by cueanexo,id_fila,valor
+order by cueanexo ) as var_disc
 USING (cueanexo,id_fila)
-LEFT JOIN
-(select cueanexo,id_fila, valor::int as tot_discapacidad from naty 
-where id_columna = 870 group by cueanexo,escuela,id_fila,valor order by cueanexo) as tot_discapacidad
-USING (cueanexo,id_fila)
-LEFT JOIN
-(select cueanexo,id_fila, valor::int as var_discapacidad from naty 
-where id_columna = 871 group by cueanexo,escuela,id_fila,valor order by cueanexo) as var_discapacidad
-USING (cueanexo,id_fila)
-)LEFT JOIN
+ ) LEFT JOIN
 (select * 
 from dblink ('dbname=padron user=admin password=redfie11 host=relevamientoanual.com.ar port=5432' ::text, 'select distinct cueanexo,nom_est,nro_est,anio_creac_establec,fecha_creac_establec,region,udt,cui,
 cua,cuof,sector,ambito,ref_loc,calle,numero,localidad,departamento,cod_postal,categoria,estado_est,

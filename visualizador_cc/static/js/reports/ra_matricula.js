@@ -123,63 +123,63 @@ var columns = {
             },
             {
                 "class": "left row-control",
-                "data": "menos_1_año",
-                "name": "menos_1_año",
-                "title": "Menos 1 año",
+                "data": "menos_1_anio",
+                "name": "menos_1_anio",
+                "title": "Menos 1 anio",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
             },
             {
                 "class": "left row-control",
-                "data": "un_año",
-                "name": "un_año",
-                "title": "Un año",
+                "data": "un_anio",
+                "name": "un_anio",
+                "title": "Un anio",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
             },
             {
                 "class": "left row-control",
-                "data": "dos_años",
-                "name": "dos_años",
-                "title": "Dos años",
+                "data": "dos_anios",
+                "name": "dos_anios",
+                "title": "Dos anios",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
             },
             {
                 "class": "left row-control",
-                "data": "tres_años",
-                "name": "tres_años",
-                "title": "Tres años",
+                "data": "tres_anios",
+                "name": "tres_anios",
+                "title": "Tres anios",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
             },
             {
                 "class": "left row-control",
-                "data": "cuatro_años",
-                "name": "cuatro_años",
-                "title": "Cuatro años",
+                "data": "cuatro_anios",
+                "name": "cuatro_anios",
+                "title": "Cuatro anios",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
             },
             {
                 "class": "left row-control",
-                "data": "cinco_años",
-                "name": "cinco_años",
-                "title": "Cinco años",
+                "data": "cinco_anios",
+                "name": "cinco_anios",
+                "title": "Cinco anios",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
             },
             {
                 "class": "left row-control",
-                "data": "seis_años",
-                "name": "seis_años",
-                "title": "Seis años",
+                "data": "seis_anios",
+                "name": "seis_anios",
+                "title": "Seis anios",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
@@ -195,30 +195,12 @@ var columns = {
             },
             
         ],
-        matricula_comun_secundaria: [
+        matricula_comun_primaria: [
             {
                 "class": "left row-control",
                 "data": "id",
                 "name": "id",
                 "title": "#",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "tipo_ed",
-                "name": "tipo_ed",
-                "title": "Tipo ed.",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },
-            {
-                "class": "left row-control",
-                "data": "nivel",
-                "name": "nivel",
-                "title": "Nivel",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
@@ -306,9 +288,9 @@ var columns = {
             },
             {
                 "class": "left row-control",
-                "data": "grado_año",
-                "name": "grado_año",
-                "title": "Grado Año",
+                "data": "grado_anio",
+                "name": "grado_anio",
+                "title": "Grado anio",
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
@@ -682,7 +664,469 @@ var columns = {
                     return data ? data : ''
                 }
             },
-        ]
+        ],
+        matricula_comun_secundaria: [
+            {
+                "class": "left row-control",
+                "data": "id",
+                "name": "id",
+                "title": "#",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "cueanexo",
+                "name": "cueanexo",
+                "title": "Cueanexo",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "id_fila",
+                "name": "id_fila",
+                "title": "id_fila",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "turno",
+                "name": "turno",
+                "title": "turno",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "total",
+                "name": "total",
+                "title": "total",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "total_var",
+                "name": "total_var",
+                "title": "total_var",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "nivel",
+                "name": "nivel",
+                "title": "nivel",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_12",
+                "name": "edad_12",
+                "title": "edad_12",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_13",
+                "name": "edad_13",
+                "title": "edad_13",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_14",
+                "name": "edad_14",
+                "title": "edad_14",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_15",
+                "name": "edad_15",
+                "title": "edad_15",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_16",
+                "name": "edad_16",
+                "title": "edad_16",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_17",
+                "name": "edad_17",
+                "title": "edad_17",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_11_y_menos",
+                "name": "edad_11_y_menos",
+                "title": "edad_11_y_menos",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_18",
+                "name": "edad_18",
+                "title": "edad_18",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_19",
+                "name": "edad_19",
+                "title": "edad_19",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_20_24",
+                "name": "edad_20_24",
+                "title": "edad_20_24",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "edad_25_y_mas",
+                "name": "edad_25_y_mas",
+                "title": "edad_25_y_mas",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "total_rep",
+                "name": "total_rep",
+                "title": "total_rep",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "var_rep",
+                "name": "var_rep",
+                "title": "var_rep",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "nro_orden_pe",
+                "name": "nro_orden_pe",
+                "title": "nro_orden_pe",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "anio_est",
+                "name": "anio_est",
+                "title": "anio_est",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "nom_div",
+                "name": "nom_div",
+                "title": "nom_div",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "tipo_div",
+                "name": "tipo_div",
+                "title": "tipo_div",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "orientacion",
+                "name": "orientacion",
+                "title": "orientacion",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "denom_pe",
+                "name": "denom_pe",
+                "title": "denom_pe",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "total_disc",
+                "name": "total_disc",
+                "title": "total_disc",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "nom_est",
+                "name": "nom_est",
+                "title": "nom_est",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "nro_Est",
+                "name": "nro_Est",
+                "title": "nro_Est",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "anio_creac_establec",
+                "name": "anio_creac_establec",
+                "title": "anio_creac_establec",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "fecha_creac_establec",
+                "name": "fecha_creac_establec",
+                "title": "fecha_creac_establec",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "region",
+                "name": "region",
+                "title": "region",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "udt",
+                "name": "udt",
+                "title": "udt",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "cui",
+                "name": "cui",
+                "title": "cui",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "cua",
+                "name": "cua",
+                "title": "cua",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "cuof",
+                "name": "cuof",
+                "title": "cuof",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "sector",
+                "name": "sector",
+                "title": "sector",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "ambito",
+                "name": "ambito",
+                "title": "ambito",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "ref_loc",
+                "name": "ref_loc",
+                "title": "ref_loc",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "calle",
+                "name": "calle",
+                "title": "calle",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "numero",
+                "name": "numero",
+                "title": "numero",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "localidad",
+                "name": "localidad",
+                "title": "localidad",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "departamento",
+                "name": "departamento",
+                "title": "departamento",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "cod_postal",
+                "name": "cod_postal",
+                "title": "cod_postal",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "categoria",
+                "name": "categoria",
+                "title": "categoria",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "estado_est",
+                "name": "estado_est",
+                "title": "estado_est",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "estado_loc",
+                "name": "estado_loc",
+                "title": "estado_loc",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "telefono_cod_area",
+                "name": "telefono_cod_area",
+                "title": "telefono_cod_area",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "telefono_nro",
+                "name": "telefono_nro",
+                "title": "telefono_nro",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "per_funcionamiento",
+                "name": "per_funcionamiento",
+                "title": "per_funcionamiento",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+            {
+                "class": "left row-control",
+                "data": "email_loc",
+                "name": "email_loc",
+                "title": "email_loc",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },
+
+        ],
     },
 }
 

@@ -69,53 +69,53 @@ group by cueanexo,id_fila,valor
 order by cueanexo ) as varones
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila,valor::int  as menos_1_año
+(select cueanexo,id_fila,valor::int  as menos_1_anio
 from naty 
 where id_columna = 8
 group by cueanexo,id_fila,valor
-order by cueanexo ) as menos_1_año
+order by cueanexo ) as menos_1_anio
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila,valor::int  as un_año
+(select cueanexo,id_fila,valor::int  as un_anio
 from naty 
 where id_columna = 9
 group by cueanexo,id_fila,valor
-order by cueanexo ) as un_año
+order by cueanexo ) as un_anio
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila,valor::int  as dos_años
+(select cueanexo,id_fila,valor::int  as dos_anios
 from naty 
 where id_columna = 10
 group by cueanexo,id_fila,valor
-order by cueanexo ) as dos_años
+order by cueanexo ) as dos_anios
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila,valor::int  as tres_años
+(select cueanexo,id_fila,valor::int  as tres_anios
 from naty 
 where id_columna = 11
 group by cueanexo,id_fila,valor
-order by cueanexo ) as tres_años
+order by cueanexo ) as tres_anios
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila,valor::int  as cuatro_años
+(select cueanexo,id_fila,valor::int  as cuatro_anios
 from naty 
 where id_columna = 12
 group by cueanexo,id_fila,valor
-order by cueanexo ) as cuatro_años
+order by cueanexo ) as cuatro_anios
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila,valor::int  as cinco_años
+(select cueanexo,id_fila,valor::int  as cinco_anios
 from naty 
 where id_columna = 13
 group by cueanexo,id_fila,valor
-order by cueanexo ) as cinco_años
+order by cueanexo ) as cinco_anios
 USING (cueanexo,id_fila)
 LEFT JOIN
-(select cueanexo,id_fila,valor::int  as seis_años
+(select cueanexo,id_fila,valor::int  as seis_anios
 from naty 
 where id_columna = 14
 group by cueanexo,id_fila,valor
-order by cueanexo ) as seis_años
+order by cueanexo ) as seis_anios
 USING (cueanexo,id_fila)
 LEFT JOIN
 (select cueanexo,id_fila,valor::int  as total_disc

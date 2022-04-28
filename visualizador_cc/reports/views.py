@@ -7,7 +7,7 @@ from visualizador_cc.users.models import User
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
-from visualizador_cc.reports.models import RepMatricComunInicial, RepMatricComunSecundaria
+from visualizador_cc.reports.models import RepMatricComunInicial, RepMatricComunPrimaria, RepMatricComunSecundaria
 
 # Create your views here.
 
@@ -97,6 +97,49 @@ class ReportsMatricListView(ListView):
                     Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
                 ).count()
 
+        if(matricula_selected == 'matricula_comun_primaria'):   
+
+            recordsTotal = RepMatricComunPrimaria.objects.using(ra_selected).all().count()
+
+            if search: # si hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas filtradas y paginado
+                    object_list = RepMatricComunPrimaria.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )[page_number:length]
+
+                else:
+
+                    # obtengo todas las filas filtradas sin paginacion
+                    object_list = RepMatricComunPrimaria.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )
+
+                # obtengo la cantidad de filas filtrdas sin paginacion
+                recordsFiltered = RepMatricComunPrimaria.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+
+            else: # no hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas con paginacion
+                    object_list = RepMatricComunPrimaria.objects.using(ra_selected).all()[page_number:length]
+
+                else:
+
+                    # obtengo todas las filas sin paginacion
+                    object_list = RepMatricComunPrimaria.objects.using(ra_selected).all()
+
+
+                # obtengo la cantidad de filas sin paginacion
+                recordsFiltered = RepMatricComunPrimaria.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+
         if(matricula_selected == 'matricula_comun_secundaria'):   
 
             recordsTotal = RepMatricComunSecundaria.objects.using(ra_selected).all().count()
@@ -107,19 +150,19 @@ class ReportsMatricListView(ListView):
 
                     # obtengo todas las filas filtradas y paginado
                     object_list = RepMatricComunSecundaria.objects.using(ra_selected).filter(
-                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                        Q(cueanexo__icontains=search)
                     )[page_number:length]
 
                 else:
 
                     # obtengo todas las filas filtradas sin paginacion
                     object_list = RepMatricComunSecundaria.objects.using(ra_selected).filter(
-                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                        Q(cueanexo__icontains=search)
                     )
 
                 # obtengo la cantidad de filas filtrdas sin paginacion
                 recordsFiltered = RepMatricComunSecundaria.objects.using(ra_selected).filter(
-                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    Q(cueanexo__icontains=search)
                 ).count()
 
             else: # no hay valor de busqueda
@@ -137,9 +180,8 @@ class ReportsMatricListView(ListView):
 
                 # obtengo la cantidad de filas sin paginacion
                 recordsFiltered = RepMatricComunSecundaria.objects.using(ra_selected).filter(
-                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    Q(cueanexo__icontains=search)
                 ).count()
-
         
         data = []  
         for row in object_list:
