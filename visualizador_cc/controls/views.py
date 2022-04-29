@@ -48,11 +48,7 @@ class ControlsMatriculaListView(ListView):
                         "data": [],              
                     }, 
                     safe=False)    
-<<<<<<< HEAD
-       
-=======
 
->>>>>>> f7aa2a2e2bf7c3d255f0b4200be774b659b65b4e
         if(matricula_selected == "matricula_comun_inicial"):
 
             df = pd.DataFrame(ConMatricComunInicial.objects.all().values()) 
