@@ -271,5 +271,5 @@ visualizador_cc/media/
 .ipython/
 .env
 .envs/*
-visualizador_cc/*/migrations/*.py
-!visualizador_cc/*/migrations/__init__.py
+# visualizador_cc/*/migrations/*.py
+# !visualizador_cc/*/migrations/__init__.py

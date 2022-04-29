@@ -5,7 +5,7 @@ from django.db import models
 
 class ConMatricComunInicial(models.Model):
   
-    # id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True)
     tipo_ed = models.TextField(blank=True, null=True)
     nivel = models.TextField(blank=True, null=True)
     cueanexo = models.CharField(max_length=255, blank=True, null=True)
@@ -42,7 +42,7 @@ class ConMatricComunInicial(models.Model):
 
 
 class ConMatricComunPrimaria(models.Model):
-    # id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True)
     tipo_ed = models.TextField(blank=True, null=True)
     nivel = models.TextField(blank=True, null=True)
     cueanexo = models.CharField(max_length=255, blank=True, null=True)
@@ -88,7 +88,7 @@ class ConMatricComunPrimaria(models.Model):
           
 
 class ConMatricComunSecundaria(models.Model):
-    # id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True)
     tipo_ed = models.TextField(blank=True, null=True)
     nivel = models.TextField(blank=True, null=True)
     cueanexo = models.CharField(max_length=255, blank=True, null=True)
