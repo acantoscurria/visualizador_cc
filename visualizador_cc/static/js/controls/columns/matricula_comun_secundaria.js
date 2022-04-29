@@ -53,15 +53,15 @@ const COLUMNAS_CONTROL_MATRICULA_COMUN_SECUNDARIA =  [
             return data ? data : ''
         }
     },
-    {
-        "class": "left row-control",
-        "data": "Error",
-        "name": "Error",
-        "title": "Error",
-        "render": function ( data, type, row ) {
-            return data ? data : ''
-        }
-    },         
+    // {
+    //     "class": "left row-control",
+    //     "data": "control",
+    //     "name": "control",
+    //     "title": "control",
+    //     "render": function ( data, type, row ) {
+    //         return data ? data : ''
+    //     }
+    // },         
     {
         "class": "left row-control",
         "data": "turno",

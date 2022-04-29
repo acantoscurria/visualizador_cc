@@ -42,13 +42,6 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     "default": env.db("DATABASE_URL"),
-    "ra2016": env.db("DATABASE_URL_RA2016"),
-    "ra2017": env.db("DATABASE_URL_RA2017"),
-    "ra2018": env.db("DATABASE_URL_RA2018"),
-    "ra2019": env.db("DATABASE_URL_RA2019"),
-    "ra2020": env.db("DATABASE_URL_RA2020"),
-    "ra2021": env.db("DATABASE_URL_RA2021"),
-    "ra2022": env.db("DATABASE_URL_RA2022"),
 }
 
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
@@ -83,6 +76,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",    
     "rest_framework",
+    "rest_framework_gis",
     "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
@@ -297,11 +291,12 @@ SOCIALACCOUNT_FORMS = {"signup": "visualizador_cc.users.forms.UserSocialSignupFo
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework_gis.pagination.GeoJsonPagination',
+    # 'PAGE_SIZE': 10,
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": ('rest_framework.permissions.AllowAny',),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 

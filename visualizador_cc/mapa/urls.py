@@ -1,9 +1,8 @@
 from django.urls import path, include
-from . import views
+from .views import MapaList,DatosMapaList,Visualizador
 
 urlpatterns = [
-    path('', views.inicio, name='inicio'),
-    path('nuevo/', views.nuevo_mapa, name='nuevo-mapa'),
-    path('datos_padron/',views.datosPadron,name='datos-padron'),
-    path('datos_padron/<int:cueanexo>',views.datosPadron,name='datos-padron')
+    path('', MapaList.as_view(), name='nuevo-mapa'),
+    path('visualizador', Visualizador.as_view(), name='nuevo-mapa'),
+    path('datos_padron/',DatosMapaList.as_view(),name='datos-padron'),
 ]
