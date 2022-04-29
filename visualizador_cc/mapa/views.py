@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, HttpResponse
 from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer,PadronOfertaSerializer
 from . models import TablaLocalizaciones,Padron
@@ -17,18 +18,22 @@ from django.views.generic import TemplateView
 #       return HttpResponse(capa_unica.data)
 
 
-class Visualizador(TemplateView):
+class Mapa(TemplateView):
     template_name = 'mapa/nuevo-mapa.html' 
     http_method_names = ['get'] 
+    extra_context = {
+        'title': 'Mapa'
+    }
+ 
     
-class MapaList(generics.ListAPIView):
+class MapaPoints(generics.ListAPIView):
 
     queryset = TablaLocalizaciones.objects.all()
     serializer_class = TablaLocalizacionesSerializer
     permission_class= AllowAny
 
 
-class DatosMapaList(generics.ListAPIView):
+class PointData(generics.ListAPIView):
 
     serializer_class = PadronOfertaSerializer
     permission_class= AllowAny

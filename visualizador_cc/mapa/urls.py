@@ -1,8 +1,8 @@
-from django.urls import path, include
-from .views import MapaList,DatosMapaList,Visualizador
+from django.urls import path
+from .views import MapaPoints,PointData,Mapa
 
 urlpatterns = [
-    path('', MapaList.as_view(), name='nuevo-mapa'),
-    path('visualizador', Visualizador.as_view(), name='nuevo-mapa'),
-    path('datos_padron/',DatosMapaList.as_view(),name='datos-padron'),
+    path('', Mapa.as_view(), name='mapa'),
+    path('mapa_points/', MapaPoints.as_view(), name='mapa_points'),
+    path('point_data/', PointData.as_view(),name='point_data'),
 ]
