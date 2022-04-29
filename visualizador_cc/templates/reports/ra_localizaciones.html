@@ -1,0 +1,37 @@
+
+{% extends "base_admin.html" %}
+
+{% load static %}
+
+
+
+
+{% block content %}
+
+<Style>
+
+    table.dataTable td {
+        font-size: 12px;
+    }
+
+</Style>
+
+{% csrf_token %}
+
+<div class="row">
+    <div class="col-12 pt-3">
+
+        <table id="tabla-ra_localizaciones" class="table table-bordered  table-striped " style="width:100%">
+        </table>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block inline_javascript %}
+
+<script defer src="{% static 'js/reports/ra_localizaciones.js' %}"></script>
+
+{% endblock %}

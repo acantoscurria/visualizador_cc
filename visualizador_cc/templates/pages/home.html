@@ -3,7 +3,20 @@
 {% block content %}
 
 <section class="mt-4 mb-4">
-    <div id="tarjetas" class="row ">
+    
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://educacion.chaco.gob.ar/wp-content/uploads/2021/04/ministerio-educacion.jpg" class="d-block w-50 mx-auto" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://guiaforestal.chaco.gov.ar/wsic2/img/nuevos%20logos%2002-01-20/chaco/logo_chaco_Color.png" class="d-block w-50 mx-auto" alt="...">
+            </div>
+        
+        </div>
+    </div>
+    
+    <div id="tarjetas" class="row mt-4">
       <div class="wrapper">
         <div class="columnas">
                   <div class="columna" ontouchstart="this.classList.toggle('hover');">
@@ -16,7 +29,7 @@
                           </div>
                           <div class="back">
                               <div class="inner">
-                                <a  href=""><p class="texto-lectura link">Mapa interactivo de las distintas ofertas educativas</p></a>
+                                <a  href="" class="text-decoration-none"><p class="text-dark fw-light">Mapa interactivo de las distintas ofertas educativas</p></a>
                               </div>
                           </div>
                       </div>
@@ -31,21 +44,21 @@
                           </div>
                           <div class="back">
                               <div class="inner">
-                                  <a href="#"><p class="link texto-lectura">Lorem</p></a>
+                                  <a href="#" class="text-decoration-none"><p class="text-dark fw-light">Lorem</p></a>
                               </div>
                           </div>
                       </div>
                   </div>        			<div class="columna" ontouchstart="this.classList.toggle('hover');">
                       <div class="contenedor">
-                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/mapa-chaco.jpeg' %})">
+                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/news.png' %})">
                               <div class="inner">
-                                  <h3>En desarrollo</h3>
+                                  <h3>Noticias</h3>
                     <span></span>
                               </div>
                           </div>
                           <div class="back">
                               <div class="inner">
-                                  <a href="#"><p class="link texto-lectura">mply dummy text of the printing and typesetting industry. Lorem Ipsum</p></a>
+                                  <a href="#" class="text-decoration-none"><p class="text-dark fw-light">mply dummy text of the printing and typesetting industry. Lorem Ipsum</p></a>
                               </div>
                           </div>
                       </div>
