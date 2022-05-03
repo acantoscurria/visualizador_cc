@@ -6,7 +6,7 @@ function loadMap(){
 
     map = L.map('map', {
         center: [-27.445701, -58.952356],
-        zoom: 12,
+        zoom: 7,
         zoomControl: true,
         maxZoom: 17,
         minZoom: 1,        
@@ -30,14 +30,46 @@ function loadPoints(){
 
     console.log('loadPoints');
 
+    var preloader = jBox('Notice', {
+        content: 'Cargando puntos...',
+        color: 'blue',
+        animation: 'flip',
+        showCountdown: true,
+        autoClose: 10000,
+        position: {
+            x: 'center',
+        },
+        theme: 'TooltipDark',
+        closeButton: false,
+        closeOnClick: false,
+    })
 
-    fetch("/mapa/points")
-    .then((data) => {
-        console.log('mapa/points response', data);
+    fetch("/mapa/points/")
+    .then((response) => {
+
+        console.log('mapa/points response data', response)
+
+        response.json().then(function(json) {
+
+            console.log('mapa/points response json', json)
+
+            L.geoJSON(json).addTo(map);
+
+            console.log('mapa/points load geoJSON complete!')
+        
+            preloader.destroy()
+            
+           
+
+        });
+
     })   
     .catch((error) => {
         console.error('mapa/points catch', error);
     })
+
+
+
 }
     
 
