@@ -44,6 +44,12 @@
                         <option value="matricula_comun_secundaria">
                             Mátricula comun secundaria
                         </option>
+                        <option value="matricula_comun_snu">
+                            Mátricula comun snu
+                        </option>
+                        <option value="matricula_adultos_primaria">
+                            Mátricula adultos primaria
+                        </option>
                     </select>
                     <label for="matricula_input">Mátricula</label>
                 </div>
@@ -61,5 +67,17 @@
     </div>
 {% endblock %}
 {% block inline_javascript %}
+    <script>
+
+        var eb = function (c) {
+        let s = ""
+        for (let i = 0; i < c; i++) {
+            s += "&nbsp"
+        }
+        return s
+        }
+    
+    </script>
+  
     <script defer src="{% static 'js/reports/ra_matricula.js' %}"></script>
 {% endblock %}
