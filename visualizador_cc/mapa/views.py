@@ -19,14 +19,14 @@ from django.views.generic import TemplateView
 
 
 class Mapa(TemplateView):
-    template_name = 'mapa/nuevo-mapa.html' 
+    template_name = 'mapa/index.html' 
     http_method_names = ['get'] 
     extra_context = {
         'title': 'Mapa'
     }
  
     
-class MapaPoints(generics.ListAPIView):
+class Points(generics.ListAPIView):
 
     queryset = TablaLocalizaciones.objects.all()
     serializer_class = TablaLocalizacionesSerializer

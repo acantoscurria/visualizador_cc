@@ -17,7 +17,9 @@ urlpatterns = [
     # User management
     path("users/", include("visualizador_cc.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    path("mapa/", include("visualizador_cc.mapa.urls")),
+
+    path("mapa/", include("visualizador_cc.mapa.urls", namespace="mapa")),
+
     path(
         "dashboard/", include("visualizador_cc.dashboard.urls", namespace="dashboard")
     ),
@@ -29,6 +31,7 @@ urlpatterns = [
     path("noticias/", include("visualizador_cc.noticias.urls", namespace="noticias")),
     # Your stuff: custom urls includes go here
     path("ckeditor/", include("ckeditor_uploader.urls")),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS

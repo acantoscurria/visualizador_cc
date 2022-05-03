@@ -11,3 +11,5 @@ class MapaConfig(AppConfig):
             import visualizador_cc.mapa.signals  # noqa F401
         except ImportError:
             pass
+
+
