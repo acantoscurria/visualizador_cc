@@ -28,7 +28,7 @@ class Mapa(TemplateView):
     
 class Points(generics.ListAPIView):
 
-    queryset = TablaLocalizaciones.objects.all()[:100]
+    queryset = TablaLocalizaciones.objects.all()[:10]
     serializer_class = TablaLocalizacionesSerializer
     permission_class= AllowAny
 
@@ -40,8 +40,13 @@ class PointData(generics.ListAPIView):
 
     def get_queryset(self):
 
-        queryset = Padron.objects.all()
         cueanexo = self.request.query_params.get('cueanexo')
-        if cueanexo is not None:
-            queryset = queryset.filter(cueanexo=cueanexo)
-        return queryset
+
+        print('PointData cueanexo', cueanexo)
+
+        if cueanexo:
+            return Padron.objects.all().filter(cueanexo=cueanexo)
+        else:
+            return []
+       
+   

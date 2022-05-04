@@ -1,4 +1,6 @@
 var map = null
+var layer_localizaciones = null
+var cluster_layer_localizaciones = null
 
 function loadMap(){
 
@@ -26,40 +28,70 @@ function loadMap(){
     console.log('loadMap tileLayer', map);
 }
 
+function showPopupPointDetail(feature, layer) {
+
+    console.log('showPopupPointDetail feature', feature, layer );
+
+    if (feature.properties) {
+
+        fetch("/mapa/point_data/?cueanexo="+feature.id)
+        .then((response) => {
+
+            console.log('mapa/point_data/?cueanexo response', response)
+
+            //layer.bindPopup('detalle de localizacion');
+        })   
+        .catch((error) => {
+
+            console.error('mapa/point_data/?cueanexo catch', error);
+        })
+
+        
+    }
+
+}
+
 function loadPoints(){
 
     console.log('loadPoints');
 
-    var preloader = jBox('Notice', {
-        content: 'Cargando puntos...',
+    var preloader = new jBox('Notice', {
+        content: 'Obteniendo puntos <i class="fa-solid fa-circle-notch fa-spin"></i>',
         color: 'blue',
-        animation: 'flip',
-        showCountdown: true,
-        autoClose: 10000,
         position: {
             x: 'center',
         },
-        theme: 'TooltipDark',
         closeButton: false,
         closeOnClick: false,
-    })
+        animation: 'flip',
+        autoClose: false
+      });
+ 
 
     fetch("/mapa/points/")
     .then((response) => {
 
         console.log('mapa/points response data', response)
 
-        response.json().then(function(json) {
+        response.json().then(function(points) {
 
-            console.log('mapa/points response json', json)
+            console.log('mapa/points response points', points)
 
-            L.geoJSON(json).addTo(map);
+            layer_localizaciones = L.geoJSON(points, {
+                attribution: '',
+                interactive: true,
+                onEachFeature: showPopupPointDetail,
+                layerName: 'Localizaciones'
+            })
 
             console.log('mapa/points load geoJSON complete!')
         
-            preloader.destroy()
-            
-           
+            preloader.close()
+
+            //cluster de marcadores
+            cluster_layer_localizaciones = L.markerClusterGroup();
+            cluster_layer_localizaciones.addLayer(layer_localizaciones);
+            map.addLayer(cluster_layer_localizaciones)
 
         });
 
