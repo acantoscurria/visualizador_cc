@@ -28,7 +28,7 @@ class Mapa(TemplateView):
     
 class Points(generics.ListAPIView):
 
-    queryset = TablaLocalizaciones.objects.all()
+    queryset = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
     serializer_class = TablaLocalizacionesSerializer
     permission_class= AllowAny
 

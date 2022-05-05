@@ -72,7 +72,7 @@ function markerOnClick(e)
                 html = html.split('%departamento%').join( point_data.departamento );   
                 html = html.split('%estado_loc%').join( point_data.estado_loc );   
           
-                L.popup({offset: L.point(0, -17)})
+                L.popup({offset: L.point(0, -20)})
                 .setLatLng(e.latlng)               
                 .setContent(html)
                 .openOn(map);
@@ -119,13 +119,21 @@ function loadPoints(){
 
             cluster_layer_localizaciones = L.markerClusterGroup();
 
+
             points.features.forEach(point => {  
+
                 let marker = L.marker(point.geometry.coordinates.reverse()).on('click', markerOnClick)
+
                 marker.cueanexo = point.id
+
                 cluster_layer_localizaciones.addLayer(marker);
+
             });
 
+
             map.addLayer(cluster_layer_localizaciones);   
+
+           
         
             preloader.close()           
 
