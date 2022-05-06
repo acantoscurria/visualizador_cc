@@ -34,7 +34,7 @@ class Points(generics.ListAPIView):
     queryset = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
         
           
-class Search(generics.ListAPIView):
+class SearchByName(generics.ListAPIView):
   
     serializer_class = TablaLocalizacionesSearchSerializer
     permission_class= AllowAny
@@ -42,21 +42,41 @@ class Search(generics.ListAPIView):
     def get_queryset(self):   
 
         q = self.request.query_params.get('q')
-        print('Points q', q)
-
-        # q = 6545646, pepe
+        print('SearchByName q', q)
 
         if q:
-            # return TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo' | cueanexo__nom_est_ilike=)
-
-            return TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
-                        Q(nom_est__icontains=q) | Q(cueanexo__icontains=q)
-                    )[:5]
-
-
-
+            return TablaLocalizaciones.objects.all().filter(
+                    cueanexo__estado_loc='Activo'
+                ).filter(
+                    Q(cueanexo__nom_est__icontains=q)
+                )
         else:  
             return []
+
+                      
+class SearchByCueanexo(generics.ListAPIView):
+  
+    serializer_class = TablaLocalizacionesSearchSerializer
+    permission_class= AllowAny
+
+    def get_queryset(self):   
+
+        q = self.request.query_params.get('q')
+        print('SearchByCueanexo q', q)     
+
+        if q:         
+            cueanexo_int = 0
+            if(q.isnumeric()):          
+                cueanexo_int = int(q)    
+
+            return TablaLocalizaciones.objects.all().filter(
+                    cueanexo__estado_loc='Activo'
+                ).filter(
+                    Q(cueanexo=cueanexo_int)
+                )
+        else:  
+            return []
+
 
           
 

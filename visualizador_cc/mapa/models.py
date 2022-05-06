@@ -36,6 +36,8 @@ class TablaLocalizaciones(models.Model):
 
     geom = models.PointField(blank=True, null=True)
 
+    search_fields = ('prop__txt')
+
     class Meta:
         managed = True
         db_table = 't_localizaciones'

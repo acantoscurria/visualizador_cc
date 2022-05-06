@@ -2,18 +2,50 @@ var map = null
 var layer_localizaciones = null
 var cluster_layer_localizaciones = null
 var preloader = null
-var tileLayerBase 
+var tileLayerBase = null
+var searchLayer = null
 
-function searchByAjax(text, callResponse)//callback for 3rd party ajax requests
+function searchByName(text, callResponse)//callback for 3rd party ajax requests
 {
     return $.ajax({
-        url: '/mapa/search/',	//read comments in search.php for more information usage
+        url: '/mapa/search_by_name/',	//read comments in search.php for more information usage
+        type: 'GET',
+        data: {q: text},
+        dataType: 'json',
+        success: function(points) {
+
+            console.log('searchByName', points);
+
+            let resulSearch = []
+            //[{"loc":[41.807149,13.162994],"title":"blue"}]
+         
+
+            points.features.forEach(point => {  
+                resulSearch.push({
+                    loc: point.geometry.coordinates.reverse(),
+                    title: point.properties
+                })
+            });
+
+            console.log('resulSearch',  resulSearch);
+
+            callResponse(resulSearch);        
+        }
+    });
+}
+
+function searchByCueanexo(text, callResponse)//callback for 3rd party ajax requests
+{
+    return $.ajax({
+        url: '/mapa/search_by_cueanexo/',	//read comments in search.php for more information usage
         type: 'GET',
         data: {q: text},
         dataType: 'json',
         success: function(json) {
 
-            console.log('searchByAjax', json);
+            console.log('searchByCueanexo', json);
+
+            
 
             callResponse(json);
         }
@@ -24,17 +56,18 @@ function searchByAjax(text, callResponse)//callback for 3rd party ajax requests
 
 function loadSearch(){
 
-    var resultSeachLayer = new L.LayerGroup();	//layer contain searched elements
-	
-	map.addLayer(resultSeachLayer);    
-    
-    map.addControl( new L.Control.Search({sourceData: searchByAjax, text:'Buscar...', markerLocation: true}) );
 
-    //asi debe devolver
-    //[{"loc":[41.807149,13.162994],"title":"blue"}]
+    searchLayer = L.layerGroup().addTo(map);
+
+    map.addControl(new L.Control.Search({
+        sourceData: searchByName, 
+        text:'Buscar por nombre...', 
+        markerLocation: true,        
+    }));
+
+    // map.addControl( new L.Control.Search({sourceData: searchByCueanexo, text:'Buscar por cueanexo...', markerLocation: true}) );
 
 
-    //map.addControl( controlSearch );
 
 }
 
@@ -144,7 +177,7 @@ function loadPoints(){
 
         response.json().then(function(points) {
 
-            // console.log('mapa/points response points',  points.features)
+            console.log('mapa/points response points',  points.features)
 
             cluster_layer_localizaciones = L.markerClusterGroup();
 
@@ -154,11 +187,11 @@ function loadPoints(){
                 let marker = L.marker(point.geometry.coordinates.reverse()).on('click', markerOnClick)
 
                 marker.cueanexo = point.id
+                marker.title = 'normal'
 
                 cluster_layer_localizaciones.addLayer(marker);
 
             });
-
 
             map.addLayer(cluster_layer_localizaciones);
 

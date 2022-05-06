@@ -28,8 +28,7 @@ class TablaLocalizacionesSearchSerializer(geoSerilizer.GeoFeatureModelSerializer
     def get_properties(self, instance, fields):
         
         return (
-            instance.cueanexo.nom_est,
-            instance.cueanexo.ambito        
+            instance.cueanexo.nom_est                 
         )
 
     def unformat_geojson(self, feature):
