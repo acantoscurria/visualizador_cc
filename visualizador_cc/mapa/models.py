@@ -45,3 +45,10 @@ class TablaLocalizaciones(models.Model):
 
     def __str__(self):
         return f'{self.cueanexo}'
+
+
+    def parse(self):
+        return {       
+            "cueanexo": self.cueanexo,                  
+        }
+          

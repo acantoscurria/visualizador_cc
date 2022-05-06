@@ -4,73 +4,71 @@ var cluster_layer_localizaciones = null
 var preloader = null
 var tileLayerBase = null
 var searchLayer = null
-var dt_localizaciones = null
+
+function searchByName(text, callResponse)//callback for 3rd party ajax requests
+{
+    return $.ajax({
+        url: '/mapa/search_by_name/',	//read comments in search.php for more information usage
+        type: 'GET',
+        data: {q: text},
+        dataType: 'json',
+        success: function(points) {
+
+            console.log('searchByName', points);
+
+            let resulSearch = []
+            //[{"loc":[41.807149,13.162994],"title":"blue"}]
+         
+
+            points.features.forEach(point => {  
+                resulSearch.push({
+                    loc: point.geometry.coordinates.reverse(),
+                    title: point.properties
+                })
+            });
+
+            console.log('resulSearch',  resulSearch);
+
+            callResponse(resulSearch);        
+        }
+    });
+}
+
+function searchByCueanexo(text, callResponse)//callback for 3rd party ajax requests
+{
+    return $.ajax({
+        url: '/mapa/search_by_cueanexo/',	//read comments in search.php for more information usage
+        type: 'GET',
+        data: {q: text},
+        dataType: 'json',
+        success: function(json) {
+
+            console.log('searchByCueanexo', json);
+
+            
+
+            callResponse(json);
+        }
+    });
+}
+
 
 
 function loadSearch(){
 
-    dt_localizaciones = $("#tabla-localizaciones")   
-    .DataTable({
-        "ajax": {
-            "url": "/mapa/search/",
-            "type": "POST",
-            "headers": {'X-CSRFToken': csrftoken },            
-        },
-        "columns": [
-            {
-                "class": "left row-control",
-                "data": "cueanexo",
-                "name": "id",
-                "title": "#",
-                "render": function ( data, type, row ) {
-                    return data ? data : ''
-                }
-            },           
-        ],
-        "processing":true,
-        "serverSide": true,
-        "autoWidth": true,
-        "scrollY": true,
-        "scrollY": '600px',
-        "scrollX": true,
-        "scrollCollapse": true,
-        "paging": false,
-        "info": false,
-        "dom":
-            "<'row justify-content-between'<'col-auto'l><'col-auto'f><'col-auto mt-1'>>" +
-            "<'row'<'col-xl-12'tr>>" +
-            "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
-    }) 
 
-    var myModalEl = document.getElementById('modalSearch')
+    searchLayer = L.layerGroup().addTo(map);
 
-    var myModal = new bootstrap.Modal(myModalEl, {
-        keyboard: false
-    })
+    map.addControl(new L.Control.Search({
+        sourceData: searchByName, 
+        text:'Buscar por nombre...', 
+        markerLocation: true,        
+    }));
 
-    myModalEl.addEventListener('hidden.bs.modal', function (event) {
+    // map.addControl( new L.Control.Search({sourceData: searchByCueanexo, text:'Buscar por cueanexo...', markerLocation: true}) );
 
-        console.log('hidden.bs.modal');
 
-      
-        
 
-    })
-
-    myModalEl.addEventListener('shown.bs.modal', function (event) {
-        console.log('shown.bs.modal');
-
-        // setTimeout(() => {
-            dt_localizaciones.draw()
-        // }, 500);
-
-    })
-
-    L.easyButton( '<i class="fa-solid fa-magnifying-glass"></i>', function(){        
-
-        myModal.show()
-
-    }).addTo(map);
 }
 
 function loadMap(){
@@ -211,8 +209,7 @@ function loadPoints(){
 
 
 }
-
-const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
 
 $(document).ready(function(){
 
