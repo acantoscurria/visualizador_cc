@@ -2,38 +2,67 @@ var map = null
 var layer_localizaciones = null
 var cluster_layer_localizaciones = null
 var preloader = null
+var tileLayerBase 
 
+function searchByAjax(text, callResponse)//callback for 3rd party ajax requests
+{
+    return $.ajax({
+        url: '/mapa/search/',	//read comments in search.php for more information usage
+        type: 'GET',
+        data: {q: text},
+        dataType: 'json',
+        success: function(json) {
+
+            console.log('searchByAjax', json);
+
+            callResponse(json);
+        }
+    });
+}
+
+
+
+function loadSearch(){
+
+    var resultSeachLayer = new L.LayerGroup();	//layer contain searched elements
+	
+	map.addLayer(resultSeachLayer);    
+    
+    map.addControl( new L.Control.Search({sourceData: searchByAjax, text:'Buscar...', markerLocation: true}) );
+
+    //asi debe devolver
+    //[{"loc":[41.807149,13.162994],"title":"blue"}]
+
+
+    //map.addControl( controlSearch );
+
+}
 
 function loadMap(){
 
-    console.log('loadMap');
-
-    map = L.map('map', {
-        center: [-27.445701, -58.952356],
-        zoom: 7,
-        zoomControl: true,
-        maxZoom: 17,
-        minZoom: 1,        
-    }); 
-
-    console.log('loadMap map', map);
-
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYm90aHJvcHMiLCJhIjoiY2tuZzN6M2R1MDAwdTJvczBuMGswdWV0cSJ9.eYUIhcQzUXfUQdkvYsjX0g', {
+    tileLayerBase = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYm90aHJvcHMiLCJhIjoiY2tuZzN6M2R1MDAwdTJvczBuMGswdWV0cSJ9.eYUIhcQzUXfUQdkvYsjX0g', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox/streets-v11',
         tileSize: 512,
         zoomOffset: -1,
         accessToken: 'your.mapbox.access.token'
-    }).addTo(map);
+    })
+
+    map = L.map('map', {
+        center: [-27.445701, -58.952356],
+        zoom: 7,
+        zoomControl: true,
+        maxZoom: 17,
+        minZoom: 1,   
+        layers: [tileLayerBase]     
+    }); 
 
     console.log('loadMap tileLayer', map);
 }
 
-
 function markerOnClick(e)
 {
-
     preloader = new jBox('Notice', {
         content: 'Obteniendo datos del punto <i class="fa-solid fa-circle-notch fa-spin"></i>',
         color: 'blue',
@@ -131,9 +160,9 @@ function loadPoints(){
             });
 
 
-            map.addLayer(cluster_layer_localizaciones);   
+            map.addLayer(cluster_layer_localizaciones);
 
-           
+            loadSearch()           
         
             preloader.close()           
 
@@ -155,8 +184,9 @@ $(document).ready(function(){
 
     loadMap()
 
-    loadPoints()
-   
+    loadPoints()   
+
+    
 
 })
 

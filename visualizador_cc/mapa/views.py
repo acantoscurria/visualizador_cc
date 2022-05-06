@@ -1,11 +1,12 @@
 
 from django.shortcuts import render, HttpResponse
-from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer,PadronOfertaSerializer
+from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer,PadronOfertaSerializer, TablaLocalizacionesSearchSerializer
 from . models import TablaLocalizaciones,Padron
 from .serializers import *
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from django.views.generic import TemplateView
+from django.db.models import Q
 
 # Create your views here.
 
@@ -27,11 +28,37 @@ class Mapa(TemplateView):
  
     
 class Points(generics.ListAPIView):
-
-    queryset = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
+  
     serializer_class = TablaLocalizacionesSerializer
     permission_class= AllowAny
+    queryset = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
+        
+          
+class Search(generics.ListAPIView):
+  
+    serializer_class = TablaLocalizacionesSearchSerializer
+    permission_class= AllowAny
 
+    def get_queryset(self):   
+
+        q = self.request.query_params.get('q')
+        print('Points q', q)
+
+        # q = 6545646, pepe
+
+        if q:
+            # return TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo' | cueanexo__nom_est_ilike=)
+
+            return TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
+                        Q(nom_est__icontains=q) | Q(cueanexo__icontains=q)
+                    )[:5]
+
+
+
+        else:  
+            return []
+
+          
 
 class PointData(generics.ListAPIView):
 
