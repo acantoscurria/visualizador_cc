@@ -51,10 +51,9 @@ class RepMatricComunInicial(models.Model):
         managed = False  # Created from a view. Don't remove.
         db_table = 'rep_matric_comun_inicial'
 
- 
     def parse(self):
         return {
-           "id":self.id,
+            "id":self.id,
             "cueanexo": self.cueanexo,
             "id_fila": self.id_fila,
             "escuela": self.escuela,
@@ -98,7 +97,7 @@ class RepMatricComunInicial(models.Model):
             "per_funcionamiento": self.per_funcionamiento,
             "email_loc": self.email_loc,            
         }
-          
+
 class RepMatricComunPrimaria(models.Model):
     id = models.BigIntegerField(primary_key=True)
     cueanexo = models.CharField(max_length=255, blank=True, null=True)
@@ -539,6 +538,328 @@ class RepMatricAdultosPrimaria(models.Model):
             'edad_45_a_49': self.edad_45_a_49,
             'edad_50_a_54': self.edad_50_a_54,
             'edad_55_y_mas': self.edad_55_y_mas,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepMatricAdultosSecundaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    turno = models.CharField(max_length=255, blank=True, null=True)
+    nivel = models.CharField(max_length=255, blank=True, null=True)
+    nro_plan_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_plan_est = models.CharField(max_length=255, blank=True, null=True)
+    nom_div = models.CharField(max_length=255, blank=True, null=True)
+    tipo_div = models.CharField(max_length=255, blank=True, null=True)
+    orientacion = models.CharField(max_length=255, blank=True, null=True)
+    denom_plan_est = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    total_var = models.CharField(max_length=255, blank=True, null=True)
+    total_rep = models.CharField(max_length=255, blank=True, null=True)
+    var_rep = models.CharField(max_length=255, blank=True, null=True)
+    edad_14 = models.IntegerField(blank=True, null=True)
+    edad_15 = models.IntegerField(blank=True, null=True)
+    edad_16 = models.IntegerField(blank=True, null=True)
+    edad_17 = models.IntegerField(blank=True, null=True)
+    edad_18 = models.IntegerField(blank=True, null=True)
+    edad_19 = models.IntegerField(blank=True, null=True)
+    edad_20 = models.IntegerField(blank=True, null=True)
+    edad_21 = models.IntegerField(blank=True, null=True)
+    edad_22 = models.IntegerField(blank=True, null=True)
+    edad_23 = models.IntegerField(blank=True, null=True)
+    edad_24 = models.IntegerField(blank=True, null=True)
+    edad_25_a_29 = models.IntegerField(blank=True, null=True)
+    edad_30_a_34 = models.IntegerField(blank=True, null=True)
+    edad_35_a_39 = models.IntegerField(blank=True, null=True)
+    edad_40_a_44 = models.IntegerField(blank=True, null=True)
+    edad_45_a_49 = models.IntegerField(blank=True, null=True)
+    edad_50_a_54 = models.IntegerField(blank=True, null=True)
+    edad_55_y_mas = models.IntegerField(blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_matric_adultos_secundaria'
+        
+    def parse (self):
+        return {
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'turno': self.turno,
+            'nivel': self.nivel,
+            'nro_plan_est': self.nro_plan_est,
+            'anio_plan_est': self.anio_plan_est,
+            'nom_div': self.nom_div,
+            'tipo_div': self.tipo_div,
+            'orientacion': self.orientacion,
+            'denom_plan_est': self.denom_plan_est,
+            'total': self.total,
+            'total_var': self.total_var,
+            'total_rep': self.total_rep,
+            'var_rep': self.var_rep,
+            'edad_14': self.edad_14,
+            'edad_15': self.edad_15,
+            'edad_16': self.edad_16,
+            'edad_17': self.edad_17,
+            'edad_18': self.edad_18,
+            'edad_19': self.edad_19,
+            'edad_20': self.edad_20,
+            'edad_21': self.edad_21,
+            'edad_22': self.edad_22,
+            'edad_23': self.edad_23,
+            'edad_24': self.edad_24,
+            'edad_25_a_29': self.edad_25_a_29,
+            'edad_30_a_34': self.edad_30_a_34,
+            'edad_35_a_39': self.edad_35_a_39,
+            'edad_40_a_44': self.edad_40_a_44,
+            'edad_45_a_49': self.edad_45_a_49,
+            'edad_50_a_54': self.edad_50_a_54,
+            'edad_55_y_mas': self.edad_55_y_mas,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+
+class RepMatricEspecialInicial(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    sala = models.CharField(max_length=255, blank=True, null=True)
+    turno = models.CharField(max_length=255, blank=True, null=True)
+    tipo_secc = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    total_var = models.CharField(max_length=255, blank=True, null=True)
+    nom_secc = models.CharField(max_length=255, blank=True, null=True)
+    cinco_anios = models.CharField(max_length=255, blank=True, null=True)
+    seis_anios = models.CharField(max_length=255, blank=True, null=True)
+    siete_anios = models.CharField(max_length=255, blank=True, null=True)
+    cero_a_dos_anios = models.CharField(max_length=255, blank=True, null=True)
+    tres_anios = models.CharField(max_length=255, blank=True, null=True)
+    cuatro_anios = models.CharField(max_length=255, blank=True, null=True)
+    ocho_o_mas_anios = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_matric_especial_inicial'
+
+    def parse (self):
+        return {
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'sala': self.sala,
+            'turno': self.turno,
+            'tipo_secc': self.tipo_secc,
+            'total': self.total,
+            'total_var': self.total_var,
+            'nom_secc': self.nom_secc,
+            'cinco_anios': self.cinco_anios,
+            'seis_anios': self.seis_anios,
+            'siete_anios': self.siete_anios,
+            'cero_a_dos_anios': self.cero_a_dos_anios,
+            'tres_anios': self.tres_anios,
+            'cuatro_anios': self.cuatro_anios,
+            'ocho_o_mas_anios': self.ocho_o_mas_anios,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepMatricEspecialPrimaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    turno = models.CharField(max_length=255, blank=True, null=True)
+    tipo_secc = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    total_var = models.CharField(max_length=255, blank=True, null=True)
+    nom_secc = models.CharField(max_length=255, blank=True, null=True)
+    seis_anios = models.CharField(max_length=255, blank=True, null=True)
+    siete_anios = models.CharField(max_length=255, blank=True, null=True)
+    ocho_anios = models.CharField(max_length=255, blank=True, null=True)
+    nueve_anios = models.CharField(max_length=255, blank=True, null=True)
+    diez_anios = models.CharField(max_length=255, blank=True, null=True)
+    once_anios = models.CharField(max_length=255, blank=True, null=True)
+    doce_anios = models.CharField(max_length=255, blank=True, null=True)
+    trece_anios = models.CharField(max_length=255, blank=True, null=True)
+    catorce_anios = models.CharField(max_length=255, blank=True, null=True)
+    quince_anios = models.CharField(max_length=255, blank=True, null=True)
+    dieciseis_anios = models.CharField(max_length=255, blank=True, null=True)
+    diecisiete_anios = models.CharField(max_length=255, blank=True, null=True)
+    dieciocho_anios = models.CharField(max_length=255, blank=True, null=True)
+    total_rep = models.CharField(max_length=255, blank=True, null=True)
+    var_rep = models.CharField(max_length=255, blank=True, null=True)
+    diecinueve_mas = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_matric_especial_primaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'turno': self.turno,
+            'tipo_secc': self.tipo_secc,
+            'total': self.total,
+            'total_var': self.total_var,
+            'nom_secc': self.nom_secc,
+            'seis_anios': self.seis_anios,
+            'siete_anios': self.siete_anios,
+            'ocho_anios': self.ocho_anios,
+            'nueve_anios': self.nueve_anios,
+            'diez_anios': self.diez_anios,
+            'once_anios': self.once_anios,
+            'doce_anios': self.doce_anios,
+            'trece_anios': self.trece_anios,
+            'catorce_anios': self.catorce_anios,
+            'quince_anios': self.quince_anios,
+            'dieciseis_anios': self.dieciseis_anios,
+            'diecisiete_anios': self.diecisiete_anios,
+            'dieciocho_anios': self.dieciocho_anios,
+            'total_rep': self.total_rep,
+            'var_rep': self.var_rep,
+            'diecinueve_mas': self.diecinueve_mas,
             'nom_est': self.nom_est,
             'nro_est': self.nro_est,
             'anio_creac_establec': self.anio_creac_establec,
