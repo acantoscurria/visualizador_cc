@@ -3,7 +3,7 @@ from rest_framework_gis import serializers as geoSerilizer
 from visualizador_cc.mapa.models import Padron,TablaLocalizaciones
 # from rest_framework_gis import 
 
-class PadronOfertaSerializer(serializers.ModelSerializer):
+class PadronSerializer(serializers.ModelSerializer):
 
     class Meta:
         model= Padron
@@ -17,23 +17,23 @@ class TablaLocalizacionesSerializer(geoSerilizer.GeoFeatureModelSerializer):
         fields= '__all__'
         geo_field='geom'
 
-class TablaLocalizacionesSearchSerializer(geoSerilizer.GeoFeatureModelSerializer):
+# class TablaLocalizacionesSearchSerializer(geoSerilizer.GeoFeatureModelSerializer):
 
-    class Meta:
-        model=TablaLocalizaciones
-        fields= '__all__'
-        geo_field='geom'
+#     class Meta:
+#         model=TablaLocalizaciones
+#         fields= '__all__'
+#         geo_field='geom'
 
 
-    def get_properties(self, instance, fields):
+#     def get_properties(self, instance, fields):
         
-        return (
-            instance.cueanexo.nom_est                 
-        )
+#         return (
+#             instance.cueanexo.nom_est                 
+#         )
 
-    def unformat_geojson(self, feature):
-        attrs = {     
-            "nom_est": feature["properties"]   
+#     def unformat_geojson(self, feature):
+#         attrs = {     
+#             "nom_est": feature["properties"]   
                    
-        }
-        return attrs
+#         }
+#         return attrs

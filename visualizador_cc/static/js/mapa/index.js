@@ -5,7 +5,175 @@ var preloader = null
 var tileLayerBase = null
 var searchLayer = null
 var dt_localizaciones = null
+var loc_selected = null
+var marker_selected = null
 
+function loadFilter(){   
+
+    let filters = {
+        sector: [
+            'Estatal',
+            'Privado',
+            'Gestión social/cooperativa',
+        ],
+        ambito: [
+            'Urbano',      
+            'Rural Disperso',
+            'Rural Aglomerado',
+        ],
+        departamento: [
+            'LIBERTAD',
+            'SARGENTO CABRAL',
+            '2 DE ABRIL',
+            '1§ DE MAYO',
+            'MAIPU',
+            'GENERAL GUEMES',
+            'SAN FERNANDO',
+            'GENERAL BELGRANO', 
+            'QUITILIPI',
+            'GENERAL DONOVAN',        
+            'MAYOR LUIS J FONTANA',
+            '9 DE JULIO',
+            '12 DE OCTUBRE',
+            'INDEPENDENCIA',
+            'TAPENAGA',            
+            '25 DE MAYO',
+            'SAN LORENZO',
+            'BERMEJO',
+            'CHACABUCO',
+            'O HIGGINS',
+            'ALMIRANTE BROWN',
+            'COMANDANTE FERNANDEZ',          
+            'PRESIDENCIA DE LA PLAZA',
+            'FRAY JUSTO SANTA MARIA DE ORO',
+            'LIBERTADOR GENERAL SAN MARTIN',
+        ]
+
+    } 
+
+    
+
+    let filterModalEl = document.getElementById('modalFilter')
+
+    let filerModal = new bootstrap.Modal(filterModalEl, {
+        keyboard: false
+    })
+
+    filterModalEl.addEventListener('hidden.bs.modal', function (event) {
+        console.log('hidden.bs.modal');
+    })
+
+    filterModalEl.addEventListener('shown.bs.modal', function (event) {
+        console.log('shown.bs.modal');
+    })
+
+
+    let i = 0
+    $('#modalFilter .container-sector').empty()
+    filters.sector.forEach(option => {  
+        i++
+        let html = $('#template-checkbox-filter').clone().html();    
+        html = html.replace('d-none', '');        
+        html = html.split('%col%').join( 'col-12' );
+        html = html.split('%type%').join( 'sector' );        
+        html = html.split('%value%').join( option );
+        html = html.split('%i%').join( i );   
+        $('#modalFilter .container-sector').append(html)
+    })
+
+    $('#modalFilter .container-ambito').empty()
+    filters.ambito.forEach(option => {  
+        i++
+        let html = $('#template-checkbox-filter').clone().html();    
+        html = html.replace('d-none', '');
+        html = html.split('%col%').join( 'col-12' );
+        html = html.split('%type%').join( 'ambito' );     
+        html = html.split('%value%').join( option );
+        html = html.split('%i%').join( i );   
+        $('#modalFilter .container-ambito').append(html)
+    })
+
+    $('#modalFilter .container-departamento').empty()
+    filters.departamento.forEach(option => {  
+        i++
+        let html = $('#template-checkbox-filter').clone().html();    
+        html = html.replace('d-none', '');
+        html = html.split('%col%').join( 'col-4' );
+        html = html.split('%type%').join( 'departamento' );   
+        html = html.split('%value%').join( option );
+        html = html.split('%i%').join( i );   
+        $('#modalFilter .container-departamento').append(html)
+    })
+
+
+    L.easyButton( '<i class="fa-solid fa-filter"></i>', function(){ 
+        filerModal.show()
+    }).addTo(map);
+
+    $('#modalFilter .btn-apply').click(function(){
+
+        // filerModal.hide()
+
+        let options_sector = []
+        let options_ambito = []
+        let options_departamento = []      
+
+        let checkboxes = document.querySelectorAll('input[name=option_sector]:checked')
+        for (var i = 0; i < checkboxes.length; i++) {
+            options_sector.push(checkboxes[i].value)
+        }
+        checkboxes = document.querySelectorAll('input[name=option_ambito]:checked')
+        for (var i = 0; i < checkboxes.length; i++) {
+            options_ambito.push(checkboxes[i].value)
+        }
+        checkboxes = document.querySelectorAll('input[name=option_departamento]:checked')
+        for (var i = 0; i < checkboxes.length; i++) {
+            options_departamento.push(checkboxes[i].value)
+        }
+          
+
+        console.log('options_sector', options_sector);
+        console.log('options_ambito', options_ambito);
+        console.log('options_departamento', options_departamento);
+
+        let data = new FormData();
+        data.append( "filter", JSON.stringify( {
+            sector: options_sector,
+            ambito: options_ambito,
+            departamento: options_departamento
+        }));  
+        
+        let headers = new Headers();
+        headers.append('X-CSRFToken', csrftoken);
+
+        fetch("/mapa/filter/", {
+            headers: headers,
+            method: "POST",
+            body: data,            
+        })
+        .then((response) => {
+
+            console.log('/mapa/filter/ response', response);
+
+            response.json().then(function(cueanexos) {
+
+                console.log('/mapa/filter/ cueanexos', cueanexos);
+
+            })
+        })
+        .catch((error) => {
+            console.error('mapa/filter catch', error);
+            reject(e)
+        })
+
+
+
+        // alert('btn-apply')
+
+    })
+
+
+}
 
 function loadSearch(){
 
@@ -25,7 +193,16 @@ function loadSearch(){
                 "render": function ( data, type, row ) {
                     return data ? data : ''
                 }
-            },           
+            },   
+            {
+                "class": "left row-control",
+                "data": "nom_est",
+                "name": "nom_est",
+                "title": "Nombre establecimiento",
+                "render": function ( data, type, row ) {
+                    return data ? data : ''
+                }
+            },         
         ],
         "processing":true,
         "serverSide": true,
@@ -34,42 +211,90 @@ function loadSearch(){
         "scrollY": '600px',
         "scrollX": true,
         "scrollCollapse": true,
-        "paging": false,
-        "info": false,
+        "paging": true,
+        "info": true,
+        "language": {
+            decimal: "",
+            emptyTable: "Sin resultados.",
+            info: "_START_ al _END_ de _TOTAL_",
+            infoEmpty: "0 al 0 de 0",
+            infoFiltered: "",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Mostrar _MENU_ filas",
+            loadingRecords: $('#preloader').html(),
+            processing: $('#preloader').html(),
+            search: "Buscar:",
+            zeroRecords: "Sin resultados",
+            paginate: {
+                first: "Primero",
+                last: "Último",
+                next: "Siguiente",
+                previous: "Anterior"
+            },
+            aria: {
+                sortAscending: ": Activar para ordenar la columna ascendente",
+                sortDescending: ": Activar para ordenar la columna descendente"
+            }
+        },
+        "pagingType": "numbers",
+        "lengthMenu": [[10, 100, -1], [10, 100, "Todas"]],
         "dom":
-            "<'row justify-content-between'<'col-auto'l><'col-auto'f><'col-auto mt-1'>>" +
+            "<'row justify-content-between'<'col-auto'l><'col-auto'f>>" +
             "<'row'<'col-xl-12'tr>>" +
             "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
     }) 
 
-    var myModalEl = document.getElementById('modalSearch')
+    let searchModalEl = document.getElementById('modalSearch')
 
-    var myModal = new bootstrap.Modal(myModalEl, {
+    let searchModal = new bootstrap.Modal(searchModalEl, {
         keyboard: false
     })
 
-    myModalEl.addEventListener('hidden.bs.modal', function (event) {
-
+    searchModalEl.addEventListener('hidden.bs.modal', function (event) {
         console.log('hidden.bs.modal');
-
-      
-        
-
     })
 
-    myModalEl.addEventListener('shown.bs.modal', function (event) {
+    searchModalEl.addEventListener('shown.bs.modal', function (event) {
         console.log('shown.bs.modal');
+        dt_localizaciones.draw()
+        marker_selected = null
+    })
+    
+    map.on('moveend', function(){
+        console.log('moveend !!');
+        if(marker_selected){
+           marker_selected.bounce(5)  
+        }        
+    })
+  
+    $('#tabla-localizaciones tbody').on( 'click', '.row-control', function (e) {
 
-        // setTimeout(() => {
-            dt_localizaciones.draw()
-        // }, 500);
+        if (!$($(this).closest('tr') ).find('.dataTables_empty').length) {         
 
+            loc_selected = dt_localizaciones.row( $(this).closest('tr') ).data()
+
+            searchModal.hide()
+
+            dt_localizaciones.search("").draw()
+
+            console.log('loc_selected', loc_selected);
+
+            cluster_layer_localizaciones.eachLayer((l) => {   
+
+                if(marker_selected){ return }  
+
+                if( l instanceof L.Marker && loc_selected.cueanexo ==  l.cueanexo){
+                 
+                    marker_selected = l
+                    map.flyTo(marker_selected.getLatLng(), 18)                                  
+                }                   
+           })
+        }
     })
 
-    L.easyButton( '<i class="fa-solid fa-magnifying-glass"></i>', function(){        
-
-        myModal.show()
-
+    L.easyButton( '<i class="fa-solid fa-magnifying-glass"></i>', function(){ 
+        searchModal.show()
     }).addTo(map);
 }
 
@@ -93,7 +318,7 @@ function loadMap(){
         layers: [tileLayerBase]     
     }); 
 
-    console.log('loadMap tileLayer', map);
+    console.log('loadMap tileLayer', map);    
 }
 
 function markerOnClick(e)
@@ -110,14 +335,10 @@ function markerOnClick(e)
         autoClose: false
     });
 
-    console.log('markerOnClick', e, e.latlng, e.target.cueanexo);
-
     fetch("/mapa/point_data/?cueanexo=" + e.target.cueanexo)
     .then((response) => {
 
         response.json().then(function(data) {
-
-            console.log('mapa/point_data/?cueanexo data', data)
 
             if(data && data.length > 0){
 
@@ -157,59 +378,58 @@ function markerOnClick(e)
 
 function loadPoints(){
 
-    console.log('loadPoints');
+    return new Promise(function(resolve, reject) {
 
-    preloader = new jBox('Notice', {
-        content: 'Obteniendo puntos <i class="fa-solid fa-circle-notch fa-spin"></i>',
-        color: 'blue',
-        position: {
-            x: 'center',
-        },
-        closeButton: false,
-        closeOnClick: false,
-        animation: 'flip',
-        autoClose: false
-    });
- 
+        preloader = new jBox('Notice', {
+            content: 'Obteniendo puntos <i class="fa-solid fa-circle-notch fa-spin"></i>',
+            color: 'blue',
+            position: {
+                x: 'center',
+            },
+            closeButton: false,
+            closeOnClick: false,
+            animation: 'flip',
+            autoClose: false
+        });
+    
 
-    fetch("/mapa/points/")
-    .then((response) => {
+        fetch("/mapa/points/")
+        .then((response) => {
 
-        // console.log('mapa/points response data', response)
+            console.log('/mapa/points/ response', response);
 
-        response.json().then(function(points) {
+            response.json().then(function(points) {
 
-            console.log('mapa/points response points',  points.features)
+                console.log('/mapa/points/ points', points);
 
-            cluster_layer_localizaciones = L.markerClusterGroup();
+                cluster_layer_localizaciones = L.markerClusterGroup();
 
+                points.features.forEach(point => {  
 
-            points.features.forEach(point => {  
+                    let marker = L.marker(point.geometry.coordinates.reverse()).on('click', markerOnClick)
 
-                let marker = L.marker(point.geometry.coordinates.reverse()).on('click', markerOnClick)
+                    marker.cueanexo = point.id
+                    marker.title = 'normal'
 
-                marker.cueanexo = point.id
-                marker.title = 'normal'
+                    cluster_layer_localizaciones.addLayer(marker);
 
-                cluster_layer_localizaciones.addLayer(marker);
+                });
+
+                map.addLayer(cluster_layer_localizaciones);                    
+            
+                preloader.close()       
+
+                resolve()    
 
             });
 
-            map.addLayer(cluster_layer_localizaciones);
+        })   
+        .catch((error) => {
+            console.error('mapa/points catch', error);
+            reject(e)
+        })
 
-            loadSearch()           
-        
-            preloader.close()           
-
-        });
-
-    })   
-    .catch((error) => {
-        console.error('mapa/points catch', error);
-    })
-
-
-
+    });
 }
 
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
@@ -220,9 +440,13 @@ $(document).ready(function(){
 
     loadMap()
 
-    loadPoints()   
+    loadPoints().then(() => {
 
-    
+        loadSearch()
+
+        loadFilter()
+
+    })
 
 })
 

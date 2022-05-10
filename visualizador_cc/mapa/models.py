@@ -10,11 +10,11 @@ class Padron(models.Model):
     """
     cueanexo = models.BigIntegerField(verbose_name="CueAnexo del Establecimiento",primary_key=True)
     nom_est = models.CharField(verbose_name="Nombre del Establecimiento",null=True,blank=True,max_length=250)
-    sector = models.CharField(null=True,blank=True,max_length=200)
-    ambito = models.CharField(null=True,blank=True,max_length=100)
-    region_loc = models.CharField(null=True,blank=True,max_length=100)
+    sector = models.CharField(null=True,blank=True,max_length=200) # privado, estattal, gestion social
+    ambito = models.CharField(null=True,blank=True,max_length=100) # urbano, rural disperso y agromerado
+    region_loc = models.CharField(null=True,blank=True,max_length=100) 
     localidad = models.CharField(null=True,blank=True,max_length=500)
-    departamento = models.CharField(null=True,blank=True,max_length=500)
+    departamento = models.CharField(null=True,blank=True,max_length=500) # 
     estado_loc=models.CharField(verbose_name="Estado de la localización",blank=False,
     null=False,max_length=10)
 
@@ -49,6 +49,7 @@ class TablaLocalizaciones(models.Model):
 
     def parse(self):
         return {       
-            "cueanexo": self.cueanexo,                  
+            'cueanexo': self.cueanexo.cueanexo,            
+            'nom_est': self.cueanexo.nom_est,                 
         }
           

@@ -1,6 +1,5 @@
 
-from django.shortcuts import render, HttpResponse
-from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer,PadronOfertaSerializer, TablaLocalizacionesSearchSerializer
+from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer,PadronSerializer
 from . models import TablaLocalizaciones,Padron
 from .serializers import *
 from rest_framework import generics
@@ -9,6 +8,8 @@ from django.views.generic import TemplateView
 from django.db.models import Q
 from django.views.generic.list import ListView
 from django.http import JsonResponse
+import json
+
 
 
 class Mapa(TemplateView):
@@ -24,11 +25,58 @@ class Points(generics.ListAPIView):
     serializer_class = TablaLocalizacionesSerializer
     permission_class= AllowAny
     queryset = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
-             
+
+    
+
+
+class Filter(ListView):
+
+    def post(self, request, *args, **kwargs):   
+
+        filter = json.loads(request.POST.get('filter'))
+
+        sector = filter['sector']
+        ambito = filter['ambito']
+        departamento = filter['departamento']
+
+        print('Filter.post sector', sector)
+        print('Filter.post ambito', ambito)
+        print('Filter.post departamento', departamento)
+
+        object_list = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
+
+        empty = True
+
+        if(len(sector) > 0):
+            object_list = object_list.filter(cueanexo__sector__in=sector)
+            empty = False
+        elif(len(ambito) > 0):
+            object_list = object_list.filter(cueanexo__ambit__in=ambito)
+            empty = False
+        elif(len(departamento) > 0):
+            object_list = object_list.filter(cueanexo__departamento_in=departamento)
+            empty = False
+
+        if(empty): 
+            return JsonResponse({   
+                "data": []         
+            }, 
+            safe=False)
+
+        data = []  
+        for row in object_list:       
+            data.append(row.cuenexo.cuenexo)         
+
+        return JsonResponse({   
+            "data": data         
+        }, 
+        safe=False)
+
+
 
 class PointData(generics.ListAPIView):
 
-    serializer_class = PadronOfertaSerializer
+    serializer_class = PadronSerializer
     permission_class= AllowAny
 
     def get_queryset(self):
@@ -41,8 +89,6 @@ class PointData(generics.ListAPIView):
             return []
 
 
-
-
 class Search(ListView):
 
     def post(self, request, *args, **kwargs):
@@ -51,30 +97,43 @@ class Search(ListView):
         draw = int(dt.get("draw"))
         start = int(dt.get("start"))
         length = int(dt.get("length"))
+        search = dt.get("search[value]")
 
+      
         print('start', start)
-        print('length', length)
+        print('length', length)     
+        print('search', search)   
+
+        cueanexo_value_int = 0
+        if(search.isnumeric()):
+            cueanexo_value_int = int(search)
 
         recordsTotal = 0
         data = []
         recordsFiltered = 0
-
-        search = dt.get("search[value]")
-
-        print('search', search)     
-      
+                
+       
         recordsTotal = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').count()
 
         if search: # si hay valor de busqueda
 
-            # obtengo todas las filas filtradas sin paginacion
-            object_list = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
-                Q(cueanexo__nom_est__icontains=search)
-            )
+            if(length != -1): #hay paginacion
+
+                # obtengo todas las filas filtradas con paginacion
+                object_list = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
+                    Q(cueanexo__nom_est__icontains=search) | Q(cueanexo=cueanexo_value_int) 
+                )[start:start+length]
+
+            else:
+
+                # obtengo todas las filas filtradas sin paginacion
+                object_list = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
+                    Q(cueanexo__nom_est__icontains=search) | Q(cueanexo=cueanexo_value_int) 
+                )
 
             # obtengo la cantidad de filas filtrdas sin paginacion
             recordsFiltered = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
-                Q(cueanexo__nom_est__icontains=search)
+                Q(cueanexo__nom_est__icontains=search) | Q(cueanexo=cueanexo_value_int) 
             ).count()
 
         else: # no hay valor de busqueda
@@ -87,17 +146,20 @@ class Search(ListView):
             }, 
             safe=False)
 
+        i = 0
 
-        # data = []  
-        # for row in object_list:
-        #     # print('parse', row.parse())
-        #     data.append(row.parse())
-       
-    
+        data = []  
+        for row in object_list:       
+            data.append(row.parse())
+            i = i + 1
+
+        print('i', i)
+        print('len', len(data))
+
         return JsonResponse({
             "draw": draw,
             "recordsTotal": recordsTotal,
             "recordsFiltered": recordsFiltered,
-            "data": object_list         
+            "data": data         
         }, 
         safe=False)
