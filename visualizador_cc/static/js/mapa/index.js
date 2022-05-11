@@ -1,14 +1,16 @@
 var map = null
-var layer_localizaciones = null
-var cluster_layer_localizaciones = null
+var cluster_layer = null
+var cluster_layer_filtered = null
 var preloader = null
 var tileLayerBase = null
-var searchLayer = null
-var dt_localizaciones = null
+var dt_localizaciones_by_search = null
 var loc_selected = null
-var marker_selected = null
+var marker_found = null
+var markersAll = []
 
 function loadFilter(){   
+
+    cluster_layer_filtered = L.markerClusterGroup();
 
     let filters = {
         sector: [
@@ -49,9 +51,7 @@ function loadFilter(){
             'LIBERTADOR GENERAL SAN MARTIN',
         ]
 
-    } 
-
-    
+    }     
 
     let filterModalEl = document.getElementById('modalFilter')
 
@@ -67,44 +67,48 @@ function loadFilter(){
         console.log('shown.bs.modal');
     })
 
+    let loadFormFilter = function(){
 
-    let i = 0
-    $('#modalFilter .container-sector').empty()
-    filters.sector.forEach(option => {  
-        i++
-        let html = $('#template-checkbox-filter').clone().html();    
-        html = html.replace('d-none', '');        
-        html = html.split('%col%').join( 'col-12' );
-        html = html.split('%type%').join( 'sector' );        
-        html = html.split('%value%').join( option );
-        html = html.split('%i%').join( i );   
-        $('#modalFilter .container-sector').append(html)
-    })
+        let i = 0
+        $('#modalFilter .container-sector').empty()
+        filters.sector.forEach(option => {  
+            i++
+            let html = $('#template-checkbox-filter').clone().html();    
+            html = html.replace('d-none', '');        
+            html = html.split('%col%').join( 'col-12' );
+            html = html.split('%type%').join( 'sector' );        
+            html = html.split('%value%').join( option );
+            html = html.split('%i%').join( i );   
+            $('#modalFilter .container-sector').append(html)
+        })
+    
+        $('#modalFilter .container-ambito').empty()
+        filters.ambito.forEach(option => {  
+            i++
+            let html = $('#template-checkbox-filter').clone().html();    
+            html = html.replace('d-none', '');
+            html = html.split('%col%').join( 'col-12' );
+            html = html.split('%type%').join( 'ambito' );     
+            html = html.split('%value%').join( option );
+            html = html.split('%i%').join( i );   
+            $('#modalFilter .container-ambito').append(html)
+        })
+    
+        $('#modalFilter .container-departamento').empty()
+        filters.departamento.forEach(option => {  
+            i++
+            let html = $('#template-checkbox-filter').clone().html();    
+            html = html.replace('d-none', '');
+            html = html.split('%col%').join( 'col-4' );
+            html = html.split('%type%').join( 'departamento' );   
+            html = html.split('%value%').join( option );
+            html = html.split('%i%').join( i );   
+            $('#modalFilter .container-departamento').append(html)
+        })
 
-    $('#modalFilter .container-ambito').empty()
-    filters.ambito.forEach(option => {  
-        i++
-        let html = $('#template-checkbox-filter').clone().html();    
-        html = html.replace('d-none', '');
-        html = html.split('%col%').join( 'col-12' );
-        html = html.split('%type%').join( 'ambito' );     
-        html = html.split('%value%').join( option );
-        html = html.split('%i%').join( i );   
-        $('#modalFilter .container-ambito').append(html)
-    })
+    }
 
-    $('#modalFilter .container-departamento').empty()
-    filters.departamento.forEach(option => {  
-        i++
-        let html = $('#template-checkbox-filter').clone().html();    
-        html = html.replace('d-none', '');
-        html = html.split('%col%').join( 'col-4' );
-        html = html.split('%type%').join( 'departamento' );   
-        html = html.split('%value%').join( option );
-        html = html.split('%i%').join( i );   
-        $('#modalFilter .container-departamento').append(html)
-    })
-
+    loadFormFilter()
 
     L.easyButton( '<i class="fa-solid fa-filter"></i>', function(){ 
         filerModal.show()
@@ -112,7 +116,19 @@ function loadFilter(){
 
     $('#modalFilter .btn-apply').click(function(){
 
-        // filerModal.hide()
+        filerModal.hide()
+
+        preloader = new jBox('Notice', {
+            content: 'Filtrando <i class="fa-solid fa-circle-notch fa-spin"></i>',
+            color: 'blue',
+            position: {
+                x: 'center',
+            },
+            closeButton: false,
+            closeOnClick: false,
+            animation: 'flip',
+            autoClose: false
+        }); 
 
         let options_sector = []
         let options_ambito = []
@@ -129,8 +145,7 @@ function loadFilter(){
         checkboxes = document.querySelectorAll('input[name=option_departamento]:checked')
         for (var i = 0; i < checkboxes.length; i++) {
             options_departamento.push(checkboxes[i].value)
-        }
-          
+        }          
 
         console.log('options_sector', options_sector);
         console.log('options_ambito', options_ambito);
@@ -155,29 +170,47 @@ function loadFilter(){
 
             console.log('/mapa/filter/ response', response);
 
-            response.json().then(function(cueanexos) {
+            response.json().then(function(points_filtered) {
 
-                console.log('/mapa/filter/ cueanexos', cueanexos);
+                console.log('/mapa/filter/ points_filtered', points_filtered);
 
+                let markersFiltered = []
+                markersAll.forEach((m) => {  
+                    if(points_filtered.includes(m.cueanexo)){                      
+                        markersFiltered.push(m);                                                    
+                    }   
+                })                    
+
+                updateLayerMarkers(markersFiltered).then(() => {
+                    preloader.close()
+                })
             })
         })
         .catch((error) => {
             console.error('mapa/filter catch', error);
             reject(e)
         })
-
-
-
-        // alert('btn-apply')
-
+        
     })
 
+    $('#modalFilter .btn-clear-filter').click(function(){
+
+        filerModal.hide()
+
+        console.log('btn-clear-filter click');
+
+        loadFormFilter()
+
+        updateLayerMarkers(markersAll).then(() => {
+
+        })
+    })
 
 }
 
 function loadSearch(){
 
-    dt_localizaciones = $("#tabla-localizaciones")   
+    dt_localizaciones_by_search = $("#tabla-localizaciones")   
     .DataTable({
         "ajax": {
             "url": "/mapa/search/",
@@ -257,14 +290,14 @@ function loadSearch(){
 
     searchModalEl.addEventListener('shown.bs.modal', function (event) {
         console.log('shown.bs.modal');
-        dt_localizaciones.draw()
-        marker_selected = null
+        dt_localizaciones_by_search.draw()
+        marker_found = null
     })
     
     map.on('moveend', function(){
         console.log('moveend !!');
-        if(marker_selected){
-           marker_selected.bounce(5)  
+        if(marker_found){
+           marker_found.bounce(5)  
         }        
     })
   
@@ -272,22 +305,22 @@ function loadSearch(){
 
         if (!$($(this).closest('tr') ).find('.dataTables_empty').length) {         
 
-            loc_selected = dt_localizaciones.row( $(this).closest('tr') ).data()
+            loc_selected = dt_localizaciones_by_search.row( $(this).closest('tr') ).data()
 
             searchModal.hide()
 
-            dt_localizaciones.search("").draw()
+            dt_localizaciones_by_search.search("").draw()
 
             console.log('loc_selected', loc_selected);
 
-            cluster_layer_localizaciones.eachLayer((l) => {   
+            cluster_layer.eachLayer((l) => {   
 
-                if(marker_selected){ return }  
+                if(marker_found){ return }  
 
                 if( l instanceof L.Marker && loc_selected.cueanexo ==  l.cueanexo){
                  
-                    marker_selected = l
-                    map.flyTo(marker_selected.getLatLng(), 18)                                  
+                    marker_found = l
+                    map.flyTo(marker_found.getLatLng(), 18)                                  
                 }                   
            })
         }
@@ -378,58 +411,53 @@ function markerOnClick(e)
 
 function loadPoints(){
 
-    return new Promise(function(resolve, reject) {
-
-        preloader = new jBox('Notice', {
-            content: 'Obteniendo puntos <i class="fa-solid fa-circle-notch fa-spin"></i>',
-            color: 'blue',
-            position: {
-                x: 'center',
-            },
-            closeButton: false,
-            closeOnClick: false,
-            animation: 'flip',
-            autoClose: false
-        });
-    
-
+    return new Promise(function(resolve, reject) {       
+        
         fetch("/mapa/points/")
         .then((response) => {
 
             console.log('/mapa/points/ response', response);
 
-            response.json().then(function(points) {
+            response.json().then(function(points) {  
 
-                console.log('/mapa/points/ points', points);
-
-                cluster_layer_localizaciones = L.markerClusterGroup();
-
-                points.features.forEach(point => {  
-
+                points.features.forEach(point => { 
                     let marker = L.marker(point.geometry.coordinates.reverse()).on('click', markerOnClick)
-
                     marker.cueanexo = point.id
-                    marker.title = 'normal'
-
-                    cluster_layer_localizaciones.addLayer(marker);
-
-                });
-
-                map.addLayer(cluster_layer_localizaciones);                    
+                    markersAll.push(marker)
+                })
             
-                preloader.close()       
-
-                resolve()    
-
-            });
+                resolve() 
+            })
 
         })   
         .catch((error) => {
             console.error('mapa/points catch', error);
             reject(e)
         })
+    })
+}
 
-    });
+function updateLayerMarkers(markers){
+
+    return new Promise(function(resolve, reject) {
+
+        if(cluster_layer){
+            map.removeLayer(cluster_layer);              
+        }
+
+        cluster_layer = L.markerClusterGroup();
+
+        markers.forEach(m => {  
+            cluster_layer.addLayer(m);
+        })
+
+        map.addLayer(cluster_layer);  
+
+        $('.badge-amount-localizacion').html(markers.length)
+
+        resolve(true)
+
+    })
 }
 
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
@@ -440,13 +468,35 @@ $(document).ready(function(){
 
     loadMap()
 
+    preloader = new jBox('Notice', {
+        content: 'Obteniendo puntos <i class="fa-solid fa-circle-notch fa-spin"></i>',
+        color: 'blue',
+        position: {
+            x: 'center',
+        },
+        closeButton: false,
+        closeOnClick: false,
+        animation: 'flip',
+        autoClose: false
+    })
+
     loadPoints().then(() => {
 
-        loadSearch()
+        updateLayerMarkers(markersAll).then(() => {
 
-        loadFilter()
+            preloader.close() 
+
+            loadSearch()
+
+            loadFilter()
+
+        })
 
     })
+
+  
+
+
 
 })
 

@@ -20,13 +20,11 @@ class Mapa(TemplateView):
     }
  
     
-class Points(generics.ListAPIView):
+class Points(generics.ListAPIView):  
   
     serializer_class = TablaLocalizacionesSerializer
     permission_class= AllowAny
-    queryset = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
-
-    
+    queryset = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')    
 
 
 class Filter(ListView):
@@ -48,31 +46,32 @@ class Filter(ListView):
         empty = True
 
         if(len(sector) > 0):
+            # print('Filter hay sector', len(sector))
             object_list = object_list.filter(cueanexo__sector__in=sector)
             empty = False
-        elif(len(ambito) > 0):
-            object_list = object_list.filter(cueanexo__ambit__in=ambito)
+
+        if(len(ambito) > 0):
+            # print('Filter hay ambito', len(ambito))
+            object_list = object_list.filter(cueanexo__ambito__in=ambito)
             empty = False
-        elif(len(departamento) > 0):
-            object_list = object_list.filter(cueanexo__departamento_in=departamento)
+
+        if(len(departamento) > 0):
+            # print('Filter hay departamento', len(departamento))
+            object_list = object_list.filter(cueanexo__departamento__in=departamento)
             empty = False
+
+        print('Filter empty', empty)
 
         if(empty): 
-            return JsonResponse({   
-                "data": []         
-            }, 
-            safe=False)
+            return JsonResponse([], safe=False)    
 
         data = []  
-        for row in object_list:       
-            data.append(row.cuenexo.cuenexo)         
+        for row in object_list:  
+            data.append(row.cueanexo.cueanexo)         
 
-        return JsonResponse({   
-            "data": data         
-        }, 
-        safe=False)
+        print('Filter data', len(data))
 
-
+        return JsonResponse(data, safe=False)        
 
 class PointData(generics.ListAPIView):
 
