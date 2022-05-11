@@ -1,7 +1,7 @@
 const matricula_comun_inicial_columns= {                             
-    id: 'ID',
+    
     cueanexo: 'CUEanexo',
-    id_fila: 'ID Fila',
+    
     escuela: 'Escuela',
     sala: 'Sala',
     turno: 'Turno',
@@ -72,21 +72,25 @@ const matricula_comun_primaria_columns = {
 
 const matricula_comun_secundaria_columns = {
     cueanexo: 'CUEanexo',
+    nom_est: 'Nombre establecimiento',
+    nro_est: 'Nro establecimiento',
+    orientacion: 'Orientacion',
+    anio_est: 'Año/Grado',
+    nom_div: 'Nombre divicion',
+    tipo_div: 'Tipo divicion',
     turno: 'Turno',
+    
     total: 'Total',
     total_var: 'Total varones',
     nivel: 'Nivel',
     total_rep: 'Total repitentes',
     var_rep: 'Varones repitentes',
-    anio_est: 'Año establecimiento',
-    nom_div: 'Nombre divicion',
-    tipo_div: 'Tipo divicion',
-    orientacion: 'Orientacion',
+    
+    
     denom_pe: 'Denominacion plan de estudio',
     total_disc: 'Total discapacidad',
     var_disc: 'Varones discapacidad',
-    nom_est: 'Nombre establecimiento',
-    nro_est: 'Nro establecimiento',
+    
     fecha_creac_establec: 'Fecha creacion establecimiento',
     region: 'Region',
     sector: 'Sector',
@@ -144,6 +148,8 @@ const matricula_comun_snu_columns = {
 
 const matricula_adultos_primaria_columns = {
     cueanexo: 'CUEanexo',
+    nom_est: 'Nombre establecimiento',
+    nro_est: 'Nro establecimiento',
     turno: 'Turno',
     tipo_secc: 'Tipo sección',
     nivel: 'Nivel',
@@ -151,8 +157,7 @@ const matricula_adultos_primaria_columns = {
     ciclo_etapa: 'Ciclo etapa',
     total: 'Total',
     total_var: 'Total varones',
-    nom_est: 'Nombre establecimiento',
-    nro_est: 'Nro establecimiento',
+    
     fecha_creac_establec: 'Fecha creacion establecimiento',
     region: 'Region',
     sector: 'Sector',
@@ -173,6 +178,8 @@ const matricula_adultos_primaria_columns = {
 
 const matricula_adultos_secundaria_columns = {
     cueanexo: 'CUEanexo',
+    nom_est: 'Nombre establecimiento',
+    nro_est: 'Nro establecimiento',
     turno: 'Turno',
     nivel: 'Nivel',
     nro_plan_est: 'Nro plan de estudio',
@@ -184,8 +191,7 @@ const matricula_adultos_secundaria_columns = {
     total_var: 'Total varones',
     total_rep: 'Total repitentes',
     var_rep: 'Varones repitentes',
-    nom_est: 'Nombre establecimiento',
-    nro_est: 'Nro establecimiento',
+    
     fecha_creac_establec: 'Fecha creacion establecimiento',
     region: 'Region',
     sector: 'Sector',
@@ -206,6 +212,8 @@ const matricula_adultos_secundaria_columns = {
 
 const matricula_especial_primaria_columns = {
     cueanexo: 'CUEanexo',
+    nom_est: 'Nombre establecimiento',
+    nro_est: 'Nro establecimiento',
     turno: 'Turno',
     tipo_secc: 'Tipo seccion',
     total: 'Total',
@@ -213,8 +221,7 @@ const matricula_especial_primaria_columns = {
     nom_secc: 'Nombre seccion',
     total_rep: 'Total repitentes',
     var_rep: 'Varones repitentes',
-    nom_est: 'Nombre establecimiento',
-    nro_est: 'Nro establecimiento',
+    
     fecha_creac_establec: 'Fecha creacion establecimiento',
     region: 'Region',
     sector: 'Sector',

@@ -34,44 +34,26 @@
         <div class="col-3">
             <form>
                 <div class="form-floating">
-                    <select class="form-select" id="matricula_input" aria-label="Mátricula">
+                    <select class="form-select" id="nivel_input" aria-label="Nivel">
                         <option value="none" selected>
-                            Seleccione mátricula
+                            Seleccione nivel
                         </option>
-                        <option value="matricula_comun_inicial">
-                            Mátricula comun incial
+                        <option value="trayectoria_comun_primaria">
+                            Común Primaria
                         </option>
-                        <option value="matricula_comun_primaria">
-                            Mátricula comun primaria
-                        </option>
-                        <option value="matricula_comun_secundaria">
-                            Mátricula comun secundaria
-                        </option>
-                        <option value="matricula_comun_snu">
-                            Mátricula comun snu
-                        </option>
-                        <option value="matricula_adultos_primaria">
-                            Mátricula adultos primaria
-                        </option>
-                        <option value="matricula_adultos_secundaria">
-                            Mátricula adultos secundaria
-                        </option>
-                        <option value="matricula_especial_inicial">
-                            Mátricula especial inicial
-                        </option>
-                        <option value="matricula_especial_primaria">
-                            Mátricula especial primaria
+                        <option value="trayectoria_comun_secundaria">
+                            Común Secundaria
                         </option>
                     </select>
-                    <label for="matricula_input">Mátricula</label>
+                    <label for="nivel_input">Nivel</label>
                 </div>
             </form>
         </div>
     </div>
     <div class="row">
         <div class="col-12 pt-3">
-            <div class="alert alert-primary alert-msg-none-selection"  role="alert">Seleccione ra y matricula</div>
-            <table id="tabla-matricula"
+            <div class="alert alert-primary alert-msg-none-selection"  role="alert">Seleccione RA y nievel</div>
+            <table id="tabla-trayectoria"
                    class="table table-striped table-striped "
                    style="width:100%">
             </table>
@@ -90,7 +72,4 @@
         }
     
     </script>
-    <script defer src="{% static 'js/reports/columns.js' %}"></script>
-
-    <script defer src="{% static 'js/reports/ra_matricula.js' %}"></script>
 {% endblock %}
