@@ -41,23 +41,23 @@ class Filter(ListView):
         print('Filter.post ambito', ambito)
         print('Filter.post departamento', departamento)
 
-        object_list = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
+        object_list = Padron.objects.all().filter(estado_loc='Activo')
 
         empty = True
 
         if(len(sector) > 0):
             # print('Filter hay sector', len(sector))
-            object_list = object_list.filter(cueanexo__sector__in=sector)
+            object_list = object_list.filter(sector__in=sector)
             empty = False
 
         if(len(ambito) > 0):
             # print('Filter hay ambito', len(ambito))
-            object_list = object_list.filter(cueanexo__ambito__in=ambito)
+            object_list = object_list.filter(ambito__in=ambito)
             empty = False
 
         if(len(departamento) > 0):
             # print('Filter hay departamento', len(departamento))
-            object_list = object_list.filter(cueanexo__departamento__in=departamento)
+            object_list = object_list.filter(departamento__in=departamento)
             empty = False
 
         print('Filter empty', empty)
@@ -67,7 +67,7 @@ class Filter(ListView):
 
         data = []  
         for row in object_list:  
-            data.append(row.cueanexo.cueanexo)         
+            data.append(row.cueanexo)         
 
         print('Filter data', len(data))
 

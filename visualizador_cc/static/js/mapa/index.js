@@ -1,16 +1,15 @@
 var map = null
 var cluster_layer = null
-var cluster_layer_filtered = null
 var preloader = null
 var tileLayerBase = null
 var dt_localizaciones_by_search = null
 var loc_selected = null
 var marker_found = null
 var markersAll = []
+var filter_mode = false
 
 function loadFilter(){   
-
-    cluster_layer_filtered = L.markerClusterGroup();
+ 
 
     let filters = {
         sector: [
@@ -108,6 +107,10 @@ function loadFilter(){
 
     }
 
+    let updateFilterCounter = function(value){    
+        $('.badge-filter').html(value)
+    }
+
     loadFormFilter()
 
     L.easyButton( '<i class="fa-solid fa-filter"></i>', function(){ 
@@ -151,12 +154,14 @@ function loadFilter(){
         console.log('options_ambito', options_ambito);
         console.log('options_departamento', options_departamento);
 
-        let data = new FormData();
+        let data = new FormData();   
         data.append( "filter", JSON.stringify( {
             sector: options_sector,
             ambito: options_ambito,
             departamento: options_departamento
         }));  
+
+        updateFilterCounter(options_sector.length+options_ambito.length+options_departamento.length)        
         
         let headers = new Headers();
         headers.append('X-CSRFToken', csrftoken);
@@ -174,12 +179,12 @@ function loadFilter(){
 
                 console.log('/mapa/filter/ points_filtered', points_filtered);
 
-                let markersFiltered = []
-                markersAll.forEach((m) => {  
-                    if(points_filtered.includes(m.cueanexo)){                      
-                        markersFiltered.push(m);                                                    
-                    }   
-                })                    
+                let markersFiltered = {}
+                points_filtered.forEach((cueanexo) => {  
+                    markersFiltered[cueanexo] = markersAll[cueanexo]
+                })     
+               
+                filter_mode = true
 
                 updateLayerMarkers(markersFiltered).then(() => {
                     preloader.close()
@@ -200,6 +205,9 @@ function loadFilter(){
         console.log('btn-clear-filter click');
 
         loadFormFilter()
+
+        filter_mode = false
+        updateFilterCounter(0)
 
         updateLayerMarkers(markersAll).then(() => {
 
@@ -321,7 +329,15 @@ function loadSearch(){
                  
                     marker_found = l
                     map.flyTo(marker_found.getLatLng(), 18)                                  
-                }                   
+                }   
+                
+                if(!marker_found){
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Establecimiento no encontrado.',       
+                        text: 'Verifique los filtros aplicados'                                   
+                    })
+                }
            })
         }
     })
@@ -423,7 +439,7 @@ function loadPoints(){
                 points.features.forEach(point => { 
                     let marker = L.marker(point.geometry.coordinates.reverse()).on('click', markerOnClick)
                     marker.cueanexo = point.id
-                    markersAll.push(marker)
+                    markersAll[marker.cueanexo] = marker
                 })
             
                 resolve() 
@@ -447,13 +463,19 @@ function updateLayerMarkers(markers){
 
         cluster_layer = L.markerClusterGroup();
 
-        markers.forEach(m => {  
-            cluster_layer.addLayer(m);
-        })
+        let i = 0
+        for (const cueanexo in markers) {
+
+            if (markers[cueanexo]) {
+                cluster_layer.addLayer(markers[cueanexo])  
+                i++    
+            }                
+                 
+        }
 
         map.addLayer(cluster_layer);  
 
-        $('.badge-amount-localizacion').html(markers.length)
+        $('.badge-amount-localizacion').html(i)
 
         resolve(true)
 
