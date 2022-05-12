@@ -321,24 +321,29 @@ function loadSearch(){
 
             console.log('loc_selected', loc_selected);
 
-            cluster_layer.eachLayer((l) => {   
+            cluster_layer.eachLayer((l) => {                 
+
+                console.log('eachLayer', l);
 
                 if(marker_found){ return }  
 
                 if( l instanceof L.Marker && loc_selected.cueanexo ==  l.cueanexo){
                  
                     marker_found = l
-                    map.flyTo(marker_found.getLatLng(), 18)                                  
-                }   
-                
-                if(!marker_found){
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Establecimiento no encontrado.',       
-                        text: 'Verifique los filtros aplicados'                                   
-                    })
-                }
+                    map.flyTo(marker_found.getLatLng(), 18)       
+                    
+                    console.log('marker_found', marker_found);
+                } 
+               
            })
+
+           if(!marker_found){
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Establecimiento no encontrado.',       
+                    text: 'Verifique los filtros aplicados'                                   
+                })
+            }
         }
     })
 
