@@ -26,5 +26,5 @@ python3 -m venv .venv
 source .venv/bin/activate
 https://code.visualstudio.com/docs/python/tutorial-django
 
-alberto
-456258alb
+admin
+admin

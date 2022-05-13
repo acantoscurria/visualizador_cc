@@ -70,10 +70,10 @@ body.dark #footer{
   height: auto !important;
 }
 
-#map {
+/* #map {
   width: 100vw;
   height: 75vh;
-}
+} */
 
 .leaflet-popup-content-wrapper{
   width: 300px;
