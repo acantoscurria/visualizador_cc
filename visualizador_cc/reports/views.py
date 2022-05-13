@@ -7,7 +7,7 @@ from visualizador_cc.users.models import User
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
-from visualizador_cc.reports.models import RepMatricAborigen, RepMatricComunInicial, RepMatricComunPrimaria, RepMatricComunSecundaria, RepMatricComunSnu, RepMatricAdultosPrimaria, RepMatricAdultosSecundaria, RepMatricEspecialInicial, RepMatricEspecialPrimaria, RepTrayectoriaPrimaria
+from visualizador_cc.reports.models import RepMatricAborigen, RepMatricComunInicial, RepMatricComunPrimaria, RepMatricComunSecundaria, RepMatricComunSnu, RepMatricAdultosPrimaria, RepMatricAdultosSecundaria, RepMatricEspecialInicial, RepMatricEspecialPrimaria, RepTrayectoriaPrimaria, RepDocenteActividad
 
 # Create your views here.
 
@@ -593,3 +593,92 @@ class ReportTrayectoriaListView(ListView):
             "error_msg": "",
         }, 
         safe=False) 
+        
+class ReportDocenteActividadIndexView (View, LoginRequiredMixin):
+    def get(self, request):
+        context = {"title": "Reporte Docentes en Actividad"}
+        return render(request, "reports/ra_docentes_actividad.html", context)
+
+class ReportDocenteActividadListView (ListView):
+    def post(self, request, *args, **kwargs):
+        dt=request.POST
+        draw = int(dt.get("draw"))
+        start = int(dt.get("start"))
+        length = int(dt.get("length"))
+        
+        print('start', start)
+        print('length', length)
+
+        recordsTotal = 0
+        data = []
+        recordsFiltered = 0
+
+        search = dt.get("search[value]")
+        ra_selected = dt.get("ra_selected")
+        
+        print('control_type_selected', ra_selected)
+        
+        if(ra_selected == "none"):
+            return JsonResponse({
+                "draw": draw,
+                "recordsTotal": 0,
+                "recordsFiltered": 0,
+                "data": [],
+                "error_msg": "",
+            }, 
+            safe=False)
+        else:
+            recordsTotal = RepDocenteActividad.objects.using(ra_selected).all().count()
+
+            if search: # si hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas filtradas y paginado
+                    object_list = RepDocenteActividad.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )[start:start + length]
+
+                else:
+
+                    # obtengo todas las filas filtradas sin paginacion
+                    object_list = RepDocenteActividad.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )
+
+                # obtengo la cantidad de filas filtrdas sin paginacion
+                recordsFiltered = RepDocenteActividad.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+
+            else: # no hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas con paginacion
+                    object_list = RepDocenteActividad.objects.using(ra_selected).all()[start:start + length]
+
+                else:
+
+                    # obtengo todas las filas sin paginacion
+                    object_list = RepDocenteActividad.objects.using(ra_selected).all()
+
+
+                # obtengo la cantidad de filas sin paginacion
+                recordsFiltered = RepDocenteActividad.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+        
+        data = []  
+        for row in object_list:
+            # print('parse', row.parse())
+            data.append(row.parse())
+
+        return JsonResponse({
+            "draw": draw,
+            "recordsTotal": recordsTotal,
+            "recordsFiltered": recordsFiltered,
+            "data": data,
+            "error_msg": "",
+        }, 
+        safe=False)

@@ -8,7 +8,9 @@ from visualizador_cc.reports.views import (
     ReportMatricAborigenIndexView,
     ReportMatricAborigenListView,
     ReportTrayectoriaIndexView,
-    ReportTrayectoriaListView
+    ReportTrayectoriaListView,
+    ReportDocenteActividadIndexView,
+    ReportDocenteActividadListView
 )
 
 app_name = "reports"
@@ -41,11 +43,21 @@ urlpatterns = [
     path(
         "ReportTrayectoriaIndexView",
         ReportTrayectoriaIndexView.as_view(),
-        name="ra_trayectoria"
+        name="ra_trayectoria_index"
     ),
     path(
         "ra_trayectoria_list/",
         ReportTrayectoriaListView.as_view(),
         name="ra_trayectoria_list"
+    ),
+    path(
+        "ReportDocenteActividadIndexView",
+        ReportDocenteActividadIndexView.as_view(),
+        name="ra_docentes_actividad_index"
+    ),
+    path(
+        "ra_docentes_actividad_list/",
+        ReportDocenteActividadListView.as_view(),
+        name="ra_docentes_actividad_list"
     )
 ]

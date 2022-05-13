@@ -52,11 +52,23 @@
     </div>
     <div class="row">
         <div class="col-12 pt-3">
-            <div class="alert alert-primary alert-msg-none-selection"  role="alert">Seleccione RA y nievel</div>
+            <div class="alert alert-msg-none-selection text-center" style="background-color: #D7BEB8"  role="alert">Seleccione RA y nievel</div>
             <table id="tabla-trayectoria"
                    class="table table-striped table-striped "
                    style="width:100%">
             </table>
+        </div>
+    </div>
+
+    <div id="preloader" class="d-none" >
+        <div class='row justify-content-center '>
+          <div class='col-auto'>
+            <i class='fa-solid fa-cog fa-spin fa-xl'></i>
+          </div>
+          
+          <div class='col-auto'>
+            Por favor espere...
+          </div>
         </div>
     </div>
 {% endblock %}
@@ -72,4 +84,5 @@
         }
     
     </script>
+    <script defer src="{% static 'js/reports/ra_trayectoria.js' %}"></script>
 {% endblock %}

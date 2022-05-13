@@ -61,7 +61,7 @@ var columns = {
     }
   }
 
-function getColumns(ra, matricula) {
+function getColumns(ra, nivel) {
     let cols = [];
   
     let lista_de_valores = columns[ra][nivel];
