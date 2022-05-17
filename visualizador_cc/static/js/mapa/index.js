@@ -8,8 +8,7 @@ var marker_found = null
 var markersAll = []
 var filter_mode = false
 
-function loadFilter(){   
- 
+function loadFilter(){    
 
     let filters = {
         sector: [
@@ -486,11 +485,6 @@ function updateLayerMarkers(markers){
     })
 }
 
-const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-$(document).ready(function(){
-
-
 function leafletDraw() {
 
 
@@ -545,7 +539,7 @@ function leafletDraw() {
 
 }
 
-
+const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
 $(document).ready(function () {
 
@@ -581,13 +575,4 @@ $(document).ready(function () {
 
     })
 
-  
-
 })
-
-
-
-
-
-
-

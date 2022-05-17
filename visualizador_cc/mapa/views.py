@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, HttpResponse
-from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer, PadronOfertaSerializer, TablaLocalizacionesSearchSerializer
+from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer
 from . models import TablaLocalizaciones, Padron
 from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer,PadronSerializer
 from . models import TablaLocalizaciones,Padron
