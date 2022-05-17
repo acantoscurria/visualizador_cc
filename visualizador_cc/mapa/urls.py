@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Points,PointData,Mapa, Search,SpatialQuery
+from .views import Points,PointData,Mapa, Search,SpatialQuery,Filter
 
 app_name = "mapa"
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('point_data/', PointData.as_view(),name='point_data'),
     path('search/', Search.as_view(), name='search'),
     path('spatialquery/', SpatialQuery.as_view(), name='spatialquery'),
+    path('filter/', Filter.as_view(),name='filter'),
 ]

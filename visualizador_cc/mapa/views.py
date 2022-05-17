@@ -2,6 +2,8 @@
 from django.shortcuts import render, HttpResponse
 from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer, PadronOfertaSerializer, TablaLocalizacionesSearchSerializer
 from . models import TablaLocalizaciones, Padron
+from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer,PadronSerializer
+from . models import TablaLocalizaciones,Padron
 from .serializers import *
 from rest_framework import generics,views,status
 from rest_framework.permissions import AllowAny
@@ -9,16 +11,10 @@ from django.views.generic import TemplateView
 from rest_framework.response import Response
 from django.db.models import Q
 from django.contrib.gis.geos import Point
+from django.views.generic.list import ListView
+from django.http import JsonResponse
+import json
 
-# Create your views here.
-
-# def nuevo_mapa(request):
-#       capa_unica = serialize('geojson', [*TablaLocalizaciones.objects.all(),*Padron.objects.all()],
-#       geometry_field='geom',use_natural_foreign_keys=True, use_natural_primary_keys=True)
-#       capa_unica = serialize('geojson', TablaLocalizaciones.objects.all(),
-#       geometry_field='geom')
-
-#       return HttpResponse(capa_unica.data)
 
 
 class Mapa(TemplateView):
@@ -27,42 +23,65 @@ class Mapa(TemplateView):
     extra_context = {
         'title': 'Mapa'
     }
-
-
-class Points(generics.ListAPIView):
-
+ 
+    
+class Points(generics.ListAPIView):  
+  
     serializer_class = TablaLocalizacionesSerializer
-    permission_class = AllowAny
-    queryset = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
+    permission_class= AllowAny
+    queryset = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')    
 
 
-class Search(generics.ListAPIView):
+class Filter(ListView):
 
-    serializer_class = TablaLocalizacionesSearchSerializer
-    permission_class = AllowAny
+    def post(self, request, *args, **kwargs):   
 
-    def get_queryset(self):
+        filter = json.loads(request.POST.get('filter'))
 
-        q = self.request.query_params.get('q')
-        print('Points q', q)
+        sector = filter['sector']
+        ambito = filter['ambito']
+        departamento = filter['departamento']
 
-        # q = 6545646, pepe
+        print('Filter.post sector', sector)
+        print('Filter.post ambito', ambito)
+        print('Filter.post departamento', departamento)
 
-        if q:
-            # return TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo' | cueanexo__nom_est_ilike=)
+        object_list = Padron.objects.all().filter(estado_loc='Activo')
 
-            return TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
-                Q(nom_est__icontains=q) | Q(cueanexo__icontains=q)
-            )[:5]
+        empty = True
 
-        else:
-            return []
+        if(len(sector) > 0):
+            # print('Filter hay sector', len(sector))
+            object_list = object_list.filter(sector__in=sector)
+            empty = False
 
+        if(len(ambito) > 0):
+            # print('Filter hay ambito', len(ambito))
+            object_list = object_list.filter(ambito__in=ambito)
+            empty = False
+
+        if(len(departamento) > 0):
+            # print('Filter hay departamento', len(departamento))
+            object_list = object_list.filter(departamento__in=departamento)
+            empty = False
+
+        print('Filter empty', empty)
+
+        if(empty): 
+            return JsonResponse([], safe=False)    
+
+        data = []  
+        for row in object_list:  
+            data.append(row.cueanexo)         
+
+        print('Filter data', len(data))
+
+        return JsonResponse(data, safe=False)        
 
 class PointData(generics.ListAPIView):
 
-    serializer_class = PadronOfertaSerializer
-    permission_class = AllowAny
+    serializer_class = PadronSerializer
+    permission_class= AllowAny
 
     def get_queryset(self):
 
@@ -94,3 +113,77 @@ class SpatialQuery(generics.GenericAPIView):
         return Response({},
         status=status.HTTP_200_OK)
 
+class Search(ListView):
+
+    def post(self, request, *args, **kwargs):
+
+        dt = request.POST
+        draw = int(dt.get("draw"))
+        start = int(dt.get("start"))
+        length = int(dt.get("length"))
+        search = dt.get("search[value]")
+
+      
+        print('start', start)
+        print('length', length)     
+        print('search', search)   
+
+        cueanexo_value_int = 0
+        if(search.isnumeric()):
+            cueanexo_value_int = int(search)
+
+        recordsTotal = 0
+        data = []
+        recordsFiltered = 0
+                
+       
+        recordsTotal = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').count()
+
+        if search: # si hay valor de busqueda
+
+            if(length != -1): #hay paginacion
+
+                # obtengo todas las filas filtradas con paginacion
+                object_list = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
+                    Q(cueanexo__nom_est__icontains=search) | Q(cueanexo=cueanexo_value_int) 
+                )[start:start+length]
+
+            else:
+
+                # obtengo todas las filas filtradas sin paginacion
+                object_list = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
+                    Q(cueanexo__nom_est__icontains=search) | Q(cueanexo=cueanexo_value_int) 
+                )
+
+            # obtengo la cantidad de filas filtrdas sin paginacion
+            recordsFiltered = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo').filter(
+                Q(cueanexo__nom_est__icontains=search) | Q(cueanexo=cueanexo_value_int) 
+            ).count()
+
+        else: # no hay valor de busqueda
+
+            return JsonResponse({
+                "draw": draw,
+                "recordsTotal": recordsTotal,
+                "recordsFiltered": recordsFiltered,
+                "data": []               
+            }, 
+            safe=False)
+
+        i = 0
+
+        data = []  
+        for row in object_list:       
+            data.append(row.parse())
+            i = i + 1
+
+        print('i', i)
+        print('len', len(data))
+
+        return JsonResponse({
+            "draw": draw,
+            "recordsTotal": recordsTotal,
+            "recordsFiltered": recordsFiltered,
+            "data": data         
+        }, 
+        safe=False)
