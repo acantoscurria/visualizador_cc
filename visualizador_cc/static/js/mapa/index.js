@@ -474,7 +474,7 @@ function updateLayerMarkers(markers){
                 cluster_layer.addLayer(markers[cueanexo])  
                 i++    
             }                
-                 
+
         }
 
         map.addLayer(cluster_layer);  
@@ -548,6 +548,7 @@ function leafletDraw() {
 
 
 $(document).ready(function () {
+
     console.log('document ready');
 
     loadMap()
