@@ -35,6 +35,10 @@ class TablaLocalizacionesSearchSerializer(geoSerilizer.GeoFeatureModelSerializer
     def unformat_geojson(self, feature):
         attrs = {     
             "nom_est": feature["properties"]   
-                   
+
         }
         return attrs
+
+
+class SpatialQuerySerilizer():
+    pass

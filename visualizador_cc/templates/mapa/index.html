@@ -11,7 +11,8 @@
     <!-- clustering de marcadores -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
-
+    <!-- herramienta de dibujo     -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
 
     <!-- herramienta de búsqueda -->
     <link rel="stylesheet" href="{% static 'mapagis/css/leaflet-search.css' %}">
@@ -42,7 +43,8 @@
 
     <!-- herramienta de búsqueda -->
     <script src="{% static 'mapagis/js/leaflet-search.js' %}"></script>
-
+    <!-- herramienta de dibujo -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 
 
 {% endblock javascript %}
@@ -74,6 +76,7 @@
         <div class="col-12 pt-3">
             <div id="map"></div>
         </div>
+        <div></div>
     </div>
 
 
