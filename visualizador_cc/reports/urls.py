@@ -1,17 +1,7 @@
 from unicodedata import name
 from django.urls import path
 
-from visualizador_cc.reports.views import (
-    ReportsMatricIndexView,
-    ReportsMatricListView,
-    ReportLocalizacionesIndexView,
-    ReportMatricAborigenIndexView,
-    ReportMatricAborigenListView,
-    ReportTrayectoriaIndexView,
-    ReportTrayectoriaListView,
-    ReportDocenteActividadIndexView,
-    ReportDocenteActividadListView
-)
+from visualizador_cc.reports.views import *
 
 app_name = "reports"
 urlpatterns = [
@@ -59,5 +49,35 @@ urlpatterns = [
         "ra_docentes_actividad_list/",
         ReportDocenteActividadListView.as_view(),
         name="ra_docentes_actividad_list"
+    ),
+    path(
+        "ReportCargosIndexView",
+        ReportCargosIndexView.as_view(),
+        name="ra_cargos_index"
+    ),
+    path(
+        "ra_cargos_list/",
+        ReportCargosListView.as_view(),
+        name="ra_cargos_list"
+    ),
+    path(
+        "ReportSeccionesIndexView",
+        ReportSeccionesIndexView.as_view(),
+        name="ra_secciones_index"
+    ),
+    path(
+        "ra_secciones_list/",
+        ReportSeccionesListView.as_view(),
+        name="ra_secciones_list"
+    ),
+    path(
+        "ReportHorasIndexView",
+        ReportHorasIndexView.as_view(),
+        name="ra_horas_catedra_index"
+    ),
+    path(
+        "ra_horas_catedra_list/",
+        ReportHorasListView.as_view(),
+        name="ra_horas_catedra_list"
     )
 ]

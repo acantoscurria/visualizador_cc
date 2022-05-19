@@ -1145,3 +1145,1993 @@ class RepDocenteActividad(models.Model):
             'per_funcionamiento': self.per_funcionamiento,
             'email_loc': self.email_loc,
         }
+        
+class RepCargosComunInicialMaternal(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_comun_inicial_maternal'
+        
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepCargosComunInicialJardin(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_comun_inicial_jardin'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepCargosComunPrimaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_comun_primaria'
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepCargosComunSecundaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_comun_secundaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepCargosComunSnu(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_comun_snu'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepCargosComunArtistica(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_comun_artistica'
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+
+class RepCargosComunServiciosComplementarios(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_comun_servicios_complementarios'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepCargosAdultosPrimaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_adultos_primaria'
+        
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepCargosAdultosSecundaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_adultos_secundaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepCargosAdultosFormProf(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_adultos_form_prof'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepCargosEspecial(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_cargos_especial'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepSeccionesComun(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    nivel = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    varones = models.CharField(max_length=255, blank=True, null=True)
+    independientes_multiplan = models.CharField(max_length=255, blank=True, null=True)
+    multiples = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_secciones_comun'
+
+    def parse (self):
+        return {
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'nivel': self.nivel,
+            'total': self.total,
+            'varones': self.varones,
+            'independientes_multiplan': self.independientes_multiplan,
+            'multiples': self.multiples,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepSeccionesAdultos(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    nivel = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    varones = models.CharField(max_length=255, blank=True, null=True)
+    independientes_multiplan = models.CharField(max_length=255, blank=True, null=True)
+    multiples = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_secciones_adultos'
+
+    def parse (self):
+        return {
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'nivel': self.nivel,
+            'total': self.total,
+            'varones': self.varones,
+            'independientes_multiplan': self.independientes_multiplan,
+            'multiples': self.multiples,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepSeccionesFormProf(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    nivel = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    varones = models.CharField(max_length=255, blank=True, null=True)
+    independientes_multiplan = models.CharField(max_length=255, blank=True, null=True)
+    multiples = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_secciones_form_prof'
+
+    def parse (self):
+        return {
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'nivel': self.nivel,
+            'total': self.total,
+            'varones': self.varones,
+            'independientes_multiplan': self.independientes_multiplan,
+            'multiples': self.multiples,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepHorasInicialMaternal(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_inicial_maternal'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+
+class RepHorasInicialJardin(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_inicial_jardin'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+
+class RepHorasComunPrimaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_comun_primaria'
+        
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepHorasComunSecundaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_comun_secundaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepHorasComunSnu(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_comun_snu'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepHorasComunServiciosComplementarios(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_comun_servicios_complementarios'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepHorasAdultosPrimaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_adultos_primaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepHorasAdultosSecundaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_adultos_secundaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepHorasAdultosFormProf(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_adultos_secundaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepHorasEspecial(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    cargos = models.CharField(max_length=255, blank=True, null=True)
+    total = models.CharField(max_length=255, blank=True, null=True)
+    titular = models.CharField(max_length=255, blank=True, null=True)
+    interinos = models.CharField(max_length=255, blank=True, null=True)
+    sin_cubrir = models.CharField(max_length=255, blank=True, null=True)
+    contratados = models.CharField(max_length=255, blank=True, null=True)
+    planes_programas = models.CharField(max_length=255, blank=True, null=True)
+    itinerantes = models.CharField(max_length=255, blank=True, null=True)
+    pasantias = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_horas_adultos_secundaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'cargos': self.cargos,
+            'total': self.total,
+            'titular': self.titular,
+            'interinos': self.interinos,
+            'sin_cubrir': self.sin_cubrir,
+            'contratados': self.contratados,
+            'planes_programas': self.planes_programas,
+            'itinerantes': self.itinerantes,
+            'pasantias': self.pasantias,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
