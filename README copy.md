@@ -20,6 +20,18 @@ docker-compose -f local.yml run --rm django python manage.py inspectdb con_matri
 docker-compose -f local.yml run --rm django python manage.py shell_plus
 
 
+
+docker compose -f production.yml run --rm django python manage.py collectstatic
+
+docker compose -f production.yml run --rm django python manage.py collectstatic --clear
+
+docker compose -f production.yml run --rm django python manage.py collectstatic --noinput --clear
+
+docker compose -f production.yml run --rm django python manage.py showmigrations
+
+docker compose -f production.yml run --rm django python manage.py makemigrations
+
+
 # Linux
 sudo apt-get install python3-venv    # If needed
 python3 -m venv .venv
