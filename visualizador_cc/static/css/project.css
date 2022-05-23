@@ -408,3 +408,7 @@ div.dataTables_processing {
   margin-top: 100px !important;
   background-color: #D7BEB8;
 }
+
+color-alert {
+  background-color: #D7BEB8
+}
