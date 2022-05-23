@@ -34,44 +34,52 @@
         <div class="col-3">
             <form>
                 <div class="form-floating">
-                    <select class="form-select" id="matricula_input" aria-label="Mátricula">
+                    <select class="form-select" id="nivel_oferta_input" aria-label="Nivel y Oferta">
                         <option value="none" selected>
-                            Seleccione mátricula
+                            Seleccione nivel y oferta
                         </option>
-                        <option value="matricula_comun_inicial">
-                            Mátricula comun incial
+                        <option value="comun_inicial_maternal">
+                            Comun Inicial Maternal
                         </option>
-                        <option value="matricula_comun_primaria">
-                            Mátricula comun primaria
+                        <option value="comun_inicial_jardin">
+                            Comun Inicial Jardin
                         </option>
-                        <option value="matricula_comun_secundaria">
-                            Mátricula comun secundaria
+                        <option value="comun_primaria">
+                            Comun Primaria
                         </option>
-                        <option value="matricula_comun_snu">
-                            Mátricula comun snu
+                        <option value="comun_secundaria">
+                            Comun Secundaria
                         </option>
-                        <option value="matricula_adultos_primaria">
-                            Mátricula adultos primaria
+                        <option value="comun_snu">
+                            Comun SNU
                         </option>
-                        <option value="matricula_adultos_secundaria">
-                            Mátricula adultos secundaria
+                        
+                        <option value="comun_servicios_complementarios">
+                            Comun Servicios Complementarios
                         </option>
-                        <option value="matricula_especial_inicial">
-                            Mátricula especial inicial
+                        <option value="adultos_primaria">
+                            Adultos Primaria
                         </option>
-                        <option value="matricula_especial_primaria">
-                            Mátricula especial primaria
+                        <option value="adultos_secundaria">
+                            Adultos Secundaria
                         </option>
+                        <option value="adultos_form_prof">
+                            Adultos Formacion Profecional
+                        </option>
+                        <option value="especial">
+                            Especial
+                        </option>
+                        
                     </select>
-                    <label for="matricula_input">Mátricula</label>
+                    <label for="matricula_input">Nivel y Oferta</label>
                 </div>
             </form>
         </div>
     </div>
     <div class="row">
         <div class="col-12 pt-3">
-            <div class="alert alert-primary alert-msg-none-selection"  role="alert">Seleccione ra y matricula</div>
-            <table id="tabla-matricula"
+            <div class="alert alert-primary alert-msg-none-selection"  role="alert">Seleccione ra y nivel/oferta</div>
+            <table id="tabla-nivel_oferta"
                    class="table table-striped table-striped "
                    style="width:100%">
             </table>
@@ -90,7 +98,7 @@
         }
     
     </script>
-    <script defer src="{% static 'js/reports/columns.js' %}"></script>
+    <script defer src="{% static 'js/reports/ra_horas_catedra.js' %}"></script>
 
-    <script defer src="{% static 'js/reports/ra_matricula.js' %}"></script>
+    
 {% endblock %}

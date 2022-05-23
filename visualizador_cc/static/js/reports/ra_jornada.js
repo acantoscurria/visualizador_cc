@@ -1,123 +1,52 @@
 var eb = function (c) {
-  let s = "";
-  for (let i = 0; i < c; i++) {
-    s += "&nbsp";
-  }
-  return s;
+    let s = "";
+    for (let i = 0; i < c; i++) {
+      s += "&nbsp";
+    }
+    return s;
 };
+
+const columns_jornada = {
+    cueanexo: 'CUEanexo',
+    oferta: 'Oferta',
+    escuela: 'Escuela',
+    total_je: 'Total',
+    horas_sem_jc: 'Horas semana Jornada completa',
+    horas_sem_je: 'Horas semana Jornada extendida',
+    cant_alum_jc: 'Cantidad alumnos jornada completa',
+    con_disc_je: 'Con discapacidad jornada ext',
+    con_disc_jc: 'Con discapacidad jornada completa',
+    nom_est: 'Nombre establecimiento',
+    jornada: 'Jornada',
+    ambito: 'Ambito',
+    sector: 'Sector',
+    region_loc: 'Region localizacion',
+    ref_loc: 'Referencia localizacion',
+    calle: 'Calle',
+    numero: 'Numero',
+    localidad: 'Localidad',
+    departamento: 'Departamento',
+    estado_loc: 'Estado localizacion',
+    est_oferta: 'Estado oferta',
+    estado_est: 'EStado establecimiento'
+}
 
 var columns = {
   none: {
     none: [{}],
   },
   ra2021: {
-    none: [{}],
-    matricula_especial_inicial: {
-      cueanexo: "CUEanexo",
-      escuela: "Escuela",
-      sala: "Sala",
-      turno: "Turno",
-      tipo_secc: "Tipo de Seccion",
-      total: "Total",
-      total_var: "Total varones",
-      nom_secc: "Nombre de sección",
-      cinco_anios: "5 años",
-      seis_anios: "6 años",
-      siete_anios: "7 años",
-      cero_a_dos_anios: "8 años",
-      tres_anios: "3 años",
-      cuatro_anios: "4 años",
-      ocho_o_mas_anios: "8+ años",
-      nom_est: "Nombre establecimiento",
-      nro_est: "Número establecimiento",
-      anio_creac_establec: "Año de creacion est.",
-      fecha_creac_establec: "Fecha de creacion est",
-      region: "Region",
-      udt: "UDT",
-      cui: "CUI",
-      cua: "CUA",
-      cuof: "CUOF",
-      sector: "Sector",
-      ambito: "Ambito",
-      ref_loc: "Ref Loc",
-      calle: "Calle",
-      numero: "Numero",
-      localidad: "Localidad",
-      departamento: "Departamento",
-      cod_postal: "CP",
-      categoria: "Categoria",
-      estado_est: "Estado establecimento",
-      estado_loc: "Estado localizacion",
-      telefono_cod_area: "Cod de área",
-      telefono_nro: "Nro telefono",
-      per_funcionamiento: "Per funcionamiento",
-      email_loc: "Email localizacion",
-    },
-    matricula_comun_inicial:matricula_comun_inicial_columns,
-    matricula_comun_primaria:matricula_comun_primaria_columns,
-    matricula_comun_secundaria:matricula_comun_secundaria_columns,
-    matricula_comun_snu:matricula_comun_snu_columns,
-    matricula_adultos_primaria:matricula_adultos_primaria_columns,
-    matricula_adultos_secundaria:matricula_adultos_secundaria_columns,
-    matricula_especial_primaria:matricula_especial_primaria_columns,
-  },
-  ra2020: {
-    none: [{}],
-    matricula_especial_inicial: {
-      cueanexo: "CUEanexo",
-      escuela: "Escuela",
-      sala: "Sala",
-      turno: "Turno",
-      tipo_secc: "Tipo de Seccion",
-      total: "Total",
-      total_var: "Total varones",
-      nom_secc: "Nombre de sección",
-      cinco_anios: "5 años",
-      seis_anios: "6 años",
-      siete_anios: "7 años",
-      cero_a_dos_anios: "8 años",
-      tres_anios: "3 años",
-      cuatro_anios: "4 años",
-      ocho_o_mas_anios: "8+ años",
-      nom_est: "Nombre establecimiento",
-      nro_est: "Número establecimiento",
-      anio_creac_establec: "Año de creacion est.",
-      fecha_creac_establec: "Fecha de creacion est",
-      region: "Region",
-      udt: "UDT",
-      cui: "CUI",
-      cua: "CUA",
-      cuof: "CUOF",
-      sector: "Sector",
-      ambito: "Ambito",
-      ref_loc: "Ref Loc",
-      calle: "Calle",
-      numero: "Numero",
-      localidad: "Localidad",
-      departamento: "Departamento",
-      cod_postal: "CP",
-      categoria: "Categoria",
-      estado_est: "Estado establecimento",
-      estado_loc: "Estado localizacion",
-      telefono_cod_area: "Cod de área",
-      telefono_nro: "Nro telefono",
-      per_funcionamiento: "Per funcionamiento",
-      email_loc: "Email localizacion",
-    },
-    matricula_comun_inicial:matricula_comun_inicial_columns,
-    matricula_comun_primaria:matricula_comun_primaria_columns,
-    matricula_comun_secundaria:matricula_comun_secundaria_columns,
-    matricula_comun_snu:matricula_comun_snu_columns,
-    matricula_adultos_primaria:matricula_adultos_primaria_columns,
-    matricula_adultos_secundaria:matricula_adultos_secundaria_columns,
-    matricula_especial_primaria:matricula_especial_primaria_columns,
-  },
-};
+      none: [{}],
+      comun_inicial: columns_jornada,
+      comun_primaria: columns_jornada,
+      comun_secundaria: columns_jornada,
+  }
+}
 
-function getColumns(ra, matricula) {
+function getColumns(ra, nivel_oferta) {
   let cols = [];
 
-  let lista_de_valores = columns[ra][matricula];
+  let lista_de_valores = columns[ra][nivel_oferta];
 
   for (let clave in lista_de_valores) {
     console.log(clave, lista_de_valores[clave]);
@@ -138,14 +67,14 @@ function getColumns(ra, matricula) {
 }
 
 $(document).ready(function () {
-//   getColumns("ra2021", "matric_especial_inicial");
+
   const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
 
   var dt_matricula = null;
 
   var reloadInstanceDatatable = function () {
     if (
-      $("#matricula_input").val() == "none" ||
+      $("#nivel_oferta_input").val() == "none" ||
       $("#relevamiento_input").val() == "none"
     ) {
       $(".alert-msg-none-selection").show();
@@ -156,8 +85,8 @@ $(document).ready(function () {
         dt_matricula.clear();
         dt_matricula.destroy();
 
-        $("#tabla-matricula tbody").empty();
-        $("#tabla-matricula thead").empty();
+        $("#tabla-nivel_oferta tbody").empty();
+        $("#tabla-nivel_oferta thead").empty();
       }
 
     //   console.log(
@@ -165,14 +94,14 @@ $(document).ready(function () {
     //     columns[$("#relevamiento_input").val()][$("#matricula_input").val()]
     //   );
 
-        dt_matricula = $("#tabla-matricula")
+        dt_matricula = $("#tabla-nivel_oferta")
           .on("processing.dt", function (e, settings, processing) {
             if (processing) {
             }
           })
           .DataTable({
             ajax: {
-              url: "/reports/ra_matricula_list/",
+              url: "/reports/ra_jornada_list/",
               type: "POST",
               headers: { "X-CSRFToken": csrftoken },
               dataFilter: function (data) {
@@ -190,14 +119,14 @@ $(document).ready(function () {
               },
               data: function (d) {
                 return $.extend({}, d, {
-                  matricula_selected: $("#matricula_input").val(),
+                  nivel_oferta_selected: $("#nivel_oferta_input").val(),
                   ra_selected: $("#relevamiento_input").val(),
                 });
               },
             },
             columns: getColumns(
               $("#relevamiento_input").val(),
-              $("#matricula_input").val()
+              $("#nivel_oferta_input").val()
             ),
             processing: true,
             serverSide: true,
@@ -253,7 +182,7 @@ $(document).ready(function () {
     }
   };
 
-  $("#matricula_input").change(function () {
+  $("#nivel_oferta_input").change(function () {
     reloadInstanceDatatable();
   });
 
