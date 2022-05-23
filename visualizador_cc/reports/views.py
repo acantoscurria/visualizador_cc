@@ -2014,4 +2014,4 @@ class ReportEgresadosListView (ListView):
         }, 
         safe=False) 
         
-class ReportJornadaIndexView (View, LoginRequiredMixin):
+# class ReportJornadaIndexView (View, LoginRequiredMixin):

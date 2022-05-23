@@ -44,14 +44,15 @@ class ControlsMatriculaListView(ListView):
         print('show_all', show_all)
 
         if(matricula_selected == "none" or control_type_selected == "none"):            
-            return JsonResponse({                      
-                        "data": [],              
-                    }, 
-                    safe=False)    
+            return JsonResponse({"data": []}, safe=False)    
 
         if(matricula_selected == "matricula_comun_inicial"):
 
-            df = pd.DataFrame(ConMatricComunInicial.objects.all().values()) 
+            values = ConMatricComunInicial.objects.all().values()
+            if not values.exists():              
+                return JsonResponse({"data": []}, safe=False)  
+
+            df = pd.DataFrame(values) 
         
             if(control_type_selected == "precocidad"): 
              
@@ -63,7 +64,11 @@ class ControlsMatriculaListView(ListView):
             
         if(matricula_selected == "matricula_comun_primaria"):
 
-            df = pd.DataFrame(ConMatricComunPrimaria.objects.all().values()) 
+            values = ConMatricComunPrimaria.objects.all().values()
+            if not values.exists():              
+                return JsonResponse({"data": []}, safe=False)  
+
+            df = pd.DataFrame(values) 
         
             if(control_type_selected == "precocidad"):
              
@@ -80,7 +85,11 @@ class ControlsMatriculaListView(ListView):
 
         if(matricula_selected == "matricula_comun_secundaria"):
 
-            df = pd.DataFrame(ConMatricComunSecundaria.objects.all().values()) 
+            values = ConMatricComunSecundaria.objects.all().values()
+            if not values.exists():              
+                return JsonResponse({"data": []}, safe=False)  
+
+            df = pd.DataFrame(values) 
         
             if(control_type_selected == "precocidad"):                  
              
