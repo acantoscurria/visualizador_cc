@@ -1914,7 +1914,7 @@ class ReportEgresadosListView (ListView):
                     }, 
                     safe=False)    
         
-        if(nivel_oferta_selected == 'comun_secundaria'):   
+        if(nivel_oferta_selected == 'comun_inicial'):   
 
             recordsTotal = RepEgresadosComunSecundaria.objects.using(ra_selected).all().count()
 
@@ -2014,4 +2014,180 @@ class ReportEgresadosListView (ListView):
         }, 
         safe=False) 
         
-# class ReportJornadaIndexView (View, LoginRequiredMixin):
+class ReportJornadaIndexView (View, LoginRequiredMixin):
+    def get(self, request):
+        context = {"title": "Reporte Jornadas"}
+        return render(request, "reports/ra_jornada.html", context)
+
+class ReportJornadaListView (ListView):
+    def post(self, request, *args, **kwargs):
+        dt = request.POST
+        draw = int(dt.get("draw"))
+        start = int(dt.get("start"))
+        length = int(dt.get("length"))
+
+        print('start', start)
+        print('length', length)
+
+        recordsTotal = 0
+        data = []
+        recordsFiltered = 0
+
+        search = dt.get("search[value]")
+        nivel_oferta_selected = dt.get("nivel_oferta_selected")    
+        ra_selected = dt.get("ra_selected")     
+
+        print('nivel_oferta_selected', nivel_oferta_selected)
+        print('control_type_selected', ra_selected)
+
+        if(nivel_oferta_selected == "None" or ra_selected == "none"):     
+            
+            print('Salida por None')
+                   
+            return JsonResponse({
+                        "draw": draw,
+                        "recordsTotal": 0,
+                        "recordsFiltered": 0,
+                        "data": [],
+                        "error_msg": "",
+                    }, 
+                    safe=False)    
+        
+        if(nivel_oferta_selected == 'comun_inicial'):   
+
+            recordsTotal = RepJornadaInicial.objects.using(ra_selected).all().count()
+
+            if search: # si hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas filtradas y paginado
+                    object_list = RepJornadaInicial.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )[start:start + length]
+
+                else:
+
+                    # obtengo todas las filas filtradas sin paginacion
+                    object_list = RepJornadaInicial.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )
+
+                # obtengo la cantidad de filas filtrdas sin paginacion
+                recordsFiltered = RepJornadaInicial.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+
+            else: # no hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas con paginacion
+                    object_list = RepJornadaInicial.objects.using(ra_selected).all()[start:start + length]
+
+                else:
+
+                    # obtengo todas las filas sin paginacion
+                    object_list = RepJornadaInicial.objects.using(ra_selected).all()
+
+
+                # obtengo la cantidad de filas sin paginacion
+                recordsFiltered = RepJornadaInicial.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+        if(nivel_oferta_selected == 'comun_primaria'):   
+
+            recordsTotal = RepJornadaPrimaria.objects.using(ra_selected).all().count()
+
+            if search: # si hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas filtradas y paginado
+                    object_list = RepJornadaPrimaria.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )[start:start + length]
+
+                else:
+
+                    # obtengo todas las filas filtradas sin paginacion
+                    object_list = RepJornadaPrimaria.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )
+
+                # obtengo la cantidad de filas filtrdas sin paginacion
+                recordsFiltered = RepJornadaPrimaria.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+
+            else: # no hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas con paginacion
+                    object_list = RepJornadaPrimaria.objects.using(ra_selected).all()[start:start + length]
+
+                else:
+
+                    # obtengo todas las filas sin paginacion
+                    object_list = RepJornadaPrimaria.objects.using(ra_selected).all()
+
+
+                # obtengo la cantidad de filas sin paginacion
+                recordsFiltered = RepJornadaPrimaria.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+        if(nivel_oferta_selected == 'comun_secundaria'):   
+            recordsTotal = RepJornadaSecundaria.objects.using(ra_selected).all().count()
+
+            if search: # si hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas filtradas y paginado
+                    object_list = RepJornadaSecundaria.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )[start:start + length]
+
+                else:
+
+                    # obtengo todas las filas filtradas sin paginacion
+                    object_list = RepJornadaSecundaria.objects.using(ra_selected).filter(
+                        Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                    )
+
+                # obtengo la cantidad de filas filtrdas sin paginacion
+                recordsFiltered = RepJornadaSecundaria.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+
+            else: # no hay valor de busqueda
+
+                if(length != -1): #hay paginacion
+
+                    # obtengo todas las filas con paginacion
+                    object_list = RepJornadaSecundaria.objects.using(ra_selected).all()[start:start + length]
+
+                else:
+
+                    # obtengo todas las filas sin paginacion
+                    object_list = RepJornadaSecundaria.objects.using(ra_selected).all()
+
+
+                # obtengo la cantidad de filas sin paginacion
+                recordsFiltered = RepJornadaSecundaria.objects.using(ra_selected).filter(
+                    Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
+                ).count()
+        data = []  
+        for row in object_list:
+            # print('parse', row.parse())
+            data.append(row.parse())
+
+        return JsonResponse({
+            "draw": draw,
+            "recordsTotal": recordsTotal,
+            "recordsFiltered": recordsFiltered,
+            "data": data,
+            "error_msg": "",
+        }, 
+        safe=False)
