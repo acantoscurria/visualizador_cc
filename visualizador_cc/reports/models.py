@@ -3135,3 +3135,358 @@ class RepHorasEspecial(models.Model):
             'per_funcionamiento': self.per_funcionamiento,
             'email_loc': self.email_loc,
         }
+        
+class RepEgresadosComunSecundaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    tipo_ed = models.TextField(blank=True, null=True)
+    nivel = models.TextField(blank=True, null=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    nro_plan_est = models.CharField(max_length=255, blank=True, null=True)
+    orientacion = models.CharField(max_length=255, blank=True, null=True)
+    total_egresados_no_fines = models.CharField(max_length=255, blank=True, null=True)
+    total_var_egresados_no_fines = models.CharField(max_length=255, blank=True, null=True)
+    plan_est = models.CharField(max_length=255, blank=True, null=True)
+    titulo_nivel = models.CharField(max_length=255, blank=True, null=True)
+    total_egresados_dm = models.CharField(max_length=255, blank=True, null=True)
+    var_egresados_dm = models.CharField(max_length=255, blank=True, null=True)
+    total_egresados_fines = models.CharField(max_length=255, blank=True, null=True)
+    var_egresados_fines = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_egresados_comun_secundaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'tipo_ed': self.tipo_ed,
+            'nivel': self.nivel,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'nro_plan_est': self.nro_plan_est,
+            'orientacion': self.orientacion,
+            'total_egresados_no_fines': self.total_egresados_no_fines,
+            'total_var_egresados_no_fines': self.total_var_egresados_no_fines,
+            'plan_est': self.plan_est,
+            'titulo_nivel': self.titulo_nivel,
+            'total_egresados_dm': self.total_egresados_dm,
+            'var_egresados_dm': self.var_egresados_dm,
+            'total_egresados_fines': self.total_egresados_fines,
+            'var_egresados_fines': self.var_egresados_fines,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepEgresadosAdultosSecundaria(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    tipo_ed = models.TextField(blank=True, null=True)
+    nivel = models.TextField(blank=True, null=True)
+    cueanexo = models.CharField(max_length=255, blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    nro_plan_est = models.CharField(max_length=255, blank=True, null=True)
+    orientacion = models.CharField(max_length=255, blank=True, null=True)
+    total_egresados_no_fines = models.CharField(max_length=255, blank=True, null=True)
+    total_var_egresados_no_fines = models.CharField(max_length=255, blank=True, null=True)
+    plan_est = models.CharField(max_length=255, blank=True, null=True)
+    titulo_nivel = models.CharField(max_length=255, blank=True, null=True)
+    total_egresados_dm = models.CharField(max_length=255, blank=True, null=True)
+    var_egresados_dm = models.CharField(max_length=255, blank=True, null=True)
+    total_egresados_fines = models.CharField(max_length=255, blank=True, null=True)
+    var_egresados_fines = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    nro_est = models.CharField(max_length=255, blank=True, null=True)
+    anio_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    fecha_creac_establec = models.CharField(max_length=255, blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    udt = models.CharField(max_length=255, blank=True, null=True)
+    cui = models.CharField(max_length=255, blank=True, null=True)
+    cua = models.CharField(max_length=255, blank=True, null=True)
+    cuof = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    cod_postal = models.CharField(max_length=255, blank=True, null=True)
+    categoria = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    telefono_cod_area = models.CharField(max_length=255, blank=True, null=True)
+    telefono_nro = models.CharField(max_length=255, blank=True, null=True)
+    per_funcionamiento = models.CharField(max_length=255, blank=True, null=True)
+    email_loc = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_egresados_adultos_secundaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'tipo_ed': self.tipo_ed,
+            'nivel': self.nivel,
+            'cueanexo': self.cueanexo,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'nro_plan_est': self.nro_plan_est,
+            'orientacion': self.orientacion,
+            'total_egresados_no_fines': self.total_egresados_no_fines,
+            'total_var_egresados_no_fines': self.total_var_egresados_no_fines,
+            'plan_est': self.plan_est,
+            'titulo_nivel': self.titulo_nivel,
+            'total_egresados_dm': self.total_egresados_dm,
+            'var_egresados_dm': self.var_egresados_dm,
+            'total_egresados_fines': self.total_egresados_fines,
+            'var_egresados_fines': self.var_egresados_fines,
+            'nom_est': self.nom_est,
+            'nro_est': self.nro_est,
+            'anio_creac_establec': self.anio_creac_establec,
+            'fecha_creac_establec': self.fecha_creac_establec,
+            'region': self.region,
+            'udt': self.udt,
+            'cui': self.cui,
+            'cua': self.cua,
+            'cuof': self.cuof,
+            'sector': self.sector,
+            'ambito': self.ambito,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'cod_postal': self.cod_postal,
+            'categoria': self.categoria,
+            'estado_est': self.estado_est,
+            'estado_loc': self.estado_loc,
+            'telefono_cod_area': self.telefono_cod_area,
+            'telefono_nro': self.telefono_nro,
+            'per_funcionamiento': self.per_funcionamiento,
+            'email_loc': self.email_loc,
+        }
+        
+class RepJornadaInicial(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.IntegerField(blank=True, null=True)
+    oferta = models.TextField(blank=True, null=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    total_je = models.CharField(max_length=255, blank=True, null=True)
+    horas_sem_jc = models.CharField(max_length=255, blank=True, null=True)
+    horas_sem_je = models.CharField(max_length=255, blank=True, null=True)
+    cant_alum_jc = models.CharField(max_length=255, blank=True, null=True)
+    con_disc_je = models.CharField(max_length=255, blank=True, null=True)
+    con_disc_jc = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    jornada = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    region_loc = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    est_oferta = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_jornada_inicial'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'oferta': self.oferta,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'total_je': self.total_je,
+            'horas_sem_jc': self.horas_sem_jc,
+            'horas_sem_je': self.horas_sem_je,
+            'cant_alum_jc': self.cant_alum_jc,
+            'con_disc_je': self.con_disc_je,
+            'con_disc_jc': self.con_disc_jc,
+            'nom_est': self.nom_est,
+            'jornada': self.jornada,
+            'ambito': self.ambito,
+            'sector': self.sector,
+            'region_loc': self.region_loc,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'estado_loc': self.estado_loc,
+            'est_oferta': self.est_oferta,
+            'estado_est': self.estado_est,
+        }
+        
+class RepJornadaPrimaria(models.Model):
+    cueanexo = models.IntegerField(blank=True, null=True)
+    oferta = models.TextField(blank=True, null=True)
+    id = models.BigIntegerField(primary_key=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    total_je = models.CharField(max_length=255, blank=True, null=True)
+    horas_sem_jc = models.CharField(max_length=255, blank=True, null=True)
+    horas_sem_je = models.CharField(max_length=255, blank=True, null=True)
+    cant_alum_jc = models.CharField(max_length=255, blank=True, null=True)
+    con_disc_je = models.CharField(max_length=255, blank=True, null=True)
+    con_disc_jc = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    jornada = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    region_loc = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    est_oferta = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_jornada_primaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'oferta': self.oferta,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'total_je': self.total_je,
+            'horas_sem_jc': self.horas_sem_jc,
+            'horas_sem_je': self.horas_sem_je,
+            'cant_alum_jc': self.cant_alum_jc,
+            'con_disc_je': self.con_disc_je,
+            'con_disc_jc': self.con_disc_jc,
+            'nom_est': self.nom_est,
+            'jornada': self.jornada,
+            'ambito': self.ambito,
+            'sector': self.sector,
+            'region_loc': self.region_loc,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'estado_loc': self.estado_loc,
+            'est_oferta': self.est_oferta,
+            'estado_est': self.estado_est,
+        }
+        
+class RepJornadaSecundaria(models.Model):
+    cueanexo = models.IntegerField(blank=True, null=True)
+    oferta = models.TextField(blank=True, null=True)
+    id = models.BigIntegerField(primary_key=True)
+    id_fila = models.IntegerField(blank=True, null=True)
+    escuela = models.CharField(max_length=255, blank=True, null=True)
+    total_je = models.CharField(max_length=255, blank=True, null=True)
+    horas_sem_jc = models.CharField(max_length=255, blank=True, null=True)
+    horas_sem_je = models.CharField(max_length=255, blank=True, null=True)
+    cant_alum_jc = models.CharField(max_length=255, blank=True, null=True)
+    con_disc_je = models.CharField(max_length=255, blank=True, null=True)
+    con_disc_jc = models.CharField(max_length=255, blank=True, null=True)
+    nom_est = models.CharField(max_length=255, blank=True, null=True)
+    jornada = models.CharField(max_length=255, blank=True, null=True)
+    ambito = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    region_loc = models.CharField(max_length=255, blank=True, null=True)
+    ref_loc = models.CharField(max_length=255, blank=True, null=True)
+    calle = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=255, blank=True, null=True)
+    localidad = models.CharField(max_length=255, blank=True, null=True)
+    departamento = models.CharField(max_length=255, blank=True, null=True)
+    estado_loc = models.CharField(max_length=255, blank=True, null=True)
+    est_oferta = models.CharField(max_length=255, blank=True, null=True)
+    estado_est = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'rep_jornada_primaria'
+
+    def parse (self):
+        return{
+            'id': self.id,
+            'cueanexo': self.cueanexo,
+            'oferta': self.oferta,
+            'id_fila': self.id_fila,
+            'escuela': self.escuela,
+            'total_je': self.total_je,
+            'horas_sem_jc': self.horas_sem_jc,
+            'horas_sem_je': self.horas_sem_je,
+            'cant_alum_jc': self.cant_alum_jc,
+            'con_disc_je': self.con_disc_je,
+            'con_disc_jc': self.con_disc_jc,
+            'nom_est': self.nom_est,
+            'jornada': self.jornada,
+            'ambito': self.ambito,
+            'sector': self.sector,
+            'region_loc': self.region_loc,
+            'ref_loc': self.ref_loc,
+            'calle': self.calle,
+            'numero': self.numero,
+            'localidad': self.localidad,
+            'departamento': self.departamento,
+            'estado_loc': self.estado_loc,
+            'est_oferta': self.est_oferta,
+            'estado_est': self.estado_est,
+        }
+        
