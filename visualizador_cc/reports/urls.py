@@ -89,5 +89,15 @@ urlpatterns = [
         "ra_egresados_list/",
         ReportEgresadosListView.as_view(),
         name="ra_egresados_list"
+    ),
+    path(
+        "ReportJornadaIndexView",
+        ReportJornadaIndexView.as_view(),
+        name="ra_jornada_index"
+    ),
+    path(
+        "ra_jornada_list/",
+        ReportJornadaListView.as_view(),
+        name="ra_jornada_list"
     )
 ]
