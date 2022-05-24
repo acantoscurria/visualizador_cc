@@ -1881,6 +1881,7 @@ class ReportEgresadosIndexView (View, LoginRequiredMixin):
         return render(request, "reports/ra_egresados.html", context)
 
 class ReportEgresadosListView (ListView):
+
     def post(self, request, *args, **kwargs):
         dt = request.POST
         draw = int(dt.get("draw"))
@@ -1914,8 +1915,8 @@ class ReportEgresadosListView (ListView):
                     }, 
                     safe=False)    
         
-        if(nivel_oferta_selected == 'comun_inicial'):   
-
+        if(nivel_oferta_selected == 'comun_secundaria'):  
+            
             recordsTotal = RepEgresadosComunSecundaria.objects.using(ra_selected).all().count()
 
             if search: # si hay valor de busqueda
@@ -1956,6 +1957,7 @@ class ReportEgresadosListView (ListView):
                 recordsFiltered = RepEgresadosComunSecundaria.objects.using(ra_selected).filter(
                     Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
                 ).count()
+
         if(nivel_oferta_selected == 'adultos_secundaria'):   
 
             recordsTotal = RepEgresadosAdultosSecundaria.objects.using(ra_selected).all().count()
@@ -1998,8 +2000,11 @@ class ReportEgresadosListView (ListView):
                 recordsFiltered = RepEgresadosAdultosSecundaria.objects.using(ra_selected).filter(
                     Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
                 ).count()
+
+
         if(nivel_oferta_selected == 'snu'):   
             None
+
         data = []  
         for row in object_list:
             # print('parse', row.parse())

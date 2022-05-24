@@ -214,7 +214,7 @@ $(document).ready(function(){
                 //     "<'row'<'col-xl-12'tr>>" +
                 //     "<'row'<'col-xl-5'i><'col-xl-7'pb>>",
 
-                "dom": 'frtip',
+                "dom": 'Bfrtip',
                 "buttons": [
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ]

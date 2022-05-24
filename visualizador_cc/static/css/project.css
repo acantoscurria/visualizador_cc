@@ -406,5 +406,10 @@ body.dark #footer{
 
 div.dataTables_processing {
   margin-top: 100px !important;
-  background-color: #D7BEB8;
+  background-color: #d7ebff ;
+  opacity: 1;
+}
+
+color-alert {
+  background-color: #d7ebff
 }

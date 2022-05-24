@@ -3009,7 +3009,7 @@ class RepHorasAdultosFormProf(models.Model):
 
     class Meta:
         managed = False  # Created from a view. Don't remove.
-        db_table = 'rep_horas_adultos_secundaria'
+        db_table = 'rep_horas_form_prof'
 
     def parse (self):
         return{
@@ -3093,7 +3093,7 @@ class RepHorasEspecial(models.Model):
 
     class Meta:
         managed = False  # Created from a view. Don't remove.
-        db_table = 'rep_horas_adultos_secundaria'
+        db_table = 'rep_horas_especial'
 
     def parse (self):
         return{
