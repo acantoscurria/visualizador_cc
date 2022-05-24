@@ -109,7 +109,7 @@ class SpatialQuery(generics.GenericAPIView):
         data = {}  
         for loc in  TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo'):      
             if buffer.contains(loc.geom):
-                print('SpatialQuery', loc.cueanexo.cueanexo)
+                print('SpatialQuery...', loc.cueanexo.cueanexo)
                 data[loc.cueanexo.cueanexo] = loc.cueanexo.nom_est
 
         return Response(data,
