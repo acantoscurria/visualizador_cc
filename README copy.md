@@ -18,9 +18,6 @@ docker-compose -f local.yml run --rm django python manage.py inspectdb con_matri
 
 docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
-9R&GGL$$amsWoSA
-
-
 docker-compose -f local.yml run --rm django python manage.py shell_plus
 
 
