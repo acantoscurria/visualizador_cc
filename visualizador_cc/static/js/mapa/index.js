@@ -498,6 +498,9 @@ function leafletDraw() {
     map.addControl(drawControl);
 
     map.addEventListener("draw:created", function (e) {
+        
+        drawnItems.clearLayers();
+
         let datos = {}
 
         e.layer.addTo(drawnItems);
