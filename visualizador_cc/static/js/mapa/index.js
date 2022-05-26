@@ -502,9 +502,11 @@ function leafletDraw() {
 
         e.layer.addTo(drawnItems);
         drawnItems.eachLayer(function (layer) {
+
             let geojson = layer.toGeoJSON();
 
             if (layer instanceof L.Circle) {
+
                 // var pto = layer.getLatLng();
                 var rad = layer.getRadius();
                 geojson.properties['radio'] = rad
@@ -518,6 +520,13 @@ function leafletDraw() {
                     "coordenadas": geojson.geometry.coordinates
                 }
 
+
+                let amount = 0
+
+                $('#localizaciones-selected').empty()
+                $('#localizaciones-selected').html('Obtentiendo localizaciones...')
+                $('#localizaciones-selected-amount').html(amount)
+
                 fetch("/mapa/spatialquery/",
                     {
                         headers: {
@@ -527,15 +536,30 @@ function leafletDraw() {
                         body: JSON.stringify(datos)
                     })
                     .then(function (data) {
-                        data.json().then((respuesta) => {
-                            console.log(respuesta)
+
+
+                        
+                        data.json().then((localizaciones) => {
+
+                            console.log('localizaciones', localizaciones)
+
+                            amount = Object.values(localizaciones).length
+
+                            $('#localizaciones-selected').empty()
+
+                            $('#localizaciones-selected-amount').html(amount)                          
+                            for (cueanexo in localizaciones){ 
+                                $('#localizaciones-selected').append("<li> "+cueanexo+" - "+localizaciones[cueanexo]+"</li>")
+                            }
                         })
                     })
+               
             }
 
-        });
+        })
+    
 
-    });
+    })
 
 }
 

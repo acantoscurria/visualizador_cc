@@ -402,3 +402,13 @@ body.dark #footer{
   background: none;
   color: #fff;
 }
+
+div.dataTables_processing {
+  margin-top: 100px !important;
+  background-color: #d7ebff ;
+  opacity: 1;
+}
+
+color-alert {
+  background-color: #d7ebff
+}

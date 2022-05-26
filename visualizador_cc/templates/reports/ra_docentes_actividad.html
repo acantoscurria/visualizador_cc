@@ -1,0 +1,44 @@
+{% extends "base_admin.html" %}
+{% load static %}
+{% block content %}
+
+{% csrf_token %}
+    <div class="row border-bottom p-2 d-flex bg-light">
+        <div class="col-3">
+            <form>
+                <div class="form-floating">
+                    <select class="form-select" id="relevamiento_input" aria-label="Relevamiento">
+                        <option value="none" selected>
+                            Seleccione relevamiento
+                        </option>
+                        <option value="ra2019">
+                            2019
+                        </option>
+                        <option value="ra2020">
+                            2020
+                        </option>
+                        <option value="ra2021">
+                            2021
+                        </option>
+                    </select>
+                    <label for="relevamiento_input">Relevamiento</label>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 pt-3">
+            <div class="color-alert alert alert-primary alert-msg-none-selection text-center "  role="alert">Seleccione RA</div>
+            <table id="tabla-matricula"
+                   class="table table-striped table-striped "
+                   style="width:100%">
+            </table>
+        </div>
+    </div>
+
+<script defer src="{% static 'js/reports/ra_docentes_actividad.js' %}" >
+
+</script>
+
+
+{% endblock %}

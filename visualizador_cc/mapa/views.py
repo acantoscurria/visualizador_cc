@@ -106,12 +106,16 @@ class SpatialQuery(generics.GenericAPIView):
 
         buffer = Point(centro,srid=4326).buffer(rad/100000)
 
-        for loc in TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo'):
+        data = {}  
+        for loc in  TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo'):      
             if buffer.contains(loc.geom):
-                print(loc.cueanexo)
+                print('SpatialQuery...', loc.cueanexo.cueanexo)
+                data[loc.cueanexo.cueanexo] = loc.cueanexo.nom_est
 
-        return Response({},
+        return Response(data,
         status=status.HTTP_200_OK)
+
+
 
 class Search(ListView):
 
