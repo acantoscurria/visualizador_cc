@@ -91,6 +91,8 @@ THIRD_PARTY_APPS = [
     "leaflet",
     "ckeditor",
     "ckeditor_uploader",
+    "corsheaders",
+
 ]
 
 LOCAL_APPS = [
@@ -337,3 +339,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+CORS_ORIGIN_ALLOW_ALL=True
