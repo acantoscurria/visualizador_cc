@@ -48,8 +48,13 @@ class TablaLocalizaciones(models.Model):
 
 
     def parse(self):
-        return {       
+        return {              
             'cueanexo': self.cueanexo.cueanexo,            
-            'nom_est': self.cueanexo.nom_est,                 
+            'nom_est': self.cueanexo.nom_est,  
+            'sector': self.cueanexo.sector,                 
+            'ambito': self.cueanexo.ambito,  
+            'region_loc': self.cueanexo.region_loc, 
+            'localidad': self.cueanexo.localidad, 
+            'departamento': self.cueanexo.departamento
         }
           

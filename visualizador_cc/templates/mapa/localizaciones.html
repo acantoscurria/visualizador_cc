@@ -2,265 +2,54 @@
 
 {% load static %}
 
-{% block css %}
-
-<!-- leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin="" />
-
-<!-- clustering de marcadores -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
-
-<!-- herramienta de dibujo     -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
-
-<!-- clustering de marcadores -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
-
-<!-- leaflet.draw -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
-
-
-<!-- herramienta de búsqueda -->
-<link rel="stylesheet" href="{% static 'mapagis/css/leaflet-search.css' %}">
-
-<style>
-    #map {
-        height: 750px;
-    }
-
-    @keyframes fade {
-        from {
-            opacity: 0.5;
-        }
-    }
-
-    .blinking {
-        animation: fade 1s infinite alternate;
-    }
-</style>
-
-
-
-{% endblock %}
-
-
-
-{% block javascript %}
-
-<!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin="">
-    </script>
-
-<!-- clustering de marcadores -->
-<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-
-<!-- herramienta de búsqueda -->
-<script src="{% static 'mapagis/js/leaflet-search.js' %}"></script>
-
-<!-- herramienta de dibujo -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
-
-<!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin="">
-    </script>
-
-<!-- clustering de marcadores -->
-<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-
-<!-- EasyButton -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
-
-<!-- SmoothMarkerBouncing -->
-<script type="text/javascript"
-    src="https://cdn.jsdelivr.net/gh/hosuaby/Leaflet.SmoothMarkerBouncing@v2.0.0/dist/bundle.js"
-    crossorigin="anonymous"></script>
-
-<!-- leaflet.draw -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
-
-{% endblock javascript %}
-
-
-
-{% load static %}
-
 {% block content %}
+
+<Style>
+    table.dataTable td {
+        font-size: 12px;
+    }
+
+    table tr.row-error {
+        background-color: #ffa9a9;
+    }
+
+    table tr.row-warning {
+        background-color: #fff1c5;
+    }
+</Style>
 
 {% csrf_token %}
 
-<!-- plantilla para popup del detalle del punto -->
-<div id="template-point_data">
-    <div class="row justify-content-center d-none">
-        <div class="col-12 mb-2 fs-6">%nom_est%</div>
-        <div class="col-6">Cueanexo</div>
-        <div class="col-6">%cueanexo%</div>
-        <div class="col-6">Sector</div>
-        <div class="col-6">%sector%</div>
-        <div class="col-6">Ambito</div>
-        <div class="col-6">%ambito%</div>
-        <div class="col-6">Region</div>
-        <div class="col-6">%region_loc%</div>
-        <div class="col-6">Localidad</div>
-        <div class="col-6">%localidad%</div>
-        <div class="col-6">Departamento</div>
-        <div class="col-6">%departamento%</div>
-        <div class="col-6">Estado</div>
-        <div class="col-6">%estado_loc%</div>
+
+<input type="text" name="radio" id="radio" value="{{radio}}" class="d-none">
+<input type="text" name="centro" id="centro" value="{{centro}}" class="d-none">
+
+
+<div class="row justify-content-center container-table">
+    <div class="col-12 pt-3 ">
+        <table id="tabla-localizaciones" class="table table-bordered  " style="width: 100%;">
+        </table>
     </div>
 </div>
 
-<!-- plantilla para checkbox de filtro -->
-<div id="template-checkbox-filter">
-    <div class="%col%">
-        <div class="form-check form-switch d-none">
-            <input class="form-check-input" name="option_%type%" type="checkbox" role="switch" value="%value%"
-                id="option%i%">
-            <label class="form-check-label" for="option%i%">%value%</label>
-        </div>
-    </div>
-</div>
-
-
-<div class="row justify-content-center ">
-    <div class="col-auto pt-3">
-        <span>Establecimientos <span class="badge bg-primary badge-amount-localizacion">0</span></h6>
-    </div>
-    <div class="col-auto pt-3">
-        <span>Filtros aplicados <span class="badge bg-primary badge-filter">0</span></h6>
-    </div>
-</div>
-
-<!-- mapa -->
-<div class="row justify-content-center ">
-    <div class="col-12 pt-1">
-        <div id="map"></div>
-    </div>
-</div>
-
-<!-- Modal busqueda de punto -->
-<div class="modal fade " id="modalSearch" tabindex="-1" aria-labelledby="modalSearchLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalSearchLabel">Buscar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table id="tabla-localizaciones" class="table table-bordered  table-striped " style="width:100%">
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- prealoder -->
 <div id="preloader" class="d-none">
     <div class='row justify-content-center'>
-        <div class='col-auto'>
-            <!-- <i class='fa-solid fa-cog fa-spin fa-xl'></i> -->
-            <i class="fa-solid fa-magnifying-glass fa-beat-fade"></i>
-            <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-        </div>
-        <div class='col-auto'>
-            Actualizando resultados.
-        </div>
-        <div class='col-auto'>
-            Por favor espere...
-        </div>
+      <div class='col-auto'>
+        <i class='fa-solid fa-cog fa-spin fa-xl'></i>
+      </div>
+      <div class='col-auto'>
+        Obteniendo localizaciones seleccionadas.
+      </div>
+      <div class='col-auto'>
+        Por favor espere...
+      </div>
     </div>
-</div>
-
-<!-- Modal filtrado sector, ambito, departamento -->
-<div class="modal fade " id="modalFilter" tabindex="-1" aria-labelledby="modalFilterLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalFilterLabel">Filtar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="form-filter">
-                    <div class="row">
-
-                        <!-- Sector -->
-                        <div class="col-6">
-                            <div class="card w-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Sector</h5>
-                                    <div class="row container-sector">
-                                        ...
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Ámbito -->
-                        <div class="col-6">
-                            <div class="card w-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Ámbito</h5>
-                                    <div class="row container-ambito">
-                                        ...
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- departamento -->
-                        <div class="col-12 mt-3">
-                            <div class="card w-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Departamento</h5>
-                                    <div class="row container-departamento">
-                                        ...
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-warning btn-clear-filter">Limpiar filtro</button>
-                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-apply">Filtar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div>
-    <h4>Localizaciones seleccionadas (<span id="localizaciones-selected-amount">0</span>)</h4>
-    <ul id="localizaciones-selected">
-
-    </ul>
-</div>
-
-
+  </div>
 
 {% endblock %}
 
-
-
-
-
 {% block inline_javascript %}
 
-<!-- EasyButton -->
-<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
-
-<script defer src="{% static 'js/mapa/index.js' %}"></script>
-
+<script defer src="{% static 'js/mapa/localizaciones.js' %}"></script>
 
 {% endblock %}

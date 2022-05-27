@@ -485,6 +485,7 @@ function updateLayerMarkers(markers){
     })
 }
 
+
 function leafletDraw() {
 
 
@@ -498,10 +499,8 @@ function leafletDraw() {
     map.addControl(drawControl);
 
     map.addEventListener("draw:created", function (e) {
-        
-        drawnItems.clearLayers();
 
-        let datos = {}
+        drawnItems.clearLayers();
 
         e.layer.addTo(drawnItems);
         drawnItems.eachLayer(function (layer) {
@@ -510,53 +509,16 @@ function leafletDraw() {
 
             if (layer instanceof L.Circle) {
 
-                // var pto = layer.getLatLng();
-                var rad = layer.getRadius();
-                geojson.properties['radio'] = rad
-                console.log('radio del punto', rad);
-                // console.log('centro',pto);
-                console.log(JSON.stringify(geojson.properties.radio));
-                console.log(JSON.stringify(geojson.geometry.coordinates));
+                geojson.properties['radio'] = layer.getRadius();                
+       
+                const params = new URLSearchParams({
+                    radio: geojson.properties.radio, 
+                    coordenadas: geojson.geometry.coordinates
+                })
 
-                datos = {
-                    "radio": geojson.properties.radio,
-                    "coordenadas": geojson.geometry.coordinates
-                }
+                let url = '/mapa/localizaciones_by_circle?' + params.toString();  
+                window.open(url, '_blank').focus();
 
-
-                let amount = 0
-
-                $('#localizaciones-selected').empty()
-                $('#localizaciones-selected').html('Obtentiendo localizaciones...')
-                $('#localizaciones-selected-amount').html(amount)
-
-                fetch("/mapa/spatialquery/",
-                    {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        method: "POST",
-                        body: JSON.stringify(datos)
-                    })
-                    .then(function (data) {
-
-
-                        
-                        data.json().then((localizaciones) => {
-
-                            console.log('localizaciones', localizaciones)
-
-                            amount = Object.values(localizaciones).length
-
-                            $('#localizaciones-selected').empty()
-
-                            $('#localizaciones-selected-amount').html(amount)                          
-                            for (cueanexo in localizaciones){ 
-                                $('#localizaciones-selected').append("<li> "+cueanexo+" - "+localizaciones[cueanexo]+"</li>")
-                            }
-                        })
-                    })
-               
             }
 
         })
