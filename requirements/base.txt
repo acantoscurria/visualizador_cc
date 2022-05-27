@@ -31,3 +31,6 @@ django-ckeditor
 
 #manipulación y análisis de datos  dataframe
 pandas==1.4.2
+
+
+django-cors-headers
