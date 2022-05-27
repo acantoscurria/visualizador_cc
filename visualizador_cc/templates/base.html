@@ -43,12 +43,14 @@
         {% endblock javascript %}
     </head>
     <body onload="cargarModo();">
-        <div class="loader"></div>
-        <script type="text/javascript">
-            $(window).load(function() {
-                $(".loader").fadeOut("slow");
-            });
-        </script>
+        <div class="centrado" id="onload">
+            <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
         <div id="wrapper">
             <div id="header" class="container-fluid">
 
@@ -92,7 +94,7 @@
                                             <li class="nav-item">
                                                 {# URL provided by django-allauth/account/urls.py #}
                                                 <a class="nav-link"
-                                                href="{% url 'users:detail' request.user.username  %}"><i class="fa-solid fa-user"></i></a>
+                                                href="{% url 'users:detail' request.user.username  %}"></a>
                                             </li>
                                             <li class="nav-item">
                                                 {# URL provided by django-allauth/account/urls.py #}
@@ -194,7 +196,7 @@
                     </ul>
                 </footer>
             </div>
-        </div>
+        
         <script src="{% static 'js/project.js' %}"></script>
     </body>
 </html>

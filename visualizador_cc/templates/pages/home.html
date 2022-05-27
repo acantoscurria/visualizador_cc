@@ -23,13 +23,13 @@
                       <div class="contenedor">
                           <div class="front" style="background-image: url({% static 'images/tarjetas-index/mapa-chaco2.jpg' %})">
                               <div class="inner">
-                                  <h3>Mapa</h3>
+                                  <h3></h3>
                     <span class="texto-lectura"></span>
                               </div>
                           </div>
                           <div class="back">
                               <div class="inner">
-                                <a  href="" class="text-decoration-none"><p class="text-dark fw-light">Mapa interactivo de las distintas ofertas educativas</p></a>
+                                <a  href="{% url "mapa:index" %}" class="text-decoration-none"><p class="text-dark fw-light">Mapa interactivo de las distintas ofertas educativas</p></a>
                               </div>
                           </div>
                       </div>
@@ -38,27 +38,27 @@
                       <div class="contenedor">
                           <div class="front" style="background-image: url({% static 'images/tarjetas-index/estadistica.png' %})" >
                               <div class="inner">
-                                  <h3>Indicadores Educativos</h3>
+                                  <h3></h3>
                     <span></span>
                               </div>
                           </div>
                           <div class="back">
                               <div class="inner">
-                                  <a href="#" class="text-decoration-none"><p class="text-dark fw-light">Lorem</p></a>
+                                  <a href="#" class="text-decoration-none"><p class="text-dark fw-light">Indicadores estadisticos educativos para analisis.</p></a>
                               </div>
                           </div>
                       </div>
                   </div>        			<div class="columna" ontouchstart="this.classList.toggle('hover');">
                       <div class="contenedor">
-                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/news.png' %})">
+                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/noticias.jpg' %})">
                               <div class="inner">
-                                  <h3>Noticias</h3>
+                                  <h3></h3>
                     <span></span>
                               </div>
                           </div>
                           <div class="back">
                               <div class="inner">
-                                  <a href="#" class="text-decoration-none"><p class="text-dark fw-light">mply dummy text of the printing and typesetting industry. Lorem Ipsum</p></a>
+                                  <a href="{% url "noticias:index" %}" class="text-decoration-none"><p class="text-dark fw-light">Noticias y avisos</p></a>
                               </div>
                           </div>
                       </div>
