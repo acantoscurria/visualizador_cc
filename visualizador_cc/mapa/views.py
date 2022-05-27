@@ -1,4 +1,5 @@
 
+from re import L
 from django.shortcuts import render, HttpResponse
 from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer
 from . models import TablaLocalizaciones, Padron
@@ -93,27 +94,46 @@ class PointData(generics.ListAPIView):
             return []
 
 
-class SpatialQuery(generics.GenericAPIView):
 
-    http_method_names = ['post']
-    permission_classes = [AllowAny]  
 
-    def post(self,request):
-        rad = request.data.get('radio')
-        centro = request.data.get('coordenadas')
-        print(rad)
-        print(centro)
+class LocalizacionesByCircle(TemplateView):
 
-        buffer = Point(centro,srid=4326).buffer(rad/100000)
+    template_name = 'mapa/localizaciones.html'
+    http_method_names = ['get']    
 
-        data = {}  
-        for loc in  TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo'):      
+    def get(self, request, *args, **kwargs):   
+        context = self.get_context_data(**kwargs)        
+        context['radio'] = request.GET.get('radio')
+        context['centro'] = request.GET.get('coordenadas')
+        context['title'] = 'Localizaciones seleccionadas'
+        
+        return self.render_to_response(context)   
+
+class LocalizacionesByCircleList(ListView):
+
+    def post(self, request, *args, **kwargs): 
+
+        dt = request.POST      
+        radio = dt.get("radio")    
+        centro = dt.get("centro") 
+   
+        if(radio == '' or centro == ''):            
+            return JsonResponse({"data": []}, safe=False)  
+
+        centro = centro.split(',')
+
+        buffer = Point(float(centro[0]), float(centro[1]), srid=4326).buffer(float(radio)/100000)
+
+        data = [] 
+        for loc in  TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo'):     
             if buffer.contains(loc.geom):
-                print('SpatialQuery...', loc.cueanexo.cueanexo)
-                data[loc.cueanexo.cueanexo] = loc.cueanexo.nom_est
+                print('### LocalizacionesByCircleList...', loc.cueanexo.cueanexo)
+                data.append(loc.parse())
 
-        return Response(data,
-        status=status.HTTP_200_OK)
+        return JsonResponse({                    
+            "data": data                
+        }, 
+        safe=False)
 
 
 

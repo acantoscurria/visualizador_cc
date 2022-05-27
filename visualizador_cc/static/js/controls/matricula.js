@@ -88,8 +88,7 @@ var dt_matricula = null
 $(document).ready(function(){
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value; 
-    
-    
+       
 
     var reloadInstanceDatatable = function(){
 
@@ -97,20 +96,11 @@ $(document).ready(function(){
 
         if(dt_matricula){
 
-            console.log('1');
-
             dt_matricula.clear();
 
-            console.log('2');
+            dt_matricula.destroy();    
 
-            dt_matricula.destroy();
-
-            console.log('3');
-
-            $("#tabla-matricula tbody").empty();
-
-            console.log('4');
-
+            $("#tabla-matricula tbody").empty();      
             $("#tabla-matricula thead").empty();   
             
             dt_matricula = null
@@ -121,8 +111,6 @@ $(document).ready(function(){
             $(".alert-msg-none-selection").show()
         }
         else{
-
-            console.log('5');
 
             $(".alert-msg-none-selection").hide()
             
@@ -219,9 +207,6 @@ $(document).ready(function(){
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ]
             }) 
-
-            console.log('6');
-
 
             //$('#tabla-matricula_wrapper .tools').append($('#container-btns-tools').contents());
         }
