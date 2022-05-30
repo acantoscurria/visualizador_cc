@@ -91,7 +91,6 @@ THIRD_PARTY_APPS = [
     "leaflet",
     "ckeditor",
     "ckeditor_uploader",
-    "corsheaders",
 
 ]
 
