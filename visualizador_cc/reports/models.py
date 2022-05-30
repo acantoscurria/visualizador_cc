@@ -2337,7 +2337,7 @@ class RepHorasInicialMaternal(models.Model):
 
     class Meta:
         managed = False  # Created from a view. Don't remove.
-        db_table = 'rep_horas_inicial_maternal'
+        db_table = 'rep_horas_comun_inicial_maternal'
 
     def parse (self):
         return{
@@ -2421,7 +2421,7 @@ class RepHorasInicialJardin(models.Model):
 
     class Meta:
         managed = False  # Created from a view. Don't remove.
-        db_table = 'rep_horas_inicial_jardin'
+        db_table = 'rep_horas_comun_inicial_jardin'
 
     def parse (self):
         return{
@@ -3009,7 +3009,7 @@ class RepHorasAdultosFormProf(models.Model):
 
     class Meta:
         managed = False  # Created from a view. Don't remove.
-        db_table = 'rep_horas_form_prof'
+        db_table = 'rep_horas_adultos_form_prof'
 
     def parse (self):
         return{
