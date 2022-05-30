@@ -40,7 +40,13 @@ var columns = {
       comun_inicial: columns_jornada,
       comun_primaria: columns_jornada,
       comun_secundaria: columns_jornada,
-  }
+  },
+  ra2020: {
+    none: [{}],
+    comun_inicial: columns_jornada,
+    comun_primaria: columns_jornada,
+    comun_secundaria: columns_jornada,
+}
 }
 
 function getColumns(ra, nivel_oferta) {

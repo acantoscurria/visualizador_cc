@@ -55,6 +55,20 @@ var columns = {
         adultos_secundaria: columns_cargos,
         adultos_form_prof: columns_cargos,
         especial: columns_cargos,
+    },
+    ra2020: {
+      none: [{}],
+        comun_inicial_maternal: columns_cargos,
+        comun_inicial_jardin: columns_cargos,
+        comun_primaria: columns_cargos,
+        comun_secundaria: columns_cargos,
+        comun_snu: columns_cargos,
+        comun_artistica: columns_cargos,
+        comun_servicios_complementarios: columns_cargos,
+        adultos_primaria: columns_cargos,
+        adultos_secundaria: columns_cargos,
+        adultos_form_prof: columns_cargos,
+        especial: columns_cargos,
     }
 }
 

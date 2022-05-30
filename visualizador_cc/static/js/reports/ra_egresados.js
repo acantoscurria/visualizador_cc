@@ -50,7 +50,13 @@ var columns = {
         comun_secundaria: columns_egresados,
         adultos_secundaria: columns_egresados,
         
-    }
+    },
+    ra2020: {
+      none: [{}],
+      comun_secundaria: columns_egresados,
+      adultos_secundaria: columns_egresados,
+      
+  }
 }
 
 function getColumns(ra, nivel_oferta) {
