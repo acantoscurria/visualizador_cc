@@ -35,6 +35,32 @@ var columns = {
         telefono_cod_area: 'Cod de area',
         telefono_nro: 'Nro telefono',
         email_loc: 'Email localizacion'
+    },
+    ra2020: {
+        cueanexo: 'CUEanexo',
+        escuela: 'EScuela',
+        tipo_ed: 'Tipo de Educacion',
+        nivel: 'Nivel',
+        nivel1: 'Nivel1',
+        total:'Total',
+        varones:'Varones',
+        nro_est: 'Nro establecimiento',
+        fecha_creac_establec: 'Fecha creacion establecimiento',
+        region: 'Region',
+        sector: 'Sector',
+        ambito: 'Ambito',
+        ref_loc: 'Referencia localizacion',
+        calle: 'Calle',
+        numero: 'Numero',
+        localidad: 'Localidad',
+        departamento: 'Departamento',
+        cod_postal: 'CP',
+        categoria: 'Categoria',
+        estado_est: 'Estado establecimiento',
+        estado_loc: 'Estado localizacion',
+        telefono_cod_area: 'Cod de area',
+        telefono_nro: 'Nro telefono',
+        email_loc: 'Email localizacion'
     }
 };
 
