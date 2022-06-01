@@ -101,9 +101,13 @@ class ControlsMatriculaListView(ListView):
 
 
         if show_all == 'false':            
-            data = df[df["control"] > 0].to_dict('records') 
+            data = df[df["control"] > 0].fillna(0).to_dict('records') 
         else:
-            data = df.to_dict('records')          
+            data = df.fillna(0).to_dict('records')  
+
+
+
+        print('*****data', data)        
     
         return JsonResponse({                    
             "data": data                
