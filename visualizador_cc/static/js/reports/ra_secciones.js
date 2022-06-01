@@ -43,7 +43,13 @@ var columns = {
         comun: columns_secciones,
         adultos: columns_secciones,
         form_prof: columns_secciones,
-    }
+    },
+    ra2020: {
+      none: [{}],
+      comun: columns_secciones,
+      adultos: columns_secciones,
+      form_prof: columns_secciones,
+  }
 }
 
 function getColumns(ra, nivel_oferta) {

@@ -58,6 +58,7 @@ var columns = {
         telefono_nro: "Nro de telefono",
         email_loc: "Email localizacion"
       },
+      
     }
   }
 
