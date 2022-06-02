@@ -1,6 +1,6 @@
 {% extends "base_admin.html" %}
 
-
+{% load static %}
 
 
 {% block content %}
@@ -24,91 +24,46 @@
 
 <div class="row pt-2">
 
-    <div class="col-3">
+    <div class="col-6">
 
         <div class="card border-card-primary  h-100 py-2">
             <div class="card-body">
-
                 <div class="row g-0 align-items-center">
-
                     <div class="col">
                         <div class="fw-light text-primary text-uppercase mb-1">
-                            Docente en actividad
+                            Ofertas educativas
                         </div>
-                        <div class="h5 mb-0">99999</div>
+                        <div class="h5 mb-0">Total 3.956</div>
                     </div>
                     <div class="col-auto">
                         <i class="fa-solid fa-user-tie fa-2x text-muted"></i>
                     </div>
                 </div>
-            </div>
-        </div>
 
-    </div>
-
-    <div class="col-3">
-
-        <div class="card border-card-success  h-100 py-2">
-            <div class="card-body">
-
-                <div class="row g-0 align-items-center">
+                <div class="row">
                     <div class="col">
-                        <div class="fw-light text-success text-uppercase mb-1">
-                            Horas catedras
-                        </div>
-                        <div class="h5 mb-0">99999</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fa-solid fa-user-tie fa-2x text-muted"></i>
-                    </div>
+                        <canvas id="chart_bar_oferta_educativa"></canvas>
+                    </div>                 
                 </div>
+
             </div>
         </div>
 
     </div>
-
-    <div class="col-3">
-
-        <div class="card border-card-info  h-100 py-2">
-            <div class="card-body">
-                <div class="row g-0 align-items-center">
-                    <div class="col">
-                        <div class="fw-light text-info text-uppercase mb-1">
-                            Secciones independientes
-                        </div>
-                        <div class="h5 mb-0">99999</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fa-solid fa-user-tie fa-2x text-muted"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="col-3">
-
-        <div class="card border-card-warning  h-100 py-2">
-            <div class="card-body">
-                <div class="row g-0 align-items-center">
-                    <div class="col mr-2">
-                        <div class="fw-light text-warning text-uppercase mb-1">
-                            Secciones multiples
-                        </div>
-                        <div class="h5 mb-0">99999</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fa-solid fa-user-tie fa-2x text-muted"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
 </div>
+
+
+
+
+{% endblock %}
+
+{% block inline_javascript %}
+
+<!-- EasyButton -->
+<script defer src="{% static 'js/dashboard/index.js' %}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+
 
 
 {% endblock %}
