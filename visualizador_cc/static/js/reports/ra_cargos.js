@@ -206,7 +206,7 @@ function getColumns(ra, nivel_oferta) {
                 [10, 100, 500, 1000, "Todas"],
               ],
               dom: "Bfrtip",
-              buttons: ["csv", "excel"],
+              buttons: ["csv", 'excelHtml5', 'print'],
             });
       }
     };
