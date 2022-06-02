@@ -1,4 +1,4 @@
-create view padron_oferta as(
+create view padron_ofertas as(
 SELECT padron.cueanexo::integer AS cueanexo,
     padron.nom_est,
     padron.acronimo_oferta,
