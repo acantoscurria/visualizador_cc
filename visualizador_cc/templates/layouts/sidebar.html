@@ -12,7 +12,7 @@
 {% block sidebar %}
 
 <div id="menu" class="flex-shrink-0 p-3 ps-1 text-white bg-dark">
-  <a href="/" class="d-flex align-items-center pb-3 mb-3 link-light text-decoration-none border-bottom">
+  <a href="/dashboard" class="d-flex align-items-center pb-3 mb-3 link-light text-decoration-none border-bottom">
     <!-- <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg> -->
     <i class="fa-solid fa-house fa-2x me-2"></i>
     <span class="fs-5 fw-semibold">Visualizador Estadísticas</span>
@@ -66,9 +66,8 @@
       </button>
       <div class="collapse" id="indicators-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-light rounded w-75">Repitencia</a></li>
-          <li><a href="#" class="link-light rounded w-75">Promovidos</a></li>
-          <li><a href="#" class="link-light rounded w-75">Tasa promoción efectiva</a></li>
+          <li><a href="{% url 'indicadores:cargos_horas' %}" class="link-light rounded w-75">Horas y cargos</a></li>
+          <li><a href="{% url 'indicadores:analisis_comun_inical' %}" class="link-light rounded w-75">Análisis común inicial</a></li>
         </ul>
       </div>
     </li>
@@ -80,7 +79,6 @@
       <div class="collapse" id="sie-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a href="#" class="link-light rounded w-75">Modulo alumnos</a></li>
-          <li><a href="#" class="link-light rounded w-75">Movilidad</a></li>
         </ul>
       </div>
     </li>

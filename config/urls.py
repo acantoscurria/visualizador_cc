@@ -28,6 +28,10 @@ urlpatterns = [
         "controls/",
         include("visualizador_cc.controls.urls", namespace="controls"),
     ),
+    path(
+        "indicadores/",
+        include("visualizador_cc.indicadores.urls", namespace="indicadores"),
+    ),
     path("noticias/", include("visualizador_cc.noticias.urls", namespace="noticias")),
     # Your stuff: custom urls includes go here
     path("ckeditor/", include("ckeditor_uploader.urls")),

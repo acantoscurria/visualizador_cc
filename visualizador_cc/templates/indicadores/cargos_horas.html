@@ -1,0 +1,41 @@
+{% extends "base_admin.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+<style>
+ 
+
+</style>
+
+{{page_name}}
+
+<div class="row pt-2 justify-content-center">
+    <div class="col-12">
+        <div class="border">
+
+            <iframe 
+                title="CARGOS Y  HORAS" 
+                width="100%" 
+                height="700" 
+                src="https://app.powerbi.com/view?r=eyJrIjoiYjYzZDY5ZWQtZWQxNC00ZTQzLWI3MGYtNTJkM2Q5OGQyNDc3IiwidCI6IjFhNDk1OWVmLWJiZWUtNDhhMC05YTZlLWQyZDQ4NzQ1MjhhOCJ9&pageName=ReportSectiona8f1fd52a59d241f91f0" 
+                frameborder="0" 
+                allowFullScreen="true">
+            </iframe>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block inline_javascript %}
+
+<script defer src="{% static 'js/indicadores/cargos_horas.js' %}"></script>
+
+{% endblock %}
