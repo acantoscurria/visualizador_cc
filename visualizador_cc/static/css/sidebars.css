@@ -87,6 +87,10 @@ html {
   background-color: #ffffff;
 }
 
+.btn-toggle-nav a:focus {
+  color: #000;
+}
+
 .scrollarea {
   overflow-y: auto;
 }
