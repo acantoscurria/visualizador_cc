@@ -169,6 +169,26 @@ footer{
   margin: auto;
 }
 
+.btn-menu {
+  margin-top: 0.5em;
+  position: absolute;
+  right: 0;
+  font-size: 25px;
+  color: #111;
+  cursor: pointer;
+  display: none;
+}
+
+#menu{
+  width: 15vw;
+  height: 100vh !important;
+  position: fixed;
+  z-index: 10000 !important;
+}
+
+#menu.show{
+  left: 0vw;
+}
 
 .wrapper{
   width: 90%;
@@ -345,6 +365,44 @@ footer{
   }
 }
 
+@media screen and (max-width: 500px) {
+  .btn-menu {
+    display: inline-flex;
+    padding: 1em;
+  }
+  #menu {
+    
+    position: fixed;
+    width: 50vw;
+    height: calc(100% - 65px);
+    
+    opacity: 1;
+    left: -50vw;
+    text-align: center;
+    transition: all 0.2s;
+    flex-direction: column;
+    z-index: 2;
+  }
+  .dashboard-content{
+    width: 100vw !important;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 3px;
+  }
+  #tarjetas{
+    display: flex !important  ;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-left: 2em;
+    margin-right: 0 !important;
+  }
+  .login{
+    margin-left: 40px !important;
+  }
+  .noticias{
+    margin-left: 20px;
+  }
 .login_text {
   color: #596a72;
 
@@ -486,4 +544,8 @@ color-alert {
   justify-content: center;
   border: solid 3px #000;
   border-radius: 25px;
+}
+
+#ra_cargos{
+  width: 100%;
 }
