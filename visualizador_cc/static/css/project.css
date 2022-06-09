@@ -139,7 +139,6 @@ body.dark #footer{
 
 #wrapper {
   min-height: 100%;
-  position: relative;
 }
 
 #content {
@@ -158,6 +157,11 @@ body.dark #footer{
   background-color: white;
   
   z-index: 100;
+  
+}
+
+#footer{
+  position: absolute;
   
 }
 
