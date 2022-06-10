@@ -85,6 +85,10 @@ body.dark #footer{
   width: 100%;
 }
 
+.container-fluid .row{
+  width: auto !important;
+}
+
 .text-custom {
   color: #97c93e !important;
 }
@@ -111,6 +115,10 @@ body.dark #footer{
 
 #carousel {
   position: relative;
+}
+
+.altura-carrousel {
+  height: 220px;
 }
 
 #carousel .overlay {
@@ -184,7 +192,7 @@ footer{
 }
 
 #menu{
-  width: 15vw;
+  width: 17vw;
   height: 100vh !important;
   position: fixed;
   z-index: 10000 !important;
@@ -238,7 +246,7 @@ footer{
 	text-align: center;
 	min-height: 280px;
 	height: auto;
-	border-radius: 10px;
+	border-radius: 50%;
 	color: #fff;
 	font-size: 1.5rem;
 }
@@ -259,11 +267,11 @@ footer{
     height: 100%;
     content: '';
     display: block;
-    opacity: .6;
+    opacity: 0;
     background-color: #000;
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-    border-radius: 10px;
+    border-radius: 50%;
 }
 .contenedor:hover .front,
 .contenedor:hover .back{
@@ -370,6 +378,22 @@ footer{
 }
 
 @media screen and (max-width: 500px) {
+  .carousel{
+    display: none;
+  }
+
+  .row{
+    width: 100vw;
+  }
+
+  .container-fluid{
+    min-height: 100vh;
+  }
+
+  .container-fluid .row{
+    width: 100% !important;
+  }
+
   .btn-menu {
     display: inline-flex;
     padding: 1em;
@@ -378,7 +402,7 @@ footer{
     
     position: fixed;
     width: 50vw;
-    height: calc(100% - 65px);
+    height: 100% !important;
     
     opacity: 1;
     left: -50vw;
@@ -538,7 +562,7 @@ color-alert {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 60000;
 }
 
 /*MAPA GENERAL*/
