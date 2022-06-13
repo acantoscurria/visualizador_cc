@@ -57,7 +57,7 @@ function getColumns(ra, nivel_oferta) {
   for (let clave in lista_de_valores) {
     console.log(clave, lista_de_valores[clave]);
     cols.push({
-      class: "justify-content-center row-control text-center",
+      class: "justify-content-center row-control text-center align-middle ",
       data: clave,
       name: clave,
       title: lista_de_valores[clave],
