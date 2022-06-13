@@ -183,7 +183,7 @@ footer{
 
 .btn-menu {
   margin-top: 0.5em;
-  position: absolute;
+  position: fixed;
   right: 0;
   font-size: 25px;
   color: #111;
@@ -192,10 +192,24 @@ footer{
 }
 
 #menu{
+  width: 5%;
+  height: 100vh !important;
+  position: fixed;
+  z-index: 10000 !important;
+  transition: all 0.5s;
+}
+
+.dashboard-content-global{
+  width: 95%;
+  margin-left: 5%;
+}
+
+#menu:hover{
   width: 17vw;
   height: 100vh !important;
   position: fixed;
   z-index: 10000 !important;
+  transition: all 0.5s;
 }
 
 #menu.show{
@@ -395,8 +409,11 @@ footer{
   }
 
   .btn-menu {
-    display: inline-flex;
+    display: inline-flex !important;
+    position: fixed;
     padding: 1em;
+    cursor: pointer;
+    right: 0;
   }
   #menu {
     
@@ -409,8 +426,16 @@ footer{
     text-align: center;
     transition: all 0.2s;
     flex-direction: column;
-    z-index: 2;
+    z-index: 50000;
   }
+
+  
+  
+  
+
+  
+
+  .dashboard-content-global,
   .dashboard-content{
     width: 100vw !important;
     margin: 0;
