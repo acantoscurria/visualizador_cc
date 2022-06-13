@@ -7,10 +7,10 @@
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://educacion.chaco.gob.ar/wp-content/uploads/2021/04/ministerio-educacion.jpg" class="d-block w-50 mx-auto" alt="...">
+                <img src="https://educacion.chaco.gob.ar/wp-content/uploads/2021/04/ministerio-educacion.jpg" class="d-block w-50 mx-auto altura-carrousel" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="https://guiaforestal.chaco.gov.ar/wsic2/img/nuevos%20logos%2002-01-20/chaco/logo_chaco_Color.png" class="d-block w-50 mx-auto" alt="...">
+                <img src="https://guiaforestal.chaco.gov.ar/wsic2/img/nuevos%20logos%2002-01-20/chaco/logo_chaco_Color.png" class="d-block w-50 mx-auto altura-carrousel" alt="...">
             </div>
         
         </div>
@@ -21,7 +21,7 @@
         <div class="columnas">
                   <div class="columna" ontouchstart="this.classList.toggle('hover');">
                       <div class="contenedor">
-                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/mapa-chaco2.jpg' %})">
+                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/mapa.png' %}); background-size: 250px; background-repeat: no-repeat">
                               <div class="inner">
                                   <h3></h3>
                     <span class="texto-lectura"></span>
@@ -35,11 +35,26 @@
                       </div>
                   </div>
                   <div class="columna" ontouchstart="this.classList.toggle('hover');">
+                    <div class="contenedor">
+                        <div class="front" style="background-image: url({% static 'images/tarjetas-index/reportes.png' %}); background-size: 250px; background-repeat: no-repeat;">
+                            <div class="inner">
+                                <h3></h3>
+                                    <span></span>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                                <a href="{% url "noticias:index" %}" class="text-decoration-none"><p class="text-dark fw-light">Reportes</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="columna" ontouchstart="this.classList.toggle('hover');">
                       <div class="contenedor">
-                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/estadistica.png' %})" >
+                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/indicadores.png' %}); background-size: 250px; background-repeat: no-repeat" >
                               <div class="inner">
-                                  <h3></h3>
-                    <span></span>
+                                    <h3></h3>
+                                    <span></span>
                               </div>
                           </div>
                           <div class="back">
@@ -48,22 +63,24 @@
                               </div>
                           </div>
                       </div>
-                  </div>        			<div class="columna" ontouchstart="this.classList.toggle('hover');">
-                      <div class="contenedor">
-                          <div class="front" style="background-image: url({% static 'images/tarjetas-index/noticias.jpg' %})">
-                              <div class="inner">
-                                  <h3></h3>
-                    <span></span>
-                              </div>
-                          </div>
-                          <div class="back">
-                              <div class="inner">
-                                  <a href="{% url "noticias:index" %}" class="text-decoration-none"><p class="text-dark fw-light">Noticias y avisos</p></a>
-                              </div>
-                          </div>
-                      </div>
-
-              </div>
+                    </div>        			
+                    <div class="columna" ontouchstart="this.classList.toggle('hover');">
+                        <div class="contenedor">
+                            <div class="front" style="background-image: url({% static 'images/tarjetas-index/noticias.png' %}); background-size: 250px; background-repeat: no-repeat">
+                                <div class="inner">
+                                    <h3></h3>
+                                        <span></span>
+                                </div>
+                            </div>
+                            <div class="back">
+                                <div class="inner">
+                                    <a href="{% url "noticias:index" %}" class="text-decoration-none"><p class="text-dark fw-light">Información y noticias</p></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+            
        </div>
 
     </div>

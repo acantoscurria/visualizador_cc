@@ -85,6 +85,10 @@ body.dark #footer{
   width: 100%;
 }
 
+.container-fluid .row{
+  width: auto !important;
+}
+
 .text-custom {
   color: #97c93e !important;
 }
@@ -113,6 +117,10 @@ body.dark #footer{
   position: relative;
 }
 
+.altura-carrousel {
+  height: 220px;
+}
+
 #carousel .overlay {
   position: absolute;
   top: 0;
@@ -139,7 +147,6 @@ body.dark #footer{
 
 #wrapper {
   min-height: 100%;
-  position: relative;
 }
 
 #content {
@@ -161,6 +168,11 @@ body.dark #footer{
   
 }
 
+#footer{
+  position: absolute;
+  
+}
+
 footer{
   justify-content: space-around;
   bottom: 0;
@@ -169,6 +181,26 @@ footer{
   margin: auto;
 }
 
+.btn-menu {
+  margin-top: 0.5em;
+  position: absolute;
+  right: 0;
+  font-size: 25px;
+  color: #111;
+  cursor: pointer;
+  display: none;
+}
+
+#menu{
+  width: 17vw;
+  height: 100vh !important;
+  position: fixed;
+  z-index: 10000 !important;
+}
+
+#menu.show{
+  left: 0vw;
+}
 
 .wrapper{
   width: 90%;
@@ -214,7 +246,7 @@ footer{
 	text-align: center;
 	min-height: 280px;
 	height: auto;
-	border-radius: 10px;
+	border-radius: 50%;
 	color: #fff;
 	font-size: 1.5rem;
 }
@@ -235,11 +267,11 @@ footer{
     height: 100%;
     content: '';
     display: block;
-    opacity: .6;
+    opacity: 0;
     background-color: #000;
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-    border-radius: 10px;
+    border-radius: 50%;
 }
 .contenedor:hover .front,
 .contenedor:hover .back{
@@ -345,6 +377,61 @@ footer{
   }
 }
 
+@media screen and (max-width: 500px) {
+  .carousel{
+    display: none;
+  }
+
+  .row{
+    width: 100vw;
+  }
+
+  .container-fluid{
+    min-height: 100vh;
+  }
+
+  .container-fluid .row{
+    width: 100% !important;
+  }
+
+  .btn-menu {
+    display: inline-flex;
+    padding: 1em;
+  }
+  #menu {
+    
+    position: fixed;
+    width: 50vw;
+    height: 100% !important;
+    
+    opacity: 1;
+    left: -50vw;
+    text-align: center;
+    transition: all 0.2s;
+    flex-direction: column;
+    z-index: 2;
+  }
+  .dashboard-content{
+    width: 100vw !important;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 3px;
+  }
+  #tarjetas{
+    display: flex !important  ;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-left: 2em;
+    margin-right: 0 !important;
+  }
+  .login{
+    margin-left: 40px !important;
+  }
+  .noticias{
+    margin-left: 20px;
+  }
+}
 .login_text {
   color: #596a72;
 
@@ -475,7 +562,7 @@ color-alert {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 60000;
 }
 
 /*MAPA GENERAL*/
@@ -486,4 +573,8 @@ color-alert {
   justify-content: center;
   border: solid 3px #000;
   border-radius: 25px;
+}
+
+#ra_cargos{
+  width: 100%;
 }
