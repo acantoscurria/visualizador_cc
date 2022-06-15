@@ -35,8 +35,8 @@
   display: none;
 }
 
-.btn-toggle:hover,
-.btn-toggle:focus {
+.menu-dashboard:hover.btn-toggle:hover,
+.menu-dashboard:hover.btn-toggle:focus {
   color: rgba(0, 0, 0, .85);
   background-color: #ffffff;
 }
@@ -56,10 +56,10 @@
   transform: rotate(90deg);
 }
 .btn-toggle[aria-expanded="true"]:hover {
-  color: rgba(0, 0, 0, 0.85);
+  color: #fff;
 }
 .btn-toggle[aria-expanded="true"]:focus {
-  color: rgba(0, 0, 0, 0.85);
+  color: #fff;
 }
 
 .menu-dashboard .btn-toggle-nav{
@@ -97,7 +97,7 @@
 
 
 .menu-dashboard:hover .btn-toggle-nav a:hover{
-  color: #000
+  color: #111
 }
 
 .menu-dashboard span{
@@ -116,6 +116,27 @@
 
 .icon2{
   color: #fff !important; 
+}
+
+.icon-arrow {
+  font-size: 2em;
+  color: rgba(255, 255, 255, 0.65);
+  margin: auto;
+  padding: 0.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+  
+}
+
+.menu-dashboard .icon-arrow svg{
+  transform: rotate(0deg);
+  transition: ease 1s;
+}
+
+.menu-dashboard:hover .icon-arrow svg{
+  transform: rotate(-540deg);
 }
 
 .icon{

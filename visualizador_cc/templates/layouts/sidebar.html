@@ -18,7 +18,7 @@
     <span class="fs-5 fw-semibold">Visualizador Estadísticas</span>
   </a>
   <ul class="list-unstyled ps-0">
-    <li class="mb-1 lista">
+    <li class="lista mb-1">
       <i class="fa-solid fa-location-dot icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#mapa-collapse" aria-expanded="false">
         Mapa
@@ -29,7 +29,7 @@
         </ul>
       </div>
     </li>
-    <li class="mb-1 lista">
+    <li class="lista mb-1">
       <i class="fa-solid fa-table icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
         Reportes
@@ -52,7 +52,7 @@
         </ul>
       </div>
     </li>
-    <li class="mb-1 lista">
+    <li class="lista mb-1 ">
       <i class="fa-solid fa-circle-exclamation icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#controls-collapse" aria-expanded="false">
         Controles
@@ -63,7 +63,7 @@
         </ul>
       </div>
     </li>
-    <li class="mb-1 lista">
+    <li class="lista mb-1">
       <i class="fa-solid fa-chart-pie icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#indicators-collapse" aria-expanded="false">
         Indicadores
@@ -76,7 +76,7 @@
       </div>
     </li>
     <li class="border-top my-3"></li>
-    <li class="mb-1 lista">
+    <li class="lista mb-1">
       <i class="fa-solid fa-s icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#sie-collapse" aria-expanded="false">
         SIE
@@ -87,18 +87,12 @@
         </ul>
       </div>
     </li>
+    <li class="mb-1 icon-arrow">
+      <i class="fa-solid fa-angles-right"></i>
+    </li>
   </ul>
 </div>
-<script>
-  const lista = document.querySelectorAll(".lista");
-  function activeLink(){
-    lista.forEach((item)=>
-    item.classList.remove('active'));
-    this.classList.add('active');
-  }
-  lista.forEach((item)=>
-  item.addEventListener('click',activeLink));
-</script>
+
 {% comment %} MOBILE {% endcomment %}
 
 <div id="menu-mobile" class="menu-dashboard-mobile flex-shrink-0 p-3 ps-1 text-white bg-dark">
