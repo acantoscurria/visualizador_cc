@@ -10,7 +10,7 @@
     </Style>
     {% csrf_token %}
     <div class="row border-bottom p-2 d-flex bg-light">
-        <div class="col-3">
+        <div class="col-md-3 col-sm-12 col-12">
             <form>
                 <div class="form-floating">
                     <select class="form-select" id="relevamiento_input" aria-label="Relevamiento">
@@ -28,7 +28,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-3">
+        <div class="col-md-3 col-sm-12 col-12">
             <form>
                 <div class="form-floating">
                     <select class="form-select" id="nivel_input" aria-label="Nivel">
@@ -51,7 +51,7 @@
         <div class="col-12 pt-3">
             <div class="alert alert-msg-none-selection text-center alert-primary "  role="alert">Seleccione RA y nivel</div>
             <table id="tabla-trayectoria"
-                   class="table table-striped table-striped "
+                   class="table table-striped table-striped table-sm align-middle table-bordered"
                    style="width:100%">
             </table>
         </div>
