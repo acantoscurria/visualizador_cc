@@ -14,11 +14,12 @@
 <div id="menu" class="menu-dashboard flex-shrink-0 p-3 ps-1 text-white bg-dark">
   <a href="/" class="d-flex text-center align-items-center pb-3 mb-3 link-light text-decoration-none border-bottom">
     <!-- <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg> -->
-    <i class="fa-solid fa-house fa-2x me-2"></i>
+    <i class="fa-solid fa-house fa-2x me-2 icon icon2"></i>
     <span class="fs-5 fw-semibold">Visualizador Estadísticas</span>
   </a>
   <ul class="list-unstyled ps-0">
-    <li class="mb-1">
+    <li class="lista mb-1">
+      <i class="fa-solid fa-location-dot icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#mapa-collapse" aria-expanded="false">
         Mapa
       </button>
@@ -28,7 +29,8 @@
         </ul>
       </div>
     </li>
-    <li class="mb-1">
+    <li class="lista mb-1">
+      <i class="fa-solid fa-table icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
         Reportes
       </button>
@@ -50,7 +52,8 @@
         </ul>
       </div>
     </li>
-    <li class="mb-1">
+    <li class="lista mb-1 ">
+      <i class="fa-solid fa-circle-exclamation icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#controls-collapse" aria-expanded="false">
         Controles
       </button>
@@ -60,7 +63,8 @@
         </ul>
       </div>
     </li>
-    <li class="mb-1">
+    <li class="lista mb-1">
+      <i class="fa-solid fa-chart-pie icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#indicators-collapse" aria-expanded="false">
         Indicadores
       </button>
@@ -72,7 +76,8 @@
       </div>
     </li>
     <li class="border-top my-3"></li>
-    <li class="mb-1">
+    <li class="lista mb-1">
+      <i class="fa-solid fa-s icon"></i>
       <button class="btn btn-toggle collapsed w-100" data-bs-toggle="collapse" data-bs-target="#sie-collapse" aria-expanded="false">
         SIE
       </button>
@@ -82,12 +87,96 @@
         </ul>
       </div>
     </li>
+    <li class="mb-1 icon-arrow">
+      <i class="fa-solid fa-angles-right"></i>
+    </li>
+  </ul>
+</div>
+
+{% comment %} MOBILE {% endcomment %}
+
+<div id="menu-mobile" class="menu-dashboard-mobile flex-shrink-0 p-3 ps-1 text-white bg-dark">
+  <a href="/" class="d-flex text-center align-items-center pb-3 mb-3 link-light text-decoration-none border-bottom">
+    <!-- <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg> -->
+    <i class="fa-solid fa-house fa-2x me-2"></i>
+    <span class="fs-5 fw-semibold">Visualizador Estadísticas</span>
+  </a>
+  <ul class="list-unstyled ps-0">
+    <li class="mb-1">
+      
+      <button class="btn btn-toggle2 collapsed w-100" data-bs-toggle="collapse" data-bs-target="#mapa-collapse" aria-expanded="false">
+        Mapa
+      </button>
+      <div class="collapse" id="mapa-collapse">
+        <ul class="btn-toggle-nav2 list-unstyled fw-normal pb-1 small">
+          <li><a href="{% url 'mapa:index' %}" class="link-light rounded w-75">Ver mapa</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      
+      <button class="btn btn-toggle2 collapsed w-100" data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
+        Reportes
+      </button>
+      <div class="collapse" id="reports-collapse">
+        <ul class="btn-toggle-nav2 list-unstyled fw-normal pb-1 small">
+          <li><a href="{% url 'reports:ra_localizaciones_index' %}" class="link-light rounded w-75 d-none">Localizaciones</a></li>
+          <li><a href="{% url 'reports:ra_matricula_index' %}" class="link-light rounded w-75">Matrícula</a></li>
+          <li><a href="{% url 'reports:ra_trayectoria_index' %}" class="link-light rounded w-75 d-none">Trayectoria</a></li>
+          <li><a href="{% url 'reports:ra_docentes_actividad_index' %}" class="link-light rounded w-75">Docente en actividad</a></li>
+          <li><a href="{% url 'reports:ra_cargos_index' %}" class="link-light rounded w-75">Cargos</a></li>
+          <li><a href="{% url 'reports:ra_secciones_index' %}" class="link-light rounded w-75">Secciones</a></li>
+          <li><a href="{% url 'reports:ra_horas_catedra_index' %}" class="link-light rounded w-75">Horas cátedras</a></li>
+          <li><a href="#" class="link-light rounded w-75 d-none">Programas</a></li>
+          <li><a href="{% url 'reports:ra_jornada_index' %}" class="link-light rounded w-75">Jornada completa ext.</a></li>
+          <li><a href="{% url 'reports:ra_matricula_aborigen' %}" class="link-light rounded w-75">Matrícula aborigen</a></li>
+          <li><a href="{% url 'reports:ra_egresados_index' %}" class="link-light rounded w-75">Egresados</a></li>
+          <li><a href="#" class="link-light rounded w-75 d-none">Alum. s/sala 4</a></li>
+          <li><a href="#" class="link-light rounded w-75 d-none">Alum. s/sala 5</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      
+      <button class="btn btn-toggle2 collapsed w-100" data-bs-toggle="collapse" data-bs-target="#controls-collapse" aria-expanded="false">
+        Controles
+      </button>
+      <div class="collapse" id="controls-collapse">
+        <ul class="btn-toggle-nav2 list-unstyled fw-normal pb-1 small">
+          <li><a href="{% url 'controls:matricula_index' %}" class="link-light rounded w-75">Matrícula</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      
+      <button class="btn btn-toggle2 collapsed w-100" data-bs-toggle="collapse" data-bs-target="#indicators-collapse" aria-expanded="false">
+        Indicadores
+      </button>
+      <div class="collapse" id="indicators-collapse">
+        <ul class="btn-toggle-nav2 list-unstyled fw-normal pb-1 small">
+          <li><a href="{% url 'indicadores:cargos_horas' %}" class="link-light rounded w-75">Horas y cargos</a></li>
+          <li><a href="{% url 'indicadores:analisis_comun_inical' %}" class="link-light rounded w-75">Análisis común inicial</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="border-top my-3"></li>
+    <li class="mb-1">
+      
+      <button class="btn btn-toggle2 collapsed w-100" data-bs-toggle="collapse" data-bs-target="#sie-collapse" aria-expanded="false">
+        SIE
+      </button>
+      <div class="collapse" id="sie-collapse">
+        <ul class="btn-toggle-nav2 list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-light rounded w-75">Modulo alumnos</a></li>
+        </ul>
+      </div>
+    </li>
   </ul>
 </div>
 <span class="btn-menu">
   <i class="fa-solid fa-bars"></i>
 </span>
-
+<script defer src="{% static 'js/sidebars.js' %}"></script>
 {% endblock %}
 
 {% block javascript %}
