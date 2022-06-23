@@ -601,3 +601,8 @@ color-alert {
 #ra_cargos{
   width: 100%;
 }
+
+.title{
+  color: #3B3A4D;
+  font-size: 2.5em;
+}
