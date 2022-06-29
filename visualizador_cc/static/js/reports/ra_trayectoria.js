@@ -41,7 +41,7 @@ var columns = {
         var_egresados: "Varones egresados",
         nom_est: "Nombre establecimiento",
         nro_est: "Numero establecimiento",
-        fecha_creac_establec : "Fecha creacion establecimiento",
+        /* fecha_creac_establec : "Fecha creacion establecimiento", */
         region: "Region",
         sector: "Sector",
         ambito: "Ambito",

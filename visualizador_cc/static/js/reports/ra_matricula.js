@@ -31,7 +31,7 @@ var columns = {
       nom_est: "Nombre establecimiento",
       nro_est: "Número establecimiento",
       anio_creac_establec: "Año de creacion est.",
-      fecha_creac_establec: "Fecha de creacion est",
+      /* fecha_creac_establec: "Fecha de creacion est", */
       region: "Region",
       udt: "UDT",
       cui: "CUI",
@@ -82,7 +82,7 @@ var columns = {
       nom_est: "Nombre establecimiento",
       nro_est: "Número establecimiento",
       anio_creac_establec: "Año de creacion est.",
-      fecha_creac_establec: "Fecha de creacion est",
+      /* fecha_creac_establec: "Fecha de creacion est", */
       region: "Region",
       udt: "UDT",
       cui: "CUI",

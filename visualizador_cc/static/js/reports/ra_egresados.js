@@ -23,7 +23,7 @@ const columns_egresados = {
     var_egresados_fines: 'Varones egresados fines',
     nom_est: 'Nombre establecimiento',
     nro_est: 'Nro establecimiento',
-    fecha_creac_establec: 'Fecha creacion establecimiento',
+    /* fecha_creac_establec: 'Fecha creacion establecimiento', */
     region: 'Region',
     sector: 'Sector',
     ambito: 'Ambito',

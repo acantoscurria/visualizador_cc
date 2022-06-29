@@ -16,7 +16,7 @@ const columns_secciones = {
     multiples: 'Multiples',
     nom_est: "Nombre institucion",
     nro_est: "Nro institucion",
-    fecha_creac_establec: "Fecha de creacion est.",
+    /* fecha_creac_establec: "Fecha de creacion est.", */
     region: "Region",
     sector: "Sector",
     ambito: "Ambito",
