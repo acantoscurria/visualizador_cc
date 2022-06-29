@@ -60,6 +60,13 @@ urlpatterns = [
         ReportCargosListView.as_view(),
         name="ra_cargos_list"
     ),
+
+    path(
+        'ra_cargos_options/',
+         CargosOptionsList.as_view(),
+         name='ra_cargos_options'
+    ),
+
     path(
         "ReportSeccionesIndexView",
         ReportSeccionesIndexView.as_view(),

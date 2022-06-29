@@ -6,6 +6,8 @@ from django.views import View
 from visualizador_cc.users.models import User
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from rest_framework import generics
+
 
 from visualizador_cc.reports.models import *
 
@@ -687,6 +689,54 @@ class ReportCargosIndexView (View, LoginRequiredMixin):
     def get(self, request):
         context = {"title": "Reporte Cargos"}
         return render(request, "reports/ra_cargos.html", context)
+
+class CargosOptionsList(ListView):
+ 
+     def get(self, request, *args, **kwargs):   
+        ra_selected = request.GET.get('ra_selected')
+        nivel_oferta_selected = request.GET.get("nivel_oferta_selected") 
+
+        object_list = [];  
+       
+        if(nivel_oferta_selected == 'comun_inicial_maternal'):   
+            object_list = RepCargosComunInicialMaternal.objects.using(ra_selected).values('cargos').distinct()
+              
+        if(nivel_oferta_selected == 'comun_inicial_jardin'):   
+            object_list = RepCargosComunInicialMaternal.objects.using(ra_selected).values('cargos').distinct()
+
+        if(nivel_oferta_selected == 'comun_primaria'):   
+            object_list = RepCargosComunPrimaria.objects.using(ra_selected).values('cargos').distinct()
+
+        if(nivel_oferta_selected == 'comun_secundaria'):   
+            object_list = RepCargosComunSecundaria.objects.using(ra_selected).values('cargos').distinct()
+
+        if(nivel_oferta_selected == 'comun_snu'):   
+            object_list = RepCargosComunSnu.objects.using(ra_selected).values('cargos').distinct()
+     
+        if(nivel_oferta_selected == 'comun_artistica'):   
+            object_list = RepCargosComunArtistica.objects.using(ra_selected).values('cargos').distinct()
+
+        if(nivel_oferta_selected == 'comun_servicios_complementarios'):   
+            object_list = RepCargosComunServiciosComplementarios.objects.using(ra_selected).values('cargos').distinct()
+
+        if(nivel_oferta_selected == 'adultos_primaria'):   
+            object_list = RepCargosAdultosPrimaria.objects.using(ra_selected).values('cargos').distinct()
+
+        if(nivel_oferta_selected == 'adultos_form_prof'):   
+            object_list = RepCargosAdultosFormProf.objects.using(ra_selected).values('cargos').distinct()
+
+        if(nivel_oferta_selected == 'adultos_secundaria'):   
+            object_list = RepCargosAdultosSecundaria.objects.using(ra_selected).values('cargos').distinct()
+
+        if(nivel_oferta_selected == 'especial'):   
+            object_list = RepCargosEspecial.objects.using(ra_selected).values('cargos').distinct()
+
+       
+        data = []  
+        for row in object_list:
+            data.append(row['cargos'])
+        return JsonResponse(data, safe=False) 
+
     
 class ReportCargosListView (ListView):
     def post(self, request, *args, **kwargs):
@@ -705,9 +755,11 @@ class ReportCargosListView (ListView):
         search = dt.get("search[value]")
         nivel_oferta_selected = dt.get("nivel_oferta_selected")    
         ra_selected = dt.get("ra_selected")     
+        filter_cargo = dt.get("filter_cargo")     
 
         print('nivel_oferta_selected', nivel_oferta_selected)
         print('control_type_selected', ra_selected)
+        print('filter_cargo', filter_cargo)
 
         if(nivel_oferta_selected == "None" or ra_selected == "none"):     
             
@@ -718,7 +770,7 @@ class ReportCargosListView (ListView):
                         "recordsTotal": 0,
                         "recordsFiltered": 0,
                         "data": [],
-                        "error_msg": "",
+                        "error_msg": ""                 
                     }, 
                     safe=False)    
 
@@ -726,14 +778,14 @@ class ReportCargosListView (ListView):
 
             recordsTotal = RepCargosComunInicialMaternal.objects.using(ra_selected).all().count()
 
-            if search: # si hay valor de busqueda
+            if search: # si hay valor de busqueda                
 
                 if(length != -1): #hay paginacion
 
                     # obtengo todas las filas filtradas y paginado
                     object_list = RepCargosComunInicialMaternal.objects.using(ra_selected).filter(
                         Q(escuela__icontains=search) | Q(cueanexo__icontains=search)
-                    )[start:start + length]
+                    )[start:start + length]              
 
                 else:
 
@@ -1194,9 +1246,7 @@ class ReportCargosListView (ListView):
                 recordsFiltered = RepCargosEspecial.objects.using(ra_selected).filter(
                     Q(cueanexo__icontains=search)
                 ).count()
-        
-        
-        
+                       
         data = []  
         for row in object_list:
             # print('parse', row.parse())
@@ -1207,7 +1257,7 @@ class ReportCargosListView (ListView):
             "recordsTotal": recordsTotal,
             "recordsFiltered": recordsFiltered,
             "data": data,
-            "error_msg": "",
+            "error_msg": ""           
         }, 
         safe=False) 
         
