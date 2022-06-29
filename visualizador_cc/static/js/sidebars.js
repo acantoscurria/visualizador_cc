@@ -18,11 +18,13 @@ if (btn_menu) {
   });
 };
 
-const list = document.querySelectorAll(".lista i");
-function activeLink(){
+window.addEventListener('DOMContentLoaded', () => {
+  const list = document.querySelectorAll(".lista i");
+  function activeLink(){
+    list.forEach((item)=>
+    item.classList.remove('active'));
+    this.classList.add('active');
+  }
   list.forEach((item)=>
-  item.classList.remove('active'));
-  this.classList.add('active');
-}
-list.forEach((item)=>
-item.addEventListener('click',activeLink));
+  item.addEventListener('click',activeLink));
+});

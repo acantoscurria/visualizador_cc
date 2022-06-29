@@ -19,7 +19,7 @@ var columns = {
         total:'Total',
         varones:'Varones',
         nro_est: 'Nro establecimiento',
-        fecha_creac_establec: 'Fecha creacion establecimiento',
+        /* fecha_creac_establec: 'Fecha creacion establecimiento', */
         region: 'Region',
         sector: 'Sector',
         ambito: 'Ambito',
@@ -45,7 +45,7 @@ var columns = {
         total:'Total',
         varones:'Varones',
         nro_est: 'Nro establecimiento',
-        fecha_creac_establec: 'Fecha creacion establecimiento',
+        /* fecha_creac_establec: 'Fecha creacion establecimiento', */
         region: 'Region',
         sector: 'Sector',
         ambito: 'Ambito',

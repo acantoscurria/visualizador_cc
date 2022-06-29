@@ -52,7 +52,7 @@ const matricula_comun_primaria_columns = {
     var_discapacidad: 'Varones discapacidad',
     nom_est: 'Nombre establecimiento',
     nro_est: 'Nro establecimiento',
-    fecha_creac_establec: 'Fecha creacion establecimiento',
+    /* fecha_creac_establec: 'Fecha creacion establecimiento', */
     region: 'Region',
     sector: 'Sector',
     ambito: 'Ambito',
@@ -91,7 +91,7 @@ const matricula_comun_secundaria_columns = {
     total_disc: 'Total discapacidad',
     var_disc: 'Varones discapacidad',
     
-    fecha_creac_establec: 'Fecha creacion establecimiento',
+    /* fecha_creac_establec: 'Fecha creacion establecimiento', */
     region: 'Region',
     sector: 'Sector',
     ambito: 'Ambito',
@@ -128,7 +128,7 @@ const matricula_comun_snu_columns = {
     var_residencia: 'Varones residencia',
     nom_est: 'Nombre establecimiento',
     nro_est: 'Nro establecimiento',
-    fecha_creac_establec: 'Fecha creacion establecimiento',
+    /* fecha_creac_establec: 'Fecha creacion establecimiento', */
     region: 'Region',
     sector: 'Sector',
     ambito: 'Ambito',
@@ -158,7 +158,7 @@ const matricula_adultos_primaria_columns = {
     total: 'Total',
     total_var: 'Total varones',
     
-    fecha_creac_establec: 'Fecha creacion establecimiento',
+    /* fecha_creac_establec: 'Fecha creacion establecimiento', */
     region: 'Region',
     sector: 'Sector',
     ambito: 'Ambito',
@@ -192,7 +192,7 @@ const matricula_adultos_secundaria_columns = {
     total_rep: 'Total repitentes',
     var_rep: 'Varones repitentes',
     
-    fecha_creac_establec: 'Fecha creacion establecimiento',
+    /* fecha_creac_establec: 'Fecha creacion establecimiento', */
     region: 'Region',
     sector: 'Sector',
     ambito: 'Ambito',
@@ -222,7 +222,7 @@ const matricula_especial_primaria_columns = {
     total_rep: 'Total repitentes',
     var_rep: 'Varones repitentes',
     
-    fecha_creac_establec: 'Fecha creacion establecimiento',
+    /* fecha_creac_establec: 'Fecha creacion establecimiento', */
     region: 'Region',
     sector: 'Sector',
     ambito: 'Ambito',

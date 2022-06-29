@@ -164,8 +164,10 @@
 }
 
 
-
-
+.image-icon{
+  width: 50px;
+  filter: grayscale(1) brightness(2);
+}
 
 /* MOBILE */
 
