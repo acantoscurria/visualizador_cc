@@ -155,101 +155,92 @@ $(document).ready(function () {
       if (dt_matricula) {
         dt_matricula.clear();
         dt_matricula.destroy();
-
         $("#tabla-matricula tbody").empty();
         $("#tabla-matricula thead").empty();
       }
+   
+      dt_matricula = $("#tabla-matricula")
+      .on("processing.dt", function (e, settings, processing) {
+        if (processing) {
+        }
+      })
+      .DataTable({
+        ajax: {
+          url: "/reports/ra_matricula_list/",
+          type: "POST",
+          headers: { "X-CSRFToken": csrftoken },
+          dataFilter: function (data) {
+            if (data) { 
 
-    //   console.log(
-    //     "columns",
-    //     columns[$("#relevamiento_input").val()][$("#matricula_input").val()]
-    //   );
-
-        dt_matricula = $("#tabla-matricula")
-          .on("processing.dt", function (e, settings, processing) {
-            if (processing) {
+              return data;                 
             }
-          })
-          .DataTable({
-            ajax: {
-              url: "/reports/ra_matricula_list/",
-              type: "POST",
-              headers: { "X-CSRFToken": csrftoken },
-              dataFilter: function (data) {
-                if (data) {
-                  try {
-                    let json = $.parseJSON(data);
-                    if (json.error_msg) {
-                      alert(json.error_msg);
-                    }
-                    return data;
-                  } catch (e) {
-                    console.error("error al obtener los datos de la tabla", e);
-                  }
-                }
-              },
-              data: function (d) {
-                return $.extend({}, d, {
-                  matricula_selected: $("#matricula_input").val(),
-                  ra_selected: $("#relevamiento_input").val(),
-                });
-              },
-            },
-            columns: getColumns(
-              $("#relevamiento_input").val(),
-              $("#matricula_input").val()
-            ),
-            processing: true,
-            serverSide: true,
-            autoWidth: true,
-            orderCellsTop: false,
-            //"order": [[ 1, 'asc' ]],
-            //"rowId": 'id',
-            scrollY: true,
-            scrollY: "600px",
-            scrollX: true,
-            scrollCollapse: true,
-            paging: true,
-            ordering: false,
-            createdRow: function (row, data, index) {},
-            infoCallback: function (settings, start, end, max, total, pre) {
-              return pre;
-            },
-            initComplete: function (settings, json) {
-              console.log("DataTables has finished its initialisation.");
-            },
-            language: {
-              decimal: "",
-              emptyTable: "Sin resultados.",
-              info: "_START_ al _END_ de _TOTAL_",
-              infoEmpty: "0 al 0 de 0",
-              infoFiltered: "",
-              infoPostFix: "",
-              thousands: ",",
-              lengthMenu: "Mostrar _MENU_ filas",
-              loadingRecords: $("#preloader").html(),
-              processing: $("#preloader").html(),
-              search: "Buscar:",
-              zeroRecords: "Sin resultados",
-              paginate: {
-                first: "Primero",
-                last: "Último",
-                next: "Siguiente",
-                previous: "Anterior",
-              },
-              aria: {
-                sortAscending: ": Activar para ordenar la columna ascendente",
-                sortDescending: ": Activar para ordenar la columna descendente",
-              },
-            },
-            pagingType: "numbers",
-            lengthMenu: [
-              [10, 100, 500, 1000, -1],
-              [10, 100, 500, 1000, "Todas"],
-            ],
-            dom: "Bfrtip",
-            buttons: ["csv", "excel"],
-          });
+          },
+          data: function (d) {
+            return $.extend({}, d, {
+              matricula_selected: $("#matricula_input").val(),
+              ra_selected: $("#relevamiento_input").val(),
+            });
+          },
+        },
+        searchPanes: {
+            viewTotal: true
+        },          
+        columns: getColumns(
+          $("#relevamiento_input").val(),
+          $("#matricula_input").val()
+        ),
+        processing: true,
+        serverSide: false,
+        autoWidth: true,
+        orderCellsTop: false,
+        //"order": [[ 1, 'asc' ]],
+        //"rowId": 'id',
+        scrollY: true,
+        scrollY: "600px",
+        scrollX: true,
+        scrollCollapse: true,
+        paging: true,
+        ordering: false,
+        createdRow: function (row, data, index) {},
+        infoCallback: function (settings, start, end, max, total, pre) {
+          return pre;
+        },
+        initComplete: function (settings, json) {
+          console.log("DataTables has finished its initialisation.");
+        },
+        language: {
+          decimal: "",
+          emptyTable: "Sin resultados.",
+          info: "_START_ al _END_ de _TOTAL_",
+          infoEmpty: "0 al 0 de 0",
+          infoFiltered: "",
+          infoPostFix: "",
+          thousands: ",",
+          lengthMenu: "Mostrar _MENU_ filas",
+          loadingRecords: $("#preloader").html(),
+          processing: $("#preloader").html(),
+          search: "Buscar:",
+          zeroRecords: "Sin resultados",
+          paginate: {
+            first: "Primero",
+            last: "Último",
+            next: "Siguiente",
+            previous: "Anterior",
+          },
+          aria: {
+            sortAscending: ": Activar para ordenar la columna ascendente",
+            sortDescending: ": Activar para ordenar la columna descendente",
+          },
+        },
+        pagingType: "numbers",
+        lengthMenu: [
+          [10, 100, 500, 1000, -1],
+          [10, 100, 500, 1000, "Todas"],
+        ],
+        // dom: "Bfrtip",
+        dom: 'Plfrtip',
+        buttons: ["csv", "excel"],
+      });
     }
   };
 

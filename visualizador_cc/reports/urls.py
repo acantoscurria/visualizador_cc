@@ -1,7 +1,15 @@
 from unicodedata import name
 from django.urls import path
 
-from visualizador_cc.reports.views import *
+from visualizador_cc.reports.views.matriculas import (
+    ReportsMatricIndexView,
+    ReportsMatricListView
+)
+
+
+from visualizador_cc.reports.viewsOLD import *
+
+
 
 app_name = "reports"
 urlpatterns = [
