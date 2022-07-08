@@ -1,25 +1,23 @@
-const matricula_comun_inicial_columns= {                             
-    
-    cueanexo: 'CUEanexo',
-    
+const matricula_comun_inicial_columns= {   
+    cueanexo: 'CUEanexo',    
     escuela: 'Escuela',
-    sala: 'Sala',
-    turno: 'Turno',
-    nom_secc: 'Nombre Seccion',
-    tipo_secc: 'Tipo Seccion',
+    sala: 'Sala', //2
+    turno: 'Turno', //3
+    nom_secc: 'Nombre Seccion', //4
+    tipo_secc: 'Tipo Seccion', //5
     total: 'Total',
     total_var: 'Total varones',
     total_disc: 'Total alumnos con discapacidad',
     var_disc: 'Total Varones con discapacidad',
     nom_est: 'Nombre establecimiento',
     nro_est: 'Nro Establecimiento',
-    region: 'Region',
+    region: 'Region', //12
     udt: 'UDT',
     cui: 'CUI',
     cua: 'CUA',
     cuof: 'CUOF',
-    sector: 'Sector',
-    ambito: 'Ambito',
+    sector: 'Sector', //17
+    ambito: 'Ambito', //18
     ref_loc: 'Referente local',
     calle: 'Calle',
     numero: 'Numero',
@@ -32,6 +30,7 @@ const matricula_comun_inicial_columns= {
     telefono_cod_area: 'cod de area',
     telefono_nro: 'nro telefono',
     email_loc: 'Email de localizacion',
+    target_filters: [2,3,4,5,12,17,18]
 };
 
 const matricula_comun_primaria_columns = {

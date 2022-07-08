@@ -137,6 +137,10 @@ function getColumns(ra, matricula) {
   return cols;
 }
 
+function getTargetFilters(ra, matricula) {
+  return columns[ra][matricula].target_filters;
+}
+
 $(document).ready(function () {
 //   getColumns("ra2021", "matric_especial_inicial");
   const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
@@ -158,6 +162,7 @@ $(document).ready(function () {
         $("#tabla-matricula tbody").empty();
         $("#tabla-matricula thead").empty();
       }
+
    
       dt_matricula = $("#tabla-matricula")
       .on("processing.dt", function (e, settings, processing) {
@@ -182,9 +187,6 @@ $(document).ready(function () {
             });
           },
         },
-        searchPanes: {
-            viewTotal: true
-        },          
         columns: getColumns(
           $("#relevamiento_input").val(),
           $("#matricula_input").val()
@@ -231,15 +233,72 @@ $(document).ready(function () {
             sortAscending: ": Activar para ordenar la columna ascendente",
             sortDescending: ": Activar para ordenar la columna descendente",
           },
+          searchPanes: {
+              clearMessage: 'Limpiar filtros',
+              collapse: {
+                0: 'Filtros',
+                _: 'Filtros seleccionados (%d)'
+              },
+              title: {
+                _: 'Filtros seleccionados: %d',
+                0: 'No hay filtros seleccionados',             
+            }
+          }
+          // searchPanes: {
+          //   title: {
+          //       _: 'Filtros seleccionados - %d',
+          //       0: 'No existen filtros seleccionados',
+          //       1: '1 filtro seleccionado'
+          //   }
+          // }         
         },
         pagingType: "numbers",
         lengthMenu: [
           [10, 100, 500, 1000, -1],
           [10, 100, 500, 1000, "Todas"],
         ],
-        // dom: "Bfrtip",
-        dom: 'Plfrtip',
-        buttons: ["csv", "excel"],
+        dom: "Bfrtip",
+        // searchPanes:{
+        //   dtOpts: {
+        //     dom: 'tp',
+        //     paging: true,
+        //     pagingType: 'simple',
+        //     searching: true
+        //   } 
+        // },
+        buttons: [
+          "csv",
+          "excel",  
+          {
+         
+            extend: 'searchPanes',           
+            config: {
+                // cascadePanes: true,
+                columns: getTargetFilters(
+                  $("#relevamiento_input").val(),
+                  $("#matricula_input").val()
+                ),
+                collapse: true,
+                combiner: 'and',
+                controls: true,
+                emptyMessage: 'No hay opciones',              
+                initCollapsed: false,
+                name: 'dfsdf',
+                orderable: false,
+                viewCount: false,
+                viewTotal: true,   
+                cascadePanes: true,
+                // dtOpts: {
+                //   dom: 'tp',
+                //   // paging: true,
+                //   // pagingType: 'simple',
+                //   searching: true
+                // }            
+
+            },            
+            text: 'Filtros',            
+          }
+        ],
       });
     }
   };
