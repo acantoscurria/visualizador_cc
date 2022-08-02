@@ -53,13 +53,13 @@ var columns = {
       per_funcionamiento: "Per funcionamiento",
       email_loc: "Email localizacion",
     },
-    matricula_comun_inicial:matricula_comun_inicial_columns,
-    matricula_comun_primaria:matricula_comun_primaria_columns,
-    matricula_comun_secundaria:matricula_comun_secundaria_columns,
-    matricula_comun_snu:matricula_comun_snu_columns,
-    matricula_adultos_primaria:matricula_adultos_primaria_columns,
-    matricula_adultos_secundaria:matricula_adultos_secundaria_columns,
-    matricula_especial_primaria:matricula_especial_primaria_columns,
+    matricula_comun_inicial: matricula_comun_inicial_columns,
+    matricula_comun_primaria: matricula_comun_primaria_columns,
+    matricula_comun_secundaria: matricula_comun_secundaria_columns,
+    matricula_comun_snu: matricula_comun_snu_columns,
+    matricula_adultos_primaria: matricula_adultos_primaria_columns,
+    matricula_adultos_secundaria: matricula_adultos_secundaria_columns,
+    matricula_especial_primaria: matricula_especial_primaria_columns,
   },
   ra2020: {
     none: [{}],
@@ -104,13 +104,13 @@ var columns = {
       per_funcionamiento: "Per funcionamiento",
       email_loc: "Email localizacion",
     },
-    matricula_comun_inicial:matricula_comun_inicial_columns,
-    matricula_comun_primaria:matricula_comun_primaria_columns,
-    matricula_comun_secundaria:matricula_comun_secundaria_columns,
-    matricula_comun_snu:matricula_comun_snu_columns,
-    matricula_adultos_primaria:matricula_adultos_primaria_columns,
-    matricula_adultos_secundaria:matricula_adultos_secundaria_columns,
-    matricula_especial_primaria:matricula_especial_primaria_columns,
+    matricula_comun_inicial: matricula_comun_inicial_columns,
+    matricula_comun_primaria: matricula_comun_primaria_columns,
+    matricula_comun_secundaria: matricula_comun_secundaria_columns,
+    matricula_comun_snu: matricula_comun_snu_columns,
+    matricula_adultos_primaria: matricula_adultos_primaria_columns,
+    matricula_adultos_secundaria: matricula_adultos_secundaria_columns,
+    matricula_especial_primaria: matricula_especial_primaria_columns,
   },
 };
 
@@ -120,7 +120,7 @@ function getColumns(ra, matricula) {
   let lista_de_valores = columns[ra][matricula];
 
   for (let clave in lista_de_valores) {
-    console.log(clave, lista_de_valores[clave]);
+    // console.log(clave, lista_de_valores[clave]);
     cols.push({
       class: "justify-content-center row-control text-center align-middle ",
       data: clave,
@@ -132,7 +132,7 @@ function getColumns(ra, matricula) {
     });
   }
 
-  console.log("cols", cols);
+  // console.log("cols", cols);
 
   return cols;
 }
@@ -142,7 +142,7 @@ function getTargetFilters(ra, matricula) {
 }
 
 $(document).ready(function () {
-//   getColumns("ra2021", "matric_especial_inicial");
+  //   getColumns("ra2021", "matric_especial_inicial");
   const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
 
   var dt_matricula = null;
@@ -163,77 +163,92 @@ $(document).ready(function () {
         $("#tabla-matricula thead").empty();
       }
 
-   
-      dt_matricula = $("#tabla-matricula")
-      .on("processing.dt", function (e, settings, processing) {
-        if (processing) {
-        }
-      })
-      .DataTable({
-        ajax: {
-          url: "/reports/ra_matricula_list/",
-          type: "POST",
-          headers: { "X-CSRFToken": csrftoken },
-          dataFilter: function (data) {
-            if (data) { 
 
-              return data;                 
-            }
+      dt_matricula = $("#tabla-matricula")
+        .on("processing.dt", function (e, settings, processing) {
+          console.log("processing.dt", e, settings, processing);
+          if (processing) {
+
+          }
+        })
+        .on('draw', function(e, settings) {
+          console.log('on draw...', e, settings);
+          //$('#maindata_processing').css('display', 'none');
+        })
+        .on( 'search.dt', function ( e, settings) {
+          //console.log('on search...', e, settings);
+        })
+        .on( 'stateLoadParams.dt', function (e, settings, data) {
+          console.log('on stateLoadParams...', e, settings, data);
+        })
+        .on( 'stateLoaded.dt', function (e, settings, data) {
+          console.log('on stateLoaded...', e, settings, data);
+        })
+        .DataTable({
+          ajax: {
+            url: "/reports/ra_matricula_list/",
+            type: "POST",
+            headers: { "X-CSRFToken": csrftoken },
+            dataFilter: function (data) {
+              if (data) {
+
+                return data;
+              }
+            },
+            data: function (d) {
+              return $.extend({}, d, {
+                matricula_selected: $("#matricula_input").val(),
+                ra_selected: $("#relevamiento_input").val(),
+              });
+            },
           },
-          data: function (d) {
-            return $.extend({}, d, {
-              matricula_selected: $("#matricula_input").val(),
-              ra_selected: $("#relevamiento_input").val(),
-            });
+          columns: getColumns(
+            $("#relevamiento_input").val(),
+            $("#matricula_input").val()
+          ),
+          processing: true,
+          serverSide: false,
+          autoWidth: true,
+          orderCellsTop: false,
+          //"order": [[ 1, 'asc' ]],
+          //"rowId": 'id',
+          scrollY: true,
+          scrollY: "600px",
+          scrollX: true,
+          scrollCollapse: true,
+          paging: true,
+          ordering: false,
+          createdRow: function (row, data, index) { },
+          infoCallback: function (settings, start, end, max, total, pre) {
+            return pre;
           },
-        },
-        columns: getColumns(
-          $("#relevamiento_input").val(),
-          $("#matricula_input").val()
-        ),
-        processing: true,
-        serverSide: false,
-        autoWidth: true,
-        orderCellsTop: false,
-        //"order": [[ 1, 'asc' ]],
-        //"rowId": 'id',
-        scrollY: true,
-        scrollY: "600px",
-        scrollX: true,
-        scrollCollapse: true,
-        paging: true,
-        ordering: false,
-        createdRow: function (row, data, index) {},
-        infoCallback: function (settings, start, end, max, total, pre) {
-          return pre;
-        },
-        initComplete: function (settings, json) {
-          console.log("DataTables has finished its initialisation.");
-        },
-        language: {
-          decimal: "",
-          emptyTable: "Sin resultados.",
-          info: "_START_ al _END_ de _TOTAL_",
-          infoEmpty: "0 al 0 de 0",
-          infoFiltered: "",
-          infoPostFix: "",
-          thousands: ",",
-          lengthMenu: "Mostrar _MENU_ filas",
-          loadingRecords: $("#preloader").html(),
-          processing: $("#preloader").html(),
-          search: "Buscar:",
-          zeroRecords: "Sin resultados",
-          paginate: {
-            first: "Primero",
-            last: "Último",
-            next: "Siguiente",
-            previous: "Anterior",
+          initComplete: function (settings, json) {
+            console.log("DataTables has finished its initialisation.");
           },
-          aria: {
-            sortAscending: ": Activar para ordenar la columna ascendente",
-            sortDescending: ": Activar para ordenar la columna descendente",
-          },
-          searchPanes: {
+          language: {
+            decimal: "",
+            emptyTable: "Sin resultados.",
+            info: "_START_ al _END_ de _TOTAL_",
+            infoEmpty: "0 al 0 de 0",
+            infoFiltered: "",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Mostrar _MENU_ filas",
+            loadingRecords: $("#preloader").html(),
+            processing: $("#preloader").html(),
+            search: "Buscar:",
+            zeroRecords: "Sin resultados",
+            paginate: {
+              first: "Primero",
+              last: "Último",
+              next: "Siguiente",
+              previous: "Anterior",
+            },
+            aria: {
+              sortAscending: ": Activar para ordenar la columna ascendente",
+              sortDescending: ": Activar para ordenar la columna descendente",
+            },
+            searchPanes: {
               clearMessage: 'Limpiar filtros',
               collapse: {
                 0: 'Filtros',
@@ -241,38 +256,38 @@ $(document).ready(function () {
               },
               title: {
                 _: 'Filtros seleccionados: %d',
-                0: 'No hay filtros seleccionados',             
+                0: 'No hay filtros seleccionados',
+              }
             }
-          }
-          // searchPanes: {
-          //   title: {
-          //       _: 'Filtros seleccionados - %d',
-          //       0: 'No existen filtros seleccionados',
-          //       1: '1 filtro seleccionado'
-          //   }
-          // }         
-        },
-        pagingType: "numbers",
-        lengthMenu: [
-          [10, 100, 500, 1000, -1],
-          [10, 100, 500, 1000, "Todas"],
-        ],
-        dom: "Bfrtip",
-        // searchPanes:{
-        //   dtOpts: {
-        //     dom: 'tp',
-        //     paging: true,
-        //     pagingType: 'simple',
-        //     searching: true
-        //   } 
-        // },
-        buttons: [
-          "csv",
-          "excel",  
-          {
-         
-            extend: 'searchPanes',           
-            config: {
+            // searchPanes: {
+            //   title: {
+            //       _: 'Filtros seleccionados - %d',
+            //       0: 'No existen filtros seleccionados',
+            //       1: '1 filtro seleccionado'
+            //   }
+            // }         
+          },
+          pagingType: "numbers",
+          lengthMenu: [
+            [10, 100, 500, 1000, -1],
+            [10, 100, 500, 1000, "Todas"],
+          ],
+          dom: "Bfrtip",
+          // searchPanes:{
+          //   dtOpts: {
+          //     dom: 'tp',
+          //     paging: true,
+          //     pagingType: 'simple',
+          //     searching: true
+          //   } 
+          // },
+          buttons: [
+            "csv",
+            "excel",
+            {
+
+              extend: 'searchPanes',
+              config: {
                 // cascadePanes: true,
                 columns: getTargetFilters(
                   $("#relevamiento_input").val(),
@@ -281,12 +296,12 @@ $(document).ready(function () {
                 collapse: true,
                 combiner: 'and',
                 controls: true,
-                emptyMessage: 'No hay opciones',              
+                emptyMessage: 'No hay opciones',
                 initCollapsed: false,
                 name: 'dfsdf',
                 orderable: false,
                 viewCount: false,
-                viewTotal: true,   
+                viewTotal: true,
                 cascadePanes: true,
                 // dtOpts: {
                 //   dom: 'tp',
@@ -295,13 +310,20 @@ $(document).ready(function () {
                 //   searching: true
                 // }            
 
-            },            
-            text: 'Filtros',            
-          }
-        ],
-      });
+              },
+              text: 'Filtros',
+            }
+          ],
+        });
+
+
+        
     }
   };
+
+  $('table').on('click', 'td.dtsp-nameColumn', function() {
+    console.log('dtsp-nameColumn')
+  })
 
   $("#matricula_input").change(function () {
     reloadInstanceDatatable();
