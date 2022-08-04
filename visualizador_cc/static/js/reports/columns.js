@@ -1,36 +1,36 @@
 const matricula_comun_inicial_columns= {   
     cueanexo: 'CUEanexo',    
     escuela: 'Escuela',
-    sala: 'Sala', //2
-    turno: 'Turno', //3
-    nom_secc: 'Nombre Seccion', //4
-    tipo_secc: 'Tipo Seccion', //5
+    sala: 'Sala', //*2
+    turno: 'Turno', 
+    nom_secc: 'Nombre Seccion', 
+    tipo_secc: 'Tipo Seccion', 
     total: 'Total',
     total_var: 'Total varones',
     total_disc: 'Total alumnos con discapacidad',
     var_disc: 'Total Varones con discapacidad',
     nom_est: 'Nombre establecimiento',
     nro_est: 'Nro Establecimiento',
-    region: 'Region', //12
-    udt: 'UDT',
-    cui: 'CUI',
-    cua: 'CUA',
-    cuof: 'CUOF',
-    sector: 'Sector', //17
-    ambito: 'Ambito', //18
-    ref_loc: 'Referente local',
+    region: 'Region', //*12
+    //udt: 'UDT',
+    //cui: 'CUI',
+    //cua: 'CUA',
+    //cuof: 'CUOF',
+    sector: 'Sector', //*13
+    ambito: 'Ambito', //*14
+    //ref_loc: 'Referente local',
     calle: 'Calle',
     numero: 'Numero',
-    localidad: 'Localidad',
-    departamento: 'Departamento',
+    localidad: 'Localidad', //*17
+    departamento: 'Departamento', //*18
     cod_postal: 'CP',
-    categoria: 'Categoria',
-    estado_est: 'Estado establecimiento',
-    estado_loc: 'Estado localizacion',
-    telefono_cod_area: 'cod de area',
-    telefono_nro: 'nro telefono',
-    email_loc: 'Email de localizacion',
-    target_filters: [2,3,4,5,12,17,18]
+    //categoria: 'Categoria',
+    //estado_est: 'Estado establecimiento',
+    //estado_loc: 'Estado localizacion',
+        //telefono_cod_area: 'cod de area',
+        //telefono_nro: 'nro telefono',
+    //email_loc: 'Email de localizacion',
+    target_filters: [2,12,13,14,17,18]
 };
 
 const matricula_comun_primaria_columns = {
