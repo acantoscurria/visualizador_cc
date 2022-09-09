@@ -107,70 +107,71 @@ const matricula_comun_secundaria_columns = {
 }
 
 const matricula_comun_snu_columns = {
-    cueanexo: 'CUEanexo',
-    escuela: 'Escuela',
-    n_plan_estudio: 'Nro plan de estudio',
-    plan_est_titulo: 'Titulo de plan de estudio',
-    tipo_carrera: 'Tipo de carrera',
-    tipo_formacion: 'Tipo formacion',
-    modalidad_dicatado: 'Modalidad dictado',
-    carrera_termino: 'Carrera termino',
-    total: 'Total',
-    total_var: 'Total varones',
-    total_ingresante: 'Total ingresantes',
-    var_ingresante: 'Varones ingresantes',
-    total_pasantia_practicas: 'Total pasantia practicas',
-    var_pasantia_practicas: 'Varones pasantia practicas',
-    total_residencia: 'Total residencia',
-    var_residencia: 'Varones residencia',
-    nom_est: 'Nombre establecimiento',
-    nro_est: 'Nro establecimiento',
+    cueanexo: 'CUEanexo', //0
+    escuela: 'Escuela', //1
+    n_plan_estudio: 'Nro plan de estudio', //2
+    plan_est_titulo: 'Titulo de plan de estudio', //3
+    tipo_carrera: 'Tipo de carrera', //4
+    tipo_formacion: 'Tipo formacion', //5
+    modalidad_dicatado: 'Modalidad dictado', //6
+    carrera_termino: 'Carrera termino', //7
+    total: 'Total', //8
+    //total_var: 'Total varones',
+    //total_ingresante: 'Total ingresantes',
+    //var_ingresante: 'Varones ingresantes',
+    //total_pasantia_practicas: 'Total pasantia practicas',
+    //var_pasantia_practicas: 'Varones pasantia practicas',
+    //total_residencia: 'Total residencia',
+    //var_residencia: 'Varones residencia',
+    //nom_est: 'Nombre establecimiento',
+    //nro_est: 'Nro establecimiento',
     /* fecha_creac_establec: 'Fecha creacion establecimiento', */
-    region: 'Region',
-    sector: 'Sector',
-    ambito: 'Ambito',
-    ref_loc: 'Referencia localizacion',
-    calle: 'Calle',
-    numero: 'Numero',
-    localidad: 'Localidad',
-    departamento: 'Departamento',
-    cod_postal: 'CP',
-    categoria: 'Categoria',
-    estado_est: 'Estado establecimiento',
-    estado_loc: 'Estado localizacion',
-    telefono_cod_area: 'Cod de área',
-    telefono_nro: 'Nro telefono',
-    email_loc: 'Email localizacion',
+    region: 'Region', //9
+    sector: 'Sector', //10
+    ambito: 'Ambito', //11
+    //ref_loc: 'Referencia localizacion',
+    calle: 'Calle', //12
+    numero: 'Numero', //13
+    localidad: 'Localidad', //14
+    departamento: 'Departamento', //15
+    cod_postal: 'CP', //16
+    //categoria: 'Categoria',
+    //estado_est: 'Estado establecimiento',
+    //estado_loc: 'Estado localizacion',
+    //telefono_cod_area: 'Cod de área',
+    //telefono_nro: 'Nro telefono',
+    //email_loc: 'Email localizacion',
+    target_filters: [9,10,11,14]
 }
 
 const matricula_adultos_primaria_columns = {
-    cueanexo: 'CUEanexo',
-    nom_est: 'Nombre establecimiento',
-    nro_est: 'Nro establecimiento',
-    turno: 'Turno',
-    tipo_secc: 'Tipo sección',
-    nivel: 'Nivel',
-    nom_secc: 'Nombre seccion',
-    ciclo_etapa: 'Ciclo etapa',
-    total: 'Total',
-    total_var: 'Total varones',
-    
+    cueanexo: 'CUEanexo', //0
+    nom_est: 'Nombre establecimiento',//1
+    nro_est: 'Nro establecimiento',//2
+    turno: 'Turno',//3
+    tipo_secc: 'Tipo sección',//4
+    nivel: 'Nivel',//5
+    nom_secc: 'Nombre seccion',//6
+    ciclo_etapa: 'Ciclo etapa',//7
+    total: 'Total',//8
+    //total_var: 'Total varones',    
     /* fecha_creac_establec: 'Fecha creacion establecimiento', */
-    region: 'Region',
-    sector: 'Sector',
-    ambito: 'Ambito',
-    ref_loc: 'Referencia localizacion',
-    calle: 'Calle',
-    numero: 'Numero',
-    localidad: 'Localidad',
-    departamento: 'Departamento',
-    cod_postal: 'CP',
-    categoria: 'Categoria',
-    estado_est: 'Estado establecimiento',
-    estado_loc: 'Estado localizacion',
-    telefono_cod_area: 'Cod de área',
-    telefono_nro: 'Nro telefono',
-    email_loc: 'Email localizacion',
+    region: 'Region',//9
+    sector: 'Sector',//10
+    ambito: 'Ambito',//11
+    //ref_loc: 'Referencia localizacion',
+    calle: 'Calle',//12
+    numero: 'Numero',//13
+    localidad: 'Localidad',//14
+    departamento: 'Departamento',//15
+    cod_postal: 'CP',//16
+    //categoria: 'Categoria',
+    //estado_est: 'Estado establecimiento',
+    //estado_loc: 'Estado localizacion',
+    //telefono_cod_area: 'Cod de área',
+    //telefono_nro: 'Nro telefono',
+    //email_loc: 'Email localizacion',
+    target_filters: [9,10,11,14]
 }
 
 const matricula_adultos_secundaria_columns = {
