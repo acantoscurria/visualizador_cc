@@ -168,7 +168,7 @@ $(document).ready(function () {
         .on("processing.dt", function (e, settings, processing) {
           console.log("processing.dt", e, settings, processing);
           if (processing) {
-
+            
           }
         })
         .on('draw', function(e, settings) {
