@@ -71,42 +71,39 @@ const matricula_comun_primaria_columns = {
 }
 
 const matricula_comun_secundaria_columns = {
-    cueanexo: 'CUEanexo',
-    nom_est: 'Nombre establecimiento',
-    nro_est: 'Nro establecimiento',
-    orientacion: 'Orientacion',
-    anio_est: 'Año/Grado',
-    nom_div: 'Nombre divicion',
-    tipo_div: 'Tipo divicion',
-    turno: 'Turno',
-    
-    total: 'Total',
-    total_var: 'Total varones',
-    nivel: 'Nivel',
-    total_rep: 'Total repitentes',
-    var_rep: 'Varones repitentes',
-    
-    
-    denom_pe: 'Denominacion plan de estudio',
-    total_disc: 'Total discapacidad',
-    var_disc: 'Varones discapacidad',
-    
+    cueanexo: 'CUEanexo', //0
+    nom_est: 'Nombre establecimiento', //1
+    nro_est: 'Nro establecimiento', //2
+    orientacion: 'Orientacion', //3
+    anio_est: 'Año/Grado', //4
+    nom_div: 'Nombre divicion', //5
+    tipo_div: 'Tipo divicion', //6
+    turno: 'Turno',     //7
+    total: 'Total', //8
+    //total_var: 'Total varones',
+    nivel: 'Nivel', //9
+    //total_rep: 'Total repitentes',
+    //var_rep: 'Varones repitentes',  
+    denom_pe: 'Denominacion plan de estudio', //10
+    //total_disc: 'Total discapacidad',
+    //var_disc: 'Varones discapacidad',    
     /* fecha_creac_establec: 'Fecha creacion establecimiento', */
-    region: 'Region',
-    sector: 'Sector',
-    ambito: 'Ambito',
-    ref_loc: 'Referencia localizacion',
-    calle: 'Calle',
-    numero: 'Numero',
-    localidad: 'Localidad',
-    departamento: 'Departamento',
-    cod_postal: 'CP',
-    categoria: 'Categoria',
-    estado_est: 'Estado establecimiento',
-    estado_loc: 'Estado localizacion',
-    telefono_cod_area: 'Cod de área',
-    telefono_nro: 'Nro telefono',
-    email_loc: 'Email localizacion',
+    region: 'Region', //11
+    sector: 'Sector', //12
+    ambito: 'Ambito', //13
+    //ref_loc: 'Referencia localizacion',
+    calle: 'Calle', //14
+    numero: 'Numero', //15
+    localidad: 'Localidad', //16
+    departamento: 'Departamento', //17
+    cod_postal: 'CP', //18
+    //categoria: 'Categoria',
+    //estado_est: 'Estado establecimiento',
+    //estado_loc: 'Estado localizacion',
+    //telefono_cod_area: 'Cod de área',
+    //telefono_nro: 'Nro telefono',
+    //email_loc: 'Email localizacion',
+    target_filters: [11,12,13,16]
 }
 
 const matricula_comun_snu_columns = {
