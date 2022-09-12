@@ -1,68 +1,44 @@
-
-(reportes)
-
-1. crear base de dataos de los ra 2016-2021 
-2. instalar dblink 'CREATE EXTENSION dblink' eb cada db;
-3. crear  funcion consulta_cuadro 'funcion_cuadro_remote.sql'
-4. crear todas las vistas
-
------------------------
-
-
-
-
-
 CARGOS
     Para cargos es el mismo modelo para todos cambia el numero de la consulta cuadro
     COMUN
-        inicial maternal: 764 ok
-        inicial jardin: 114 ok
-        primaria: 138 ok
+        inicial maternal: 764
+        inicial jardin: 114
+        primaria: 138
         secundaria: 169
-        snu: 337 ok
-        artistica: 266 ok
-        servicios complementarios: 292 ok
+        snu: 337
+        artistica: 266
+        servicios complementarios: 292
     ADULTOS
-        primaria: 591 ok
-        secundaria: 460 ok
-        form profesional: 322 ok
+        primaria: 591
+        secundaria: 460
+        form profesional: 322
     ESPECIAL
-        544 ok
+        544
 
 SECCIONES
-    COMUN: 229 ok
-    ADULTOS: 480 ok
-    FORM PROF: 669 ok
+    COMUN: 229
+    ADULTOS: 480
+    FORM PROF: 669
 
 HORAS
     COMUN
-        MATERNAL: 123 ok
-        INFANTE: 116 ok
-        PRIMARIA: 140 ok
-        SECUNDARIA: 171 ok
-        SNU: 362 ok
-        SERV COMP: 324 ok
+        MATERNAL: 123
+        INFANTE: 116
+        PRIMARIA: 140
+        SECUNDARIA: 171
+        SNU: 362
+        SERV COMP: 324
     ADULTO
-        PRIMARIA: 406 ok
-        SECUNDARIA: 472 ok
-        FORM PROF: 330 ok
+        PRIMARIA: 406
+        SECUNDARIA: 472
+        FORM PROF: 330
     ESPECIAL
-        ALL: 546 ok
+        ALL: 546
 
 EGRESADOS
-    COMUN SECUNDARIA: 168 ok
-    SNU: 317 (NO ANDA)
-    ADULTO SECUNDARIA: 458 ok
-
-JORNADA
-    inicial  112 ok
-    primaria 627 ok
-    secundaria 165 ok
-
-    -----
-
-
-
+    COMUN SECUNDARIA: 168
+    SNU: 317
+    ADULTO SECUNDARIA: 458
 
 
 
