@@ -208,33 +208,65 @@ const matricula_adultos_secundaria_columns = {
     target_filters: [11,12,13,16]
 }
 
-const matricula_especial_primaria_columns = {
-    cueanexo: 'CUEanexo',
-    nom_est: 'Nombre establecimiento',
-    nro_est: 'Nro establecimiento',
-    turno: 'Turno',
-    tipo_secc: 'Tipo seccion',
-    total: 'Total',
-    total_var: 'Total varones',
-    nom_secc: 'Nombre seccion',
-    total_rep: 'Total repitentes',
-    var_rep: 'Varones repitentes',
+const matricula_especial_inicial_columns = {
+    cueanexo: 'CUEanexo', //0 
+    escuela: 'Escuela', //1
+    sala: 'Sala', //2
+    turno: 'Turno', //3
+    tipo_secc: 'Tipo seccion', //4
+    total: 'Total', //5
+    //total_var: 'Total varones',
+    nom_secc: 'Nombre seccion', //6
+    //total_rep: 'Total repitentes',
+    //var_rep: 'Varones repitentes',
     
     /* fecha_creac_establec: 'Fecha creacion establecimiento', */
-    region: 'Region',
-    sector: 'Sector',
-    ambito: 'Ambito',
-    ref_loc: 'Referencia localizacion',
-    calle: 'Calle',
-    numero: 'Numero',
-    localidad: 'Localidad',
-    departamento: 'Departamento',
-    cod_postal: 'CP',
-    categoria: 'Categoria',
-    estado_est: 'Estado establecimiento',
-    estado_loc: 'Estado localizacion',
-    telefono_cod_area: 'Cod de área',
-    telefono_nro: 'Nro telefono',
-    email_loc: 'Email localizacion',
+    region: 'Region', //7
+    sector: 'Sector', //8
+    ambito: 'Ambito', //9
+    //ref_loc: 'Referencia localizacion',
+    calle: 'Calle', //10
+    numero: 'Numero', //11
+    localidad: 'Localidad', //12
+    departamento: 'Departamento', //13
+    cod_postal: 'CP', //14
+    //categoria: 'Categoria',
+    //estado_est: 'Estado establecimiento',
+    //estado_loc: 'Estado localizacion',
+    //telefono_cod_area: 'Cod de área',
+    //telefono_nro: 'Nro telefono',
+    //email_loc: 'Email localizacion',
+    target_filters: [7,8,9,12]
+}
 
+const matricula_especial_primaria_columns = {
+    cueanexo: 'CUEanexo', //0 
+    nom_est: 'Nombre establecimiento', //1
+    nro_est: 'Nro establecimiento', //2
+    sala: 'Sala', //3
+    turno: 'Turno', //4
+    tipo_secc: 'Tipo seccion', //5
+    total: 'Total', //6
+    //total_var: 'Total varones',
+    nom_secc: 'Nombre seccion', //7
+    //total_rep: 'Total repitentes',
+    //var_rep: 'Varones repitentes',
+    
+    /* fecha_creac_establec: 'Fecha creacion establecimiento', */
+    region: 'Region', //8
+    sector: 'Sector', //9
+    ambito: 'Ambito', //10
+    //ref_loc: 'Referencia localizacion',
+    calle: 'Calle', //11
+    numero: 'Numero', //12
+    localidad: 'Localidad', //13
+    departamento: 'Departamento', //14
+    cod_postal: 'CP', //15
+    //categoria: 'Categoria',
+    //estado_est: 'Estado establecimiento',
+    //estado_loc: 'Estado localizacion',
+    //telefono_cod_area: 'Cod de área',
+    //telefono_nro: 'Nro telefono',
+    //email_loc: 'Email localizacion',
+    target_filters: [8,9,10,13]
 }
