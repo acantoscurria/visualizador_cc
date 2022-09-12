@@ -175,37 +175,37 @@ const matricula_adultos_primaria_columns = {
 }
 
 const matricula_adultos_secundaria_columns = {
-    cueanexo: 'CUEanexo',
-    nom_est: 'Nombre establecimiento',
-    nro_est: 'Nro establecimiento',
-    turno: 'Turno',
-    nivel: 'Nivel',
-    nro_plan_est: 'Nro plan de estudio',
-    anio_plan_est: 'Año plan de estudio',
-    nom_div: 'Nombre divicion',
-    tipo_div: 'Tipo divicion',
-    orientacion: 'Orientacion',
-    total: 'Total',
-    total_var: 'Total varones',
-    total_rep: 'Total repitentes',
-    var_rep: 'Varones repitentes',
-    
-    /* fecha_creac_establec: 'Fecha creacion establecimiento', */
-    region: 'Region',
-    sector: 'Sector',
-    ambito: 'Ambito',
-    ref_loc: 'Referencia localizacion',
-    calle: 'Calle',
-    numero: 'Numero',
-    localidad: 'Localidad',
-    departamento: 'Departamento',
-    cod_postal: 'CP',
-    categoria: 'Categoria',
-    estado_est: 'Estado establecimiento',
-    estado_loc: 'Estado localizacion',
-    telefono_cod_area: 'Cod de área',
-    telefono_nro: 'Nro telefono',
-    email_loc: 'Email localizacion',
+    cueanexo: 'CUEanexo', //0
+    nom_est: 'Nombre establecimiento', //1
+    nro_est: 'Nro establecimiento', //2
+    turno: 'Turno', //3
+    nivel: 'Nivel', //4
+    nro_plan_est: 'Nro plan de estudio', //5
+    anio_plan_est: 'Año plan de estudio', //6
+    nom_div: 'Nombre divicion', //7
+    tipo_div: 'Tipo divicion', //8
+    orientacion: 'Orientacion', //9
+    total: 'Total', //10
+    //total_var: 'Total varones',
+    //total_rep: 'Total repitentes',
+    //var_rep: 'Varones repitentes',
+    //fecha_creac_establec: 'Fecha creacion establecimiento', 
+    region: 'Region', //11
+    sector: 'Sector', //12
+    ambito: 'Ambito', //13
+    //ref_loc: 'Referencia localizacion',
+    calle: 'Calle', //14
+    numero: 'Numero',//15
+    localidad: 'Localidad', //16
+    departamento: 'Departamento', //17
+    cod_postal: 'CP', //18
+    //categoria: 'Categoria',
+    //estado_est: 'Estado establecimiento',
+    //estado_loc: 'Estado localizacion',
+    //telefono_cod_area: 'Cod de área',
+    //telefono_nro: 'Nro telefono',
+    //email_loc: 'Email localizacion',
+    target_filters: [11,12,13,16]
 }
 
 const matricula_especial_primaria_columns = {
