@@ -120,16 +120,18 @@ function getColumns(ra, matricula) {
   let lista_de_valores = columns[ra][matricula];
 
   for (let clave in lista_de_valores) {
-    // console.log(clave, lista_de_valores[clave]);
-    cols.push({
-      class: "justify-content-center row-control text-center align-middle ",
-      data: clave,
-      name: clave,
-      title: lista_de_valores[clave],
-      render: function (data, type, row) {
-        return data ? data : "";
-      },
-    });
+    console.log("getColumns", clave, lista_de_valores[clave]);
+    if(clave != 'target_filters'){
+      cols.push({
+        class: "justify-content-center row-control text-center align-middle ",
+        data: clave,
+        name: clave,
+        title: lista_de_valores[clave],
+        render: function (data, type, row) {
+          return data ? data : "";
+        },
+      });
+    }    
   }
 
   // console.log("cols", cols);
@@ -168,7 +170,7 @@ $(document).ready(function () {
         .on("processing.dt", function (e, settings, processing) {
           console.log("processing.dt", e, settings, processing);
           if (processing) {
-            
+
           }
         })
         .on('draw', function(e, settings) {
@@ -217,7 +219,7 @@ $(document).ready(function () {
           scrollX: true,
           scrollCollapse: true,
           paging: true,
-          ordering: false,
+          ordering: true,
           createdRow: function (row, data, index) { },
           infoCallback: function (settings, start, end, max, total, pre) {
             return pre;
