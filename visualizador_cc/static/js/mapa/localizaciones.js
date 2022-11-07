@@ -4,9 +4,15 @@ $(document).ready(function(){
 
     let radio = $('#radio').val()
     let centro = $('#centro').val()
+    let filter_dpto = $('#dpto').val()
+    let filter_ambito = $('#ambito').val()
+    let filter_sector = $('#sector').val()
 
     console.log('****radio', radio)
-    console.log('****centro', centro)
+    console.log('****centro', centro)  
+    console.log('****dpto', filter_dpto)
+    console.log('****ambito', filter_ambito)
+    console.log('****sector', filter_sector)
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;  
 
@@ -26,7 +32,10 @@ $(document).ready(function(){
             "data": function ( d ) {
                 return $.extend( {}, d, {
                     radio,
-                    centro                   
+                    centro,
+                    filter_dpto,
+                    filter_ambito,
+                    filter_sector,
                 })
             },
 
