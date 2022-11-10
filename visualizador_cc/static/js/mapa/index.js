@@ -511,6 +511,7 @@ function leafletDraw() {
         drawnItems.clearLayers();
 
         e.layer.addTo(drawnItems);
+
         if (e.layerType === "circle") {
 
             let geojson = e.layer.toGeoJSON();
@@ -524,15 +525,27 @@ function leafletDraw() {
                 dpto: options_departamento,
             })
 
-            let url = '/mapa/localizaciones_by_circle?' + params.toString();
+            let url = '/mapa/localizaciones_by_draw?' + params.toString();
             window.open(url, '_blank').focus();
 
         }
 
-        if (e.layerType === "polygon"){
-            let geojson = e.layer.toGeoJSON;
-            dibujo = e.layer
-            console.log(geojson);
+        if (e.layerType === "polygon") {
+            polygon = e.layer.toGeoJSON().geometry.coordinates;
+            console.log(polygon)
+
+            let geojson = e.layer.toGeoJSON().geometry;
+
+            const params = new URLSearchParams({
+                polygon: JSON.stringify(geojson),
+                sector: options_sector,
+                ambito: options_ambito,
+                dpto: options_departamento,
+            })
+
+            let url = '/mapa/localizaciones_by_draw?' + params;
+            window.open(url, '_blank').focus();
+
         }
 
     })

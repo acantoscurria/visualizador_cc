@@ -11,7 +11,7 @@ from rest_framework.permissions import AllowAny
 from django.views.generic import TemplateView
 from rest_framework.response import Response
 from django.db.models import Q
-from django.contrib.gis.geos import Point
+from django.contrib.gis.geos import Point,Polygon,GEOSGeometry
 from django.views.generic.list import ListView
 from django.http import JsonResponse
 import json
@@ -106,24 +106,25 @@ class PointData(generics.ListAPIView):
             return []
 
 
-class LocalizacionesByCircle(TemplateView):
+class LocalizacionesByDraw(TemplateView):
 
     template_name = 'mapa/localizaciones.html'
     http_method_names = ['get']
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
-        context['radio'] = request.GET.get('radio')
-        context['centro'] = request.GET.get('coordenadas')
-        context['dpto'] = request.GET.get('dpto')
-        context['sector'] = request.GET.get('sector')
-        context['ambito'] = request.GET.get('ambito')
+        context['radio'] = request.GET.get('radio',None)
+        context['centro'] = request.GET.get('coordenadas',0)
+        context['dpto'] = request.GET.get('dpto',None)
+        context['sector'] = request.GET.get('sector',None)
+        context['ambito'] = request.GET.get('ambito',None)
+        context['polygon'] = request.GET.get('polygon',0)
         context['title'] = 'Localizaciones seleccionadas'
 
         return self.render_to_response(context)
 
 
-class LocalizacionesByCircleList(ListView):
+class LocalizacionesByDrawList(ListView):
 
     def post(self, request, *args, **kwargs):
 
@@ -133,18 +134,12 @@ class LocalizacionesByCircleList(ListView):
         filter_dpto = dt.get("filter_dpto")
         filter_ambito = dt.get("filter_ambito")
         filter_sector = dt.get("filter_sector")
-
-
-        if (radio == '' or centro == ''):
-            return JsonResponse({"data": []}, safe=False)
-
-        centro = centro.split(',')
-
-        buffer = Point(float(centro[0]), float(centro[1]), srid=4326).buffer(float(radio)/100000)
+        polygon = dt.get("polygon")
         query = TablaLocalizaciones.objects.all().filter(cueanexo__estado_loc='Activo')
 
+
         def create_condicion_or(conditions,field):
-            '''Crea el filtro para la consulta de forma automática, maneja las condiciones AND'''
+            '''Crea el filtro para la consulta de forma automática, maneja las condiciones OR'''
             q = Q()
 
             for condition in conditions:
@@ -152,8 +147,15 @@ class LocalizacionesByCircleList(ListView):
                 q |= Q(**condition)
                 print(q)
 
-            return (q) 
+            return (q)
 
+        def points_in_selection(query,selection):
+            data = []
+            for loc in query:
+                if selection.contains(loc.geom):
+                    # print('### LocalizacionesByDrawList...', loc.cueanexo.cueanexo)
+                    data.append(loc.parse())
+            return data
 
         if filter_dpto:
             filter_dpto = filter_dpto.split(",")
@@ -170,13 +172,18 @@ class LocalizacionesByCircleList(ListView):
             # create_condicion_or(conditions = filter_sector)
             query = query.filter(create_condicion_or(conditions = filter_sector,field="sector"))
 
+        print(f"POLIGONO: {polygon}")
 
-
-        data = []
-        for loc in query:
-            if buffer.contains(loc.geom):
-                print('### LocalizacionesByCircleList...', loc.cueanexo.cueanexo)
-                data.append(loc.parse())
+        print(f"CENTRO: {centro}")
+        if centro != '0':
+            centro = centro.split(',')
+            buffer = Point(float(centro[0]), float(centro[1]), srid=4326).buffer(float(radio)/100000)
+            data = points_in_selection(query=query,selection=buffer)
+        elif polygon != '0':
+            polygon = GEOSGeometry(polygon)
+            data = points_in_selection(query=query,selection=polygon)
+        else:
+            data = []
 
         return JsonResponse({
             "data": data
