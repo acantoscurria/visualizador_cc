@@ -79,12 +79,12 @@ class Filter(ListView):
 
         # print('Filter empty', empty)
 
-        if (empty):
-            return JsonResponse([], safe=False)
-
         data = []
         for row in object_list:
             data.append(row.cueanexo)
+
+        if (empty):
+            return JsonResponse(data, safe=False)
 
         # print('Filter data', len(data))
 

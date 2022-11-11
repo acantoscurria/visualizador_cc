@@ -211,6 +211,10 @@ function loadFilter() {
 
         console.log('btn-clear-filter click');
 
+        options_sector = []
+        options_ambito = []
+        options_departamento = []
+
         loadFormFilter()
 
         filter_mode = false
