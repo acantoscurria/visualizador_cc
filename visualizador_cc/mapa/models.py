@@ -1,6 +1,7 @@
 # from django.db import models
 # from defer import defer
 from django.contrib.gis.db import models
+from django.db.models import Q
 
 
 class Padron(models.Model):
@@ -57,4 +58,4 @@ class TablaLocalizaciones(models.Model):
             'localidad': self.cueanexo.localidad, 
             'departamento': self.cueanexo.departamento
         }
-          
+

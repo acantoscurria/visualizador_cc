@@ -1,3 +1,13 @@
+update mapa_padron
+set cueanexo = padron.cueanexo,
+		nom_est = padron.nom_est,
+		sector = padron.sector,
+		ambito = padron.ambito,
+		region_loc = padron.region_loc,
+		localidad = padron.localidad,
+		departamento = padron.departamento,
+		estado_loc = padron.estado_loc
+		from (
 SELECT 
 	 	padron.cueanexo::integer AS cueanexo,
 		padron.nom_est,
@@ -17,3 +27,4 @@ SELECT
 		--where est_oferta = 'Activo' and estado_loc = 'Baja'
 		GROUP BY cueanexo,nom_est,sector,ambito,region_loc,localidad,departamento,estado_loc
 		order by cueanexo
+) as padron

@@ -4,9 +4,17 @@ $(document).ready(function(){
 
     let radio = $('#radio').val()
     let centro = $('#centro').val()
+    let polygon = $('#polygon').val()
+    let filter_dpto = $('#dpto').val()
+    let filter_ambito = $('#ambito').val()
+    let filter_sector = $('#sector').val()
 
     console.log('****radio', radio)
-    console.log('****centro', centro)
+    console.log('****centro', centro)  
+    console.log('****Polygon', polygon)  
+    console.log('****dpto', filter_dpto)
+    console.log('****ambito', filter_ambito)
+    console.log('****sector', filter_sector)
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;  
 
@@ -17,7 +25,7 @@ $(document).ready(function(){
     })
     .DataTable({
         "ajax": {
-            "url": " /mapa/localizaciones_by_circle_list/",
+            "url": " /mapa/localizaciones_by_draw_list/",
             "type": "POST",
             "headers": {'X-CSRFToken': csrftoken },
             "dataFilter": function( data ) {
@@ -26,7 +34,11 @@ $(document).ready(function(){
             "data": function ( d ) {
                 return $.extend( {}, d, {
                     radio,
-                    centro                   
+                    centro,
+                    polygon,
+                    filter_dpto,
+                    filter_ambito,
+                    filter_sector,
                 })
             },
 
