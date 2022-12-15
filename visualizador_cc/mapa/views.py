@@ -17,6 +17,14 @@ from django.http import JsonResponse
 import json
 
 
+
+# class MapaGeneral(TemplateView):
+#     template_name = 'pages/mapa_general.html'
+#     http_method_names = ['get']
+#     extra_context = {
+#         'title': 'Mapa General'
+#     }
+
 class MapaGeneral(TemplateView):
     template_name = 'pages/mapa_general.html'
     http_method_names = ['get']

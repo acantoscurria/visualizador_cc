@@ -59,3 +59,18 @@ class TablaLocalizaciones(models.Model):
             'departamento': self.cueanexo.departamento
         }
 
+
+class PlanEstudio(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    cueanexo = models.ForeignKey(Padron,on_delete=models.DO_NOTHING,db_column="cueanexo")
+    oferta = models.CharField(max_length=200)
+    columna = models.CharField(max_length=200)
+    valor = models.CharField(max_length=200)
+
+    def __str__(self) -> str:
+        return self.cueanexo.__str__()
+
+    class Meta:
+        db_table="planes_estudios"
+        # abstract = True
+        managed = False
