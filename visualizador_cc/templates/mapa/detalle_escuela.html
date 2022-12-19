@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+{% endblock css %}
+
+
+{% block javascript %}
+    <script defer src="{% static 'js/mapa/detalle_escuela.js' %}"></script>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+{% endblock javascript %}
+
+
+
+{% block styles %}
+    <style>
+        #map { height: 300px; }
+    </style>
+{% endblock styles %}
+
+{% block content %}
+
+    <div class="container mt-5 mb-5">
+        <h1 class="mt-5 mb-5 text-center">{{escuela}}</h1>
+
+        <div id="map" class="mt-5 w-50 mx-auto"></div>
+
+        <div class="card mb-5" style="width: 18rem;">
+            <img src="#" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+
+        <div class="card mb-5" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Datos Institucionales</h5>
+                {% comment %} <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> {% endcomment %}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"> <u>Cueanexo</u>: {{escuela.cueanexo}}</li>
+                <li class="list-group-item"><u>Departamento</u>: {{escuela.departamento}}</li>
+                <li class="list-group-item"><u>Localidad</u>: {{escuela.localidad}}</li>
+            </ul>
+        </div>
+
+        <div class="card mb-5" style="width: 40rem;">
+            <div class="card-body">
+                <h5 class="card-title">Planes de estudio</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% if escuela.planestudio_set.values %}
+                    {% for esc in escuela.planestudio_set.values %}
+                        <li class="list-group-item">{{esc.oferta}} | {{esc.valor}}</li>
+                    {% endfor %}
+                {% else %}
+                    <p>No se encontraron planes de estudios.</p>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        var coordenadas = {{ escuela.tablalocalizaciones.geom.json|safe }}
+        var map = L.map('map').setView(coordenadas.coordinates.reverse(), 16);
+        var nom_escuela = '{{escuela.nom_est}}'
+
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://sigechaco.com.ar/">Estadisticas Educativas - Chaco</a>'
+        }).addTo(map);
+
+        var marker = L.marker(coordenadas.coordinates).addTo(map);
+
+        function onMarkerClick(e) {
+            L.popup({ offset: L.point(0, -20) })
+                .setLatLng(e.latlng)
+                .setContent(nom_escuela)
+                .openOn(map);
+        }
+
+        marker.on('click', onMarkerClick);
+
+    </script>
+{% endblock %}
+

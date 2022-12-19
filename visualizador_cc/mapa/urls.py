@@ -5,6 +5,7 @@ from . import views
 app_name = "mapa"
 urlpatterns = [
     path('mapa_general/', views.MapaGeneral.as_view(), name='mapa_general'),
+    path('mapa_general/<int:cueanexo>', views.DetalleEscuela.as_view(), name='detalle_escuela'),
     path('', views.Mapa.as_view(), name='index'),
     path('points/', views.Points.as_view(), name='points'),
     path('point_data/', views.PointData.as_view(),name='point_data'),

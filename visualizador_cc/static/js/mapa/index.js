@@ -7,7 +7,7 @@ var loc_selected = null
 var marker_found = null
 var markersAll = []
 var filter_mode = false
-
+var cueanexo = null
 
 let options_sector = []
 let options_ambito = []

@@ -8,7 +8,7 @@ from . models import TablaLocalizaciones, Padron
 from .serializers import *
 from rest_framework import generics, views, status
 from rest_framework.permissions import AllowAny
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,DetailView
 from rest_framework.response import Response
 from django.db.models import Q
 from django.contrib.gis.geos import Point,Polygon,GEOSGeometry
@@ -18,12 +18,14 @@ import json
 
 
 
-# class MapaGeneral(TemplateView):
-#     template_name = 'pages/mapa_general.html'
-#     http_method_names = ['get']
-#     extra_context = {
-#         'title': 'Mapa General'
-#     }
+class DetalleEscuela(DetailView):
+    template_name = 'mapa/detalle_escuela.html'
+    http_method_names = ['get']
+    slug_field = 'cueanexo'
+    slug_url_kwarg = 'cueanexo'
+    queryset = Padron.objects.all()
+    context_object_name = "escuela"
+
 
 class MapaGeneral(TemplateView):
     template_name = 'pages/mapa_general.html'
