@@ -17,9 +17,14 @@ class Padron(models.Model):
     localidad = models.CharField(null=True,blank=True,max_length=500)
     departamento = models.CharField(null=True,blank=True,max_length=500) # 
     estado_loc=models.CharField(verbose_name="Estado de la localización",blank=False,null=False,max_length=10)
+    ref_loc = models.CharField(null=True,blank=True,max_length=500)
+    calle = models.CharField(null=True,blank=True,max_length=500)
+    numero = models.CharField(null=True,blank=True,max_length=500)
+    cod_postal = models.CharField(null=True,blank=True,max_length=500)
+    email_loc = models.CharField(null=True,blank=True,max_length=500)
 
     class Meta:
-        managed = False
+        managed = True
         verbose_name_plural = 'Datos de Padron'
 
     def __str__(self):

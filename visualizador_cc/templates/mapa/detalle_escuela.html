@@ -10,7 +10,6 @@
 
 
 {% block javascript %}
-    <script defer src="{% static 'js/mapa/detalle_escuela.js' %}"></script>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
@@ -80,9 +79,9 @@
     </div>
 
     <script>
-        var coordenadas = {{ escuela.tablalocalizaciones.geom.json|safe }}
-        var map = L.map('map').setView(coordenadas.coordinates.reverse(), 16);
-        var nom_escuela = '{{escuela.nom_est}}'
+        let coordenadas = {{ escuela.tablalocalizaciones.geom.json|safe }}
+        let map = L.map('map').setView(coordenadas.coordinates.reverse(), 16);
+        let nom_escuela = '{{escuela.nom_est}}'
 
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -90,7 +89,7 @@
             attribution: '&copy; <a href="https://sigechaco.com.ar/">Estadisticas Educativas - Chaco</a>'
         }).addTo(map);
 
-        var marker = L.marker(coordenadas.coordinates).addTo(map);
+        let marker = L.marker(coordenadas.coordinates).addTo(map);
 
         function onMarkerClick(e) {
             L.popup({ offset: L.point(0, -20) })
