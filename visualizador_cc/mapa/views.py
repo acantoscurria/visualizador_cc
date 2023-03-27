@@ -4,7 +4,7 @@ from django.shortcuts import render, HttpResponse
 from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer
 from . models import TablaLocalizaciones, Padron
 from visualizador_cc.mapa.serializers.MapaSerializer import TablaLocalizacionesSerializer, PadronSerializer
-from . models import TablaLocalizaciones, Padron
+from . models import TablaLocalizaciones, Padron, PlanEstudio
 from .serializers import *
 from rest_framework import generics, views, status
 from rest_framework.permissions import AllowAny
@@ -25,6 +25,13 @@ class DetalleEscuela(DetailView):
     slug_url_kwarg = 'cueanexo'
     queryset = Padron.objects.all()
     context_object_name = "escuela"
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        context["plan_estudio"] = PlanEstudio.objects.using(
+            "visualizador").raw(f"select * from mapa.v_planes_estudio where cueanexo = {self.object.cueanexo}")
+        return self.render_to_response(context)
 
 
 class MapaGeneral(TemplateView):

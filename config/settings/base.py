@@ -49,6 +49,7 @@ DATABASES = {
     "ra2020": env.db("DATABASE_URL_RA2020"),
     "ra2021": env.db("DATABASE_URL_RA2021"),
     "ra2022": env.db("DATABASE_URL_RA2022"),
+    "visualizador": env.db("DATABASE_URL_VISUALIZADOR"),
 }
 
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
