@@ -16,7 +16,6 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("visualizador_cc.users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
 
     path("mapa/", include("visualizador_cc.mapa.urls", namespace="mapa")),
 
