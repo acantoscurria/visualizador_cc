@@ -71,3 +71,10 @@ class PlanEstudio(models.Model):
     class Meta:
         db_table="mapa.v_planes_estudio"
         managed = False
+
+
+class InfoEstablecimiento(models.Model):
+    pass
+    class Meta:
+        db_table="mapa.v_info_establecimiento"
+        managed = False

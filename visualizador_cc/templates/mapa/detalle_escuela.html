@@ -48,7 +48,6 @@
         <div class="card mb-5" style="width: 40rem;">
             <div class="card-body">
                 <h5 class="card-title">Planes de estudio</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
             <ul class="list-group list-group-flush">
                 {% if plan_estudio %}
@@ -56,7 +55,25 @@
                         <li class="list-group-item">{{plan.modalidad}} | {{plan.plan_estudio}}</li>
                     {% endfor %}
                 {% else %}
-                    <p>No se encontraron planes de estudios.</p>
+                    <p class="text-center">No se encontraron planes de estudios.</p>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="card mb-5" style="width: 40rem;">
+            <div class="card-body">
+                <h5 class="card-title">Información del establecimiento</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% if info_establecimiento %}
+                    {% for est in info_establecimiento %}
+                        <li class="list-group-item">Tiene energía eléctrica: {{est.tiene_energia|upper}}</li>
+                        <li class="list-group-item">Fuente energía eléctrica: {{est.fuente_energia|upper}}</li>
+                        <li class="list-group-item">Agua potable: {{est.agua_potable|upper}}</li>
+                        <li class="list-group-item">Biblioteca: {{est.biblioteca|upper}}</li>
+                    {% endfor %}
+                {% else %}
+                    <p>No se encotró info de establecimiento</p>
                 {% endif %}
             </ul>
         </div>
