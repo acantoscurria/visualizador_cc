@@ -84,15 +84,11 @@ THIRD_PARTY_APPS = [
     "drf_spectacular",
     "fontawesomefree",
     "leaflet",
-    "ckeditor",
-    "ckeditor_uploader",
 
 ]
 
 LOCAL_APPS = [
     "visualizador_cc.users",
-    "visualizador_cc.dashboard",
-    "visualizador_cc.noticias",
     "visualizador_cc.mapa",
     "visualizador_cc.reports",
     "visualizador_cc.controls",
@@ -206,14 +202,6 @@ TEMPLATES = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
-# http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
-CRISPY_TEMPLATE_PACK = "bootstrap5"
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
-# FIXTURES
-# ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
-FIXTURE_DIRS = (str(APPS_DIR / "fixtures"),)
 
 # SECURITY
 # ------------------------------------------------------------------------------
