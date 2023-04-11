@@ -3,14 +3,20 @@ log:
 
 entryPoints:
   web:
-    # http
     address: ":80"
 
+http:
+  routers:
+    django-router:
+      rule: "Host(`visoreducativochaco.com.ar`)"
+      entryPoints:
+        - web
+      middlewares:
+        - csrf
+      service: django
 
   middlewares:
     csrf:
-      # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
-      # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
       headers:
         hostsProxyHeaders: ["X-CSRFToken"]
 
@@ -20,10 +26,8 @@ entryPoints:
         servers:
           - url: http://django:5000
 
-  
-
 providers:
-  # https://docs.traefik.io/master/providers/file/
   file:
     filename: /etc/traefik/traefik.yml
     watch: true
+
