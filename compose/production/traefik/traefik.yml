@@ -11,21 +11,6 @@ entryPoints:
         entryPoint:
           to: web-secure
 
-  web-secure:
-    # https
-    address: ":443"
-
-
-
-certificatesResolvers:
-  letsencrypt:
-    # https://docs.traefik.io/master/https/acme/#lets-encrypt
-    acme:
-      email: "juanjoseledesma90@gmail.com"
-      storage: /etc/traefik/acme/acme.json
-      # https://docs.traefik.io/master/https/acme/#httpchallenge
-      httpChallenge:
-        entryPoint: web
 
 http:
   routers:
