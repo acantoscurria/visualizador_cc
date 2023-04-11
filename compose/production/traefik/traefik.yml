@@ -5,27 +5,7 @@ entryPoints:
   web:
     # http
     address: ":80"
-    http:
-      # https://docs.traefik.io/routing/entrypoints/#entrypoint
-      redirections:
-        entryPoint:
-          to: web-secure
 
-
-http:
-  routers:
-    web-secure-router:
-      rule: "Host(`visoreducativochaco.com.ar`)"
-      entryPoints:
-        - web-secure
-      middlewares:
-        - csrf
-      service: django
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
-
-   
 
   middlewares:
     csrf:
